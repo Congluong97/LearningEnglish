@@ -15,9 +15,10 @@ class CreateHistoriesTable extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_audio');
-            $table->integer('id_video');
-            $table->integer('id_user');
+            $table->integer('id_lecture')->unsigned();
+            $table->foreign('id_lecture')->references('id')->on('lectures')->onDelete('cascade');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
