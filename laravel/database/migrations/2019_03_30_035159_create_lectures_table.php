@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLevelUsersTable extends Migration
+class CreateLecturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateLevelUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('level_users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('lectures', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name');
+            $table->string('image');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateLevelUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('level_users');
+        Schema::dropIfExists('lectures');
     }
 }

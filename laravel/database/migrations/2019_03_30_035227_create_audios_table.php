@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventTable extends Migration
+class CreateAudiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateEventTable extends Migration
      */
     public function up()
     {
-        Schema::create('event', function (Blueprint $table) {
+        Schema::create('audios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('image');
+            $table -> string('name');
+            $table -> integer('id_video')->unsigned();
+            $table -> foreign ('id_video')->references('id')->on('videos')->onDelete('cascade');
+            $table -> string('link');
+            $table -> string('text');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateEventTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event');
+        Schema::dropIfExists('audios');
     }
 }

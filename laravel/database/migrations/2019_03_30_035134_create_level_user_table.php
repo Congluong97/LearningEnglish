@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVocabulariesTable extends Migration
+class CreateLevelUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateVocabulariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vocabularies', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('level_user', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name');
-            $table->string('mean');
-            $table->string('pronunciation');
-            $table->integer('id_lecture');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateVocabulariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vocabularies');
+        Schema::dropIfExists('level_user');
     }
 }

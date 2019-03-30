@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHistoriesTable extends Migration
+class CreateFavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('histories', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('favorites', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
             $table->integer('id_lecture')->unsigned();
             $table->foreign('id_lecture')->references('id')->on('lectures')->onDelete('cascade');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('favorites');
     }
 }
