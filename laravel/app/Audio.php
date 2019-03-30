@@ -8,5 +8,5 @@ class Audio extends Model
 {
     protected $table='audios';
 
-    protected $fillable=['link','text'];
+    protected $fillable=['name','id_video','link','text'];
 }
