@@ -46,8 +46,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Add</a></li>
-          <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> List</a></li>
+          <li><a href="{{asset('admin/user/add')}}"><i class="fa fa-circle-o"></i> Add</a></li>
+          <li><a href="{{asset('admin/user/list')}}"><i class="fa fa-circle-o"></i> List</a></li>
         </ul>
       </li>
       <li class="treeview">

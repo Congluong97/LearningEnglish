@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('',function(){
+	return view('admin.login');
+});
 
 Route::group(['prefix'=>'admin/login'],function(){
 	Route::get('','LoginController@getLogin')->name('login');
@@ -22,5 +25,11 @@ Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
 	Route::get('home','HomeController@home');
 	Route::get('profile','UserController@getProfile');
 	Route::post('profile','UserController@postProfile');
+	Route::group(['prefix'=>'user'],function(){
+		Route::get('list','UserController@listUser');
+		Route::get('add','UserController@getAddUser');
+		Route::post('add','UserController@postAddUser');
+	});
+	
 });
 

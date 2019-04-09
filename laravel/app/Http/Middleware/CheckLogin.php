@@ -24,7 +24,7 @@ class CheckLogin
 
                 return redirect('admin/login')->with('error','Tài khoản không có quyền truy cập vào trang web này');
             }
-        }else{
+        }elseif(Auth::guest()){
             return redirect('admin/login');
         }
 

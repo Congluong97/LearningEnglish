@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use  App\Http\Requests\LoginRequest; 	
+use  App\Http\Requests\LoginRequest;
+use  App\Http\Requests\UserRequest; 	
 
 use App\Level_User;
 use App\User;
+use DB;
 
 class UserController extends Controller
 {
@@ -20,7 +22,6 @@ class UserController extends Controller
 
 	public function postProfile(Request $request){
 		
-
 		$this->validate($request,[
 			'name'=>'required',				
 		],[
@@ -46,4 +47,25 @@ class UserController extends Controller
 
 		
 	}
+
+	public function listUser(){
+		$data['listUser'] = DB::table('user')->join('level_user','user.level','level_user.id')->get();
+		return view('admin.user.listuser',$data);
+	}
+
+	public function getAddUser(){
+		$data['leveluser'] = Level_User::all();
+		return view('admin.user.adduser',$data);
+	}
+
+	public function postAddUser(UserRequest $request){
+		$user = new User;
+		$user->name = $request->name;
+		$user->email = $request->email;
+		$user->password = bcrypt($request->newpassword);
+		$user->level = $request->level;
+		$user->save();
+		return back()->with('error','Thêm thành công');
+	}
+
 }
