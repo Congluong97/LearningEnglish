@@ -8,5 +8,7 @@ class Level_User extends Model
 {
 	protected $table='level_user';
 
-	protected $fillable=['name'];
+	protected $primaryKey='id_level_user';
+
+	protected $fillable=['level_name'];
 }

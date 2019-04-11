@@ -29,6 +29,9 @@ Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
 		Route::get('list','UserController@listUser');
 		Route::get('add','UserController@getAddUser');
 		Route::post('add','UserController@postAddUser');
+		Route::get('edit/{id}','UserController@getEditUser');
+		Route::post('edit/{id}','UserController@postEditUser');
+		Route::get('delete/{id}','UserController@deleteUser');
 	});
 	
 });

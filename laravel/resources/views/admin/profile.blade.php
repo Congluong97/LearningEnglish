@@ -179,7 +179,7 @@
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
+  <!-- <script src="dist/js/demo.js"></script> -->
   <script type="text/javascript">
     $(document).ready(function(){
       $("#changePassword").change(function(){

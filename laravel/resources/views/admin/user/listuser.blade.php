@@ -45,8 +45,8 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 <td>{{$user->email}}
                 </td>
                 <td>{{$user->level_name}}</td>
-                <td> <input type="button" class="btn btn-warning" name="edituser" value="Edit" placeholder=""></td>
-                <td><input type="button" name="deleteuser" value="Delete" class="btn btn-danger" placeholder=""></td>
+                <td> <a href="{{asset('admin/user/edit/'.$user->id)}}" type="button" class="btn btn-warning" id="btnEdit"  title="">Edit</a></td>
+                <td><a href="#" type="button" class="btn btn-danger" id="btnDelet" title="">Delete</a></td>
               </tr>
               @endforeach
             </tbody>
