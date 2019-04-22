@@ -26,7 +26,7 @@
 							<tr>
 								<th width="5%" class="text-center">ID</th>
 								<th class="text-center" width="20%">Name</th>
-								<th class="text-center" width="20%">Link</th>
+								<th class="text-center" width="20%">Video</th>
 								<th class="text-center" width="20%">Text</th>
 								<th class="text-center" width="20%">Created at</th>
 								<th class="text-center" width="15%">Action</th>
@@ -77,6 +77,15 @@
 											<label for="">Text</label>
 											<input type="text" class="form-control" id="text" placeholder="Text" name="text">
 										</div>
+										<div class="form-group">
+											<label for="">Video</label>
+											<select name="video" id="inputvideo" class="form-control">
+													@foreach ($videos as $video)
+													<option id="video" value="{!!$video['id']!!}">{!!$video['name']!!}</option>
+													@endforeach
+
+												</select>
+										</div>
 										
 										
 									</tr>
@@ -109,7 +118,7 @@
 					<tbody>
 						<tr>
 							<td rowspan="6" >
-								<video src="" alt="" id="show-audio" width="100%" height="90%"></video>
+								<audio src="" id="show-audio"  width="100%" height="90%" controls style="width: 480px;height: 75px;"></audio>	
 							</td>
 						</tr>
 						<tr>
@@ -122,7 +131,7 @@
 						</tr>
 						<tr>
 							<td>video : </td>
-							<td id="show-id_video"></td>
+							<td id="show-video"></td>
 						</tr>
 						
 					</tbody>
@@ -174,7 +183,7 @@
 		</div>
 	</div>
 </div>
-
+</section>
 @endsection
 
 @section('script')
@@ -194,7 +203,7 @@
 			columns: [
 			{data: 'id', name: 'id'},
 			{data: 'name', name: 'name'},
-			{data: 'link', name: 'link'},
+			{data: 'id_video', name: 'id_video'},
 			{data: 'text', name: 'text'},
 			{data: 'created_at', name: 'created_at'},
 			{data: 'action', name:'action',orderable:false,searchable:false},
@@ -208,7 +217,7 @@
 	});
 	$('#tblAudio').on('submit',function(event) {
 		event.preventDefault();
-		alert($('#link')[0].files[0]);
+		// alert($('#link')[0].files[0]);
 		$.ajax({
 			type:'POST',
 			url: '{!! route('admin_audio.store') !!}',
@@ -216,14 +225,18 @@
 				name: $('#name').val(),
 				link: $('#link')[0].files[0],
 				text: $('#text').val(),
+				video: $('#video').val(),
 			},
 			success: function(res){
+				event.preventDefault();
 				$('#modalAdd').modal('hide');
 				toastr['success']('Add new Audio successfully!');
-				$('#tblAudio').DataTable().ajax.reload(null,false);
+				$('#tblAudio').data.reload();
+				// $('#tblAudio').DataTable().ajax.reload(null,false);
 			},
 
 			error: function(xhr, ajaxOptions, thrownError){
+				event.preventDefault();
 				toastr['error']('Add failed');
 			}
 		})
@@ -239,16 +252,20 @@
 				$('#show-name').text(res.name);
 
 				$('#show-text').text(res.text);
-				$('#show-id_video').text(res.id_video);
-				$('#show-audio').attr('src', 'LearningEnglish/laravel/'+res.link);
+				$('#show-video').text(res.video);
+				
+				var link = '{{asset('')}}public/'+res.link;
+				$('#show-audio').attr('src',''+link);
+				// alert(link);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
-				toastr['error']('Load this product failed!');
+				toastr['error']('Load this Audio failed!');
 			}
 		})
 	})
 
-	$('#tblAudio').on('click','.btnDelete',function() {
+	$('#tblAudio').on('click','.btnDelete',function(event) {
+		event.preventDefault();
 		var id=$(this).data('id');
 		swal({
 			title: "Are you sure?",
@@ -276,7 +293,7 @@
 			})
 			} else {
 				swal({
-					title: "The Product is safety!",
+					title: "The Audio is safety!",
 					icon: "success",
 					button: "OK!",
 				});
@@ -285,6 +302,7 @@
 	})
 
 	$('#tblAudio').on('click','.btnEdit',function(event) {
+		event.preventDefault();
 		var id=$(this).data('id');
 		event.preventDefault();
 		$.ajax({

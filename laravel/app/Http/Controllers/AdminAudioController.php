@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Audio;
+use App\Video;
 use Yajra\Datatables\Datatables;
 
 class AdminAudioController extends Controller
@@ -14,8 +15,9 @@ class AdminAudioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.index_audio');
+    {   
+        $videos=Video::all();
+        return view('admin.index_audio',['videos' => $videos]);
     }
 
     /**
@@ -25,23 +27,28 @@ class AdminAudioController extends Controller
      */
     
     public function anyData()
-    {   date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $list=Audio::orderBy('id','desc');
-        return Datatables::of($list)
-        ->addColumn('action',function($audio){
-            return '
-            <button title="Detail Audio" class="btn btn-info btnShow button1" data-id='.$audio["id"].'><i class="fa fa-address-book" aria-hidden="true"></i></button>
-            <button title="Update Audio" class="btn btn-warning  btnEdit button1" data-id='.$audio["id"].'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button title="Delete Audio" class="btn btn-danger b btnDelete button1" data-id='.$audio["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
-        })
-        ->make(true);
-    }
+    {   
+     $list=Audio::with([ 'video'])->orderBy('id', 'desc');
+
+     return Datatables::of($list)
+     ->addColumn('action',function($audio){
+        return '<button title="Detail Audio" class="btn btn-info btnShow button1" data-id='.$audio["id"].'><i class="fa fa-address-book" aria-hidden="true"></i></button>
+        <button title="Update Audio" class="btn btn-warning  btnEdit button1" data-id='.$audio["id"].'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button title="Delete Audio" class="btn btn-danger b btnDelete button1" data-id='.$audio["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
+    })
+     ->editColumn('id_video', function($audio) {
+        return $audio->Video->name;
+    })
+     ->setRowId('id')
+     
+     ->make(true);
+ }
 
 
-    public function create()
-    {
+ public function create()
+ {
         //
-    }
+ }
 
     /**
      * Store a newly created resource in storage.
@@ -51,14 +58,13 @@ class AdminAudioController extends Controller
      */
     public function store(Request $request)
     {
-        echo "string";
-      $data = $request->all();
+
+        $data = $request->all();
             // dd($data);
 
-            
+        
        // kiem tra audio
         if ($request->hasFile('link')) {
-            echo "";
             $date = date('YmdHis', time());
 
             $link = $request->file('link');
@@ -76,26 +82,25 @@ class AdminAudioController extends Controller
 
             $link[0] = 'storage/audios/'.$date.$file_name;
 
-            // dd($link[]);
+            // dd($link[0]);
 
-            // dd($audio['link']);    
-
-          
+            // dd($audio['link']);   
         }
 
-     $audio=array(
-        'name' =>$data['name'],
-        'text' =>$data['text'],
-        'id_video' => '1',
-        'link' =>$link[0]
+        $audio=array(
+            'name' =>$data['name'],
+            'text' =>$data['text'],
+            'id_video' => $data['video'],
+            'link' =>$link[0]
+            
+        );
+     // dd($audio);
+        Audio::create($audio);
         
-    );
-          Audio::create($audio);
-    
-    return redirect()->route('admin_audio.index',[
-        'success' => 'Add success!',
-    ]);
-}
+        return redirect()->route('admin_audio.index',[
+            'success' => 'Add success!',
+        ]);
+    }
 
     /**
      * Display the specified resource.
@@ -105,20 +110,12 @@ class AdminAudioController extends Controller
      */
     public function show($id)
     {
-         $audio = Audio::findOrFail($id);
-        // if ($product){
-        //     $product['brand'] = Brand::find($product['brand_id'])['name'];
-        //     $product['category'] = Category::find($product['category_id'])['name'];
-        //     $thumbnail = GalleryImage::where('product_id','=',$product['id'])->first()['link']; 
-        //     if (!$thumbnail) {
-        //         $product['thumbnail'] = 'storage/products/shoes_default.png';
-        //     } else {
-        //         $product['thumbnail'] = $thumbnail;
-        //     }
-        // }  
-        
-        return $audio;     
+     $audio = Audio::findOrFail($id);
+     if ($audio) {
+        $audio['video'] = Video::find($audio['id_video'])['name'];
     }
+    return $audio;     
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -152,10 +149,10 @@ class AdminAudioController extends Controller
     public function destroy($id)
     {
         $res = Audio::find($id)->delete();
-            if ($res==true) {
-                return response(['success'], 200);
-            } else {
-                return response([],400);
-            }    
+        if ($res==true) {
+            return response(['success'], 200);
+        } else {
+            return response([],400);
+        }    
     }
 }

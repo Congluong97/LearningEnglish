@@ -69,6 +69,15 @@
 										<label for="">pronunciation</label>
 										<input type="text"  id="pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="pronunciation" >
 									</div>
+									<div class="form-group">
+											<label for="">Lecture</label>
+											<select name="lecture" id="inputlecture" class="form-control">
+												@foreach ($lectures as $lecture)
+												<option id="video" value="{!!$lecture['id']!!}">{!!$lecture['name']!!}</option>
+												@endforeach
+
+											</select>
+										</div>
 
 								</tr>
 							</tbody>
@@ -99,12 +108,12 @@
 					<tbody>
 						
 						<tr>
-							<td width="15%">Name : </td>
-							<td id="show-name" width="35%"></td>
+							<td width="30%">Name : </td>
+							<td id="show-name" width="50%"></td>
 						</tr>
 						<tr>
-							<td width="15%">Mean : </td>
-							<td id="show-mean" width="35%"></td>
+							<td width="30%">Mean : </td>
+							<td id="show-mean" width="50%"></td>
 						</tr>
 						<tr>
 							<td>Pronunciation : </td>
@@ -226,7 +235,7 @@
 				$('#show-name').text(res.name);
 				$('#show-mean').text(res.mean);
 				$('#show-pronunciation').text(res.pronunciation);
-				$('#show-id_lecture').text(res.id_lecture);
+				$('#show-id_lecture').text(res.lecture);
 			
 			},
 			error: function(xhr, ajaxOptions, thrownError) {

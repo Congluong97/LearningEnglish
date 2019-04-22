@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vocabulary;
+use App\Lecture;
 use Yajra\Datatables\Datatables;
 
 
@@ -15,8 +16,8 @@ class AdminVocabularyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.index_vocabulary');
+    {   $lectures=Lecture::all();
+        return view('admin.index_vocabulary',['lectures' => $lectures]);
     }
 
     /**
@@ -73,7 +74,9 @@ class AdminVocabularyController extends Controller
     public function show($id)
     {
         $vocabulary=Vocabulary::findOrFail($id);
-
+        if ($vocabulary) {
+            $vocabulary['lecture']=Lecture::find($vocabulary['id_lecture'])['name'];
+        }
         return $vocabulary;
     }
 
