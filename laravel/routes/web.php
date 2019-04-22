@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+<<<<<<< HEAD
 // Route::get('',function(){
 // 	return view('admin.login');
 // });
@@ -61,3 +62,31 @@ Route::get('logout','LoginController@logout');
 // });
 
 // >>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc
+=======
+Route::get('',function(){
+	return view('admin.login');
+});
+
+Route::group(['prefix'=>'admin/login'],function(){
+	Route::get('','LoginController@getLogin')->name('login');
+	Route::post('','LoginController@postLogin');		
+});
+
+
+Route::get('logout','LoginController@logout');
+Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
+	Route::get('home','HomeController@home');
+	Route::get('profile','UserController@getProfile');
+	Route::post('profile','UserController@postProfile');
+	Route::group(['prefix'=>'user'],function(){
+		Route::get('list','UserController@listUser');
+		Route::get('add','UserController@getAddUser');
+		Route::post('add','UserController@postAddUser');
+		Route::get('edit/{id}','UserController@getEditUser');
+		Route::post('edit/{id}','UserController@postEditUser');
+		Route::get('delete/{id}','UserController@deleteUser');
+	});
+	
+});
+
+>>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc

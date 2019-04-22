@@ -8,6 +8,7 @@
   <base href="{{asset('public/adminlte')}}/">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<<<<<<< HEAD
 
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('')}}public/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -34,6 +35,10 @@
 
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+=======
+  
+  @yield('css')
+>>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc
 </head>
 {{-- <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
@@ -565,7 +570,11 @@
                 </div>
               </li>
             </ul>
+<<<<<<< HEAD
           </li> --}}
+=======
+          </li>
+>>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc
           
         
         </ul>
@@ -573,7 +582,11 @@
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
+<<<<<<< HEAD
   {{-- @include('admin.layouts.mainsibar') --}}
+=======
+  @include('admin.layouts.mainsibar')
+>>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -833,6 +846,9 @@
 </div>
 <!-- ./wrapper -->
 
+<<<<<<< HEAD
+>>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc
+=======
 >>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc
 
 @yield('script')

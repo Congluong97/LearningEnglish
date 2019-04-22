@@ -3,13 +3,21 @@
   <section class="sidebar">
     <!-- Sidebar user panel -->
     <div class="user-panel">
+<<<<<<< HEAD
     {{--   <div class="pull-left image">
+=======
+      <div class="pull-left image">
+>>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc
         <img src="{{asset('')}}public/adminlte/dist/img/user_image.png" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
         <p>{{Auth::user()->name}}</p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+<<<<<<< HEAD
       </div> --}}
+=======
+      </div>
+>>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc
     </div>
     <!-- search form -->
     <form action="#" method="get" class="sidebar-form">
@@ -45,10 +53,17 @@
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
+<<<<<<< HEAD
         {{-- <ul class="treeview-menu">
           <li><a href="{{asset('admin/user/add')}}"><i class="fa fa-circle-o"></i> Add</a></li>
           <li><a href="{{asset('admin/user/list')}}"><i class="fa fa-circle-o"></i> List</a></li>
         </ul> --}}
+=======
+        <ul class="treeview-menu">
+          <li><a href="{{asset('admin/user/add')}}"><i class="fa fa-circle-o"></i> Add</a></li>
+          <li><a href="{{asset('admin/user/list')}}"><i class="fa fa-circle-o"></i> List</a></li>
+        </ul>
+>>>>>>> 24d9bac04ec1c5ececaec42cd84299b017becccc
       </li>
       <li class="treeview">
         <a href="#">
