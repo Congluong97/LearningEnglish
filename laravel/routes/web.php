@@ -19,6 +19,11 @@ Route::group(['prefix'=>'admin/login'],function(){
 	Route::post('','LoginController@postLogin');		
 });
 
+Route::group(['prefix'=>'admin/register'],function(){
+	Route::get('','LoginController@getRegister');
+	Route::post('','LoginController@postRegister');
+});
+
 
 Route::get('logout','LoginController@logout');
 Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
@@ -31,7 +36,7 @@ Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
 		Route::post('add','UserController@postAddUser');
 		Route::get('edit/{id}','UserController@getEditUser');
 		Route::post('edit/{id}','UserController@postEditUser');
-		Route::get('delete/{id}','UserController@deleteUser');
+		Route::post('delete','UserController@deleteUser')->name('admin.user.delete');
 	});
 	
 });

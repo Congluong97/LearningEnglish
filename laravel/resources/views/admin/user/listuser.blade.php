@@ -29,6 +29,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
         <!-- /.box-header -->
         <div class="box-body">
           <table id="example2" class="table table-bordered table-hover">
+
             <thead>
               <tr class="bg-info">
                 <th>Name</th>
@@ -46,7 +47,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
                 </td>
                 <td>{{$user->level_name}}</td>
                 <td> <a href="{{asset('admin/user/edit/'.$user->id)}}" type="button" class="btn btn-warning" id="btnEdit"  title="">Edit</a></td>
-                <td><a href="#" type="button" class="btn btn-danger" id="btnDelet" title="">Delete</a></td>
+                <td><a href="{{asset('admin/user/delete')}}" type="button" class="btn btn-danger delete"  title="">Delete</a></td>
               </tr>
               @endforeach
             </tbody>
@@ -90,5 +91,6 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,30
       'autoWidth'   : false
     })
   })
+
 </script>
 @endsection

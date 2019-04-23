@@ -62,8 +62,7 @@
             </div>
             <!-- /.col -->
           </div>
-          <a href="#">I forgot my password</a><br>
-          <a href="#" class="text-center">Register a new membership</a>
+          <a href="{{asset('admin/register')}}" class="text-center">Register a new membership</a>
           {{csrf_field()}}
         </form>
 
