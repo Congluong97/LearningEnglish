@@ -16,17 +16,17 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()){
-            $user = Auth::user();
-            if($user->level == 1){
-                return $next($request); 
-            }else{
+        // if(Auth::check()){
+        //     $user = Auth::user();
+        //     if($user->level == 1){
+        //         return $next($request); 
+        //     }else{
 
-                return redirect('admin/login')->with('error','Tài khoản không có quyền truy cập vào trang web này');
-            }
-        }elseif(Auth::guest()){
-            return redirect('admin/login');
-        }
+        //         return redirect('admin/login')->with('error','Tài khoản không có quyền truy cập vào trang web này');
+        //     }
+        // }elseif(Auth::guest()){
+        //     return redirect('admin/login');
+        // }
 
         
     }
