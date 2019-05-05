@@ -33,7 +33,7 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-primary">New User</h3>
+          <h3 class="box-primary"><b>Edit User:</b> {{$user->name}}</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->

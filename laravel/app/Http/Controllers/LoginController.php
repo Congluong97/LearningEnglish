@@ -12,6 +12,7 @@ use  App\Http\Requests\ProfileRequest;
 //use Auth;
 use App\Level_User;
 
+
 class LoginController extends Controller
 {
 
@@ -40,6 +41,20 @@ class LoginController extends Controller
 	public function logout(){
 		Auth::logout();
 		return redirect()->intended('admin/login');	
+	}
+
+	public function getRegister(){
+		return view('admin.register');	
+	}
+
+	public function postRegister(Request $request){
+		$user = new User;
+		$user->name = $request->name;
+		$user->email = $request->email;
+		$user->password = bcrypt($request->password);
+		$user->level = 2;
+		$user->save();
+		return back()->with('error','Thêm thành công');
 	}
 
 	

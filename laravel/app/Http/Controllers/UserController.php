@@ -62,7 +62,7 @@ class UserController extends Controller
 		$user = new User;
 		$user->name = $request->name;
 		$user->email = $request->email;
-		$user->password = bcrypt($request->newpassword);
+		$user->password = bcrypt($request->password);
 		$user->level = $request->level;
 		$user->save();
 		return back()->with('error','Thêm thành công');
@@ -99,5 +99,6 @@ class UserController extends Controller
 		return redirect('admin/user/list')->with('error','Sửa thành công');
 
 	}
+
 
 }
