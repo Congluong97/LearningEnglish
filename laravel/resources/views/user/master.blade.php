@@ -9,6 +9,7 @@
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
+    <base href="{{asset('public/user')}}/" target="_blank, _self, _parent, _top">
     <title>Clever - Education &amp; Courses Template | Home</title>
 
     <!-- Favicon -->
