@@ -14,12 +14,11 @@ class CreateAudiosTable extends Migration
     public function up()
     {
         Schema::create('audios', function (Blueprint $table) {
-            $table->increments('id');
-            $table -> string('name');
-            $table -> integer('id_video')->unsigned();
-            $table -> foreign ('id_video')->references('id')->on('videos')->onDelete('cascade');
-            $table -> string('link');
-            $table -> string('text');
+           $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('id_video');
+            $table->string('link');
+            $table->string('text');
             $table->timestamps();
         });
     }

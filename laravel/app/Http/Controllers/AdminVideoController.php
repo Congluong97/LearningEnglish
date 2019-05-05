@@ -32,9 +32,7 @@ class AdminVideoController extends Controller
             <button title="Update video" class="btn btn-warning  btnEdit button1" data-id='.$video["id"].'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button title="Delete video" class="btn btn-danger b btnDelete button1" data-id='.$video["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
         })
-        ->editColumn('id_lecture', function($video) {
-            return $video->Lecture->name;
-        })
+        
         ->setRowId('id')
      
         ->make(true);
@@ -63,36 +61,36 @@ class AdminVideoController extends Controller
 
         
        // kiem tra audio
-        if ($request->hasFile('link')) {
-            echo "";
-            $date = date('YmdHis', time());
+//         if ($request->hasFile('link')) {
+//             echo "";
+//             $date = date('YmdHis', time());
 
-            $link = $request->file('link');
+//             $link = $request->file('link');
 
-//             echo 'Kiểu files: ' . $file->getMimeType();
-                //lấy tên file
-            $name = $link[0]->getClientOriginalName();
+// //             echo 'Kiểu files: ' . $file->getMimeType();
+//                 //lấy tên file
+//             $name = $link[0]->getClientOriginalName();
 
-                //lấy đuôi file
-            // $extension = '.'.$link[0]->getClientOriginalExtension();
+//                 //lấy đuôi file
+//             // $extension = '.'.$link[0]->getClientOriginalExtension();
 
-            $file_name = $name;
+//             $file_name = $name;
 
-            $link[0]->storeAs('public/video',$date.$file_name);
+//             $link[0]->storeAs('public/video',$date.$file_name);
 
-            $link[0] = 'storage/video/'.$date.$file_name;
+//             $link[0] = 'storage/video/'.$date.$file_name;
 
-            // dd($link[0]);
+//             // dd($link[0]);
 
-            // dd($audio['link']);   
-        }
+//             // dd($audio['link']);   
+//         }
 
         $video=array(
             'name' =>$data['name'],
             'description' =>$data['description'],
             'time' =>$data['time'],
             'id_lecture' => '1',
-            'link' =>$link[0]
+            'link' =>$data['link']
             
         );
      // dd($audio);

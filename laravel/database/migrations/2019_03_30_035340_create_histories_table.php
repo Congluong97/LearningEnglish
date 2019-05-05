@@ -14,11 +14,11 @@ class CreateHistoriesTable extends Migration
     public function up()
     {
         Schema::create('histories', function (Blueprint $table) {
-           $table->increments('id');
-            $table->integer('id_lecture')->unsigned();
-            $table->foreign('id_lecture')->references('id')->on('lectures')->onDelete('cascade');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
+           $table->bigIncrements('id');
+            $table->string('id_lecture');
+         
+            $table->string('id_user');
+          
             $table->timestamps();
         });
     }
