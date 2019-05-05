@@ -26,10 +26,8 @@
 							<tr>
 								<th width="5%" class="text-center">ID</th>
 								<th class="text-center" width="20%">Name</th>
-								<th class="text-center" width="20%">Link</th>
 								<th class="text-center" width="20%">Description</th>
 								<th class="text-center" width="20%">Time</th>
-								<th class="text-center" width="20%">id_Lecture</th>
 								<th class="text-center" width="20%">Created at</th>
 								<th class="text-center" width="15%">Action</th>
 							</tr>
@@ -69,7 +67,7 @@
 										
 										<div class="form-group">
 											<label for="">video</label>
-											<input id="link" class="form-control" type="file" name="link[]" multiple>
+											<input id="link" class="form-control" type="text" name="video" multiple>
 										</div>
 										
 										<div class="form-group">
@@ -219,10 +217,10 @@
 			columns: [
 			{data: 'id', name: 'id'},
 			{data: 'name', name: 'name'},
-			{data: 'link', name: 'link'},
+		
 			{data: 'description', name: 'description'},
 			{data: 'time', name: 'time'},
-			{data: 'id_lecture', name: 'id_lecture'},
+			
 			{data: 'created_at', name: 'created_at'},
 			{data: 'action', name:'action',orderable:false,searchable:false},
 			]
@@ -240,7 +238,7 @@
 			url: '{!! route('admin_video.store') !!}',
 			data:{
 				name: $('#name').val(),
-				link: $('#link')[0].files[0],
+				link: $('#link')[0].val(),
 				description: $('#description').val(),
 				time: $('#time').val(),
 			},

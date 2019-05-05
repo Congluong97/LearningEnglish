@@ -8,7 +8,8 @@ use App\Video;
 use Yajra\Datatables\Datatables;
 
 class AdminAudioController extends Controller
-{
+{   
+    
     /**
      * Display a listing of the resource.
      *

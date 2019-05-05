@@ -19,8 +19,8 @@ class CreateUserTable extends Migration
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('level')->unsigned();
-            $table->foreign('level')->references('id')->on('level_user')->onDelete('cascade');
+            $table->string('level');
+           
             $table->rememberToken();
             $table->timestamps();
 
