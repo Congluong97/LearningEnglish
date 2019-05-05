@@ -98,7 +98,7 @@
                             <!-- Register / Login -->
                             <div class="register-login-area">
                                 <a href="#" class="btn">Register</a>
-                                <a href="index-login.html" class="btn active">Login</a>
+                                <a href="{{asset('login')}}" class="btn active">Login</a>
                             </div>
 
                         </div>

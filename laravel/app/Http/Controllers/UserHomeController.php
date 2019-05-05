@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class UserHomeController extends Controller
 {
     public function getHome(){
-    	return view('clever.index');
+    	return view('user.index');
     }
     public function getLogin(){
     	return view('admin.login');
@@ -31,7 +31,13 @@ class UserHomeController extends Controller
 			return redirect('login')->with('error','Tài khoản hoặc mật khẩu chưa đúng');
 		}
     }
+
     public function getHomeLogin(){
-    	return view('clever.index-login');
+    	return view('user.index-login');
     }
+
+    public function logout(){
+		Auth::logout();
+		return redirect()->intended('home');	
+	}
 }
