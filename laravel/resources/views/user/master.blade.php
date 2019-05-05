@@ -10,7 +10,7 @@
 
     <!-- Title -->
     <base href="{{asset('public/user')}}/" target="_blank, _self, _parent, _top">
-    <title>Clever - Education &amp; Courses Template | Home</title>
+    <title>English - Education &amp; Courses Template | Home</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -33,8 +33,8 @@
         <div class="top-header-area d-flex justify-content-between align-items-center">
             <!-- Contact Info -->
             <div class="contact-info">
-                <a href="#"><span>Phone:</span> +44 300 303 0266</a>
-                <a href="#"><span>Email:</span> info@clever.com</a>
+                <a href="#"><span>Phone:</span> +84 369 435 608</a>
+                <a href="#"><span>Email:</span> xuanttbk@gmail.com</a>
             </div>
             <!-- Follow Us -->
             <div class="follow-us">
@@ -71,22 +71,20 @@
                         <div class="classynav">
                             <ul>
                                 <li><a href="index.html">Home</a></li>
-                                <li><a href="#">Pages</a>
+                                <li><a href="#">Level</a>
                                     <ul class="dropdown">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="courses.html">Courses</a></li>
-                                        <li><a href="single-course.html">Single Courses</a></li>
-                                        <li><a href="instructors.html">Instructors</a></li>
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="blog-details.html">Single Blog</a></li>
-                                        <li><a href="regular-page.html">Regular Page</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="index.html">Level 1</a></li>
+                                        <li><a href="courses.html">Level 2</a></li>
+                                        <li><a href="single-course.html">Level 3</a></li>
+                                        <li><a href="instructors.html">Level 4</a></li>
+                                        <li><a href="blog.html">Level 5</a></li>
+                                
                                     </ul>
                                 </li>
-                                <li><a href="courses.html">Courses</a></li>
+                                <li><a href="courses.html">Lectures</a></li>
                                 <li><a href="instructors.html">Instructors</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="blog.html">Vocabulary</a></li>
+                               
                             </ul>
 
                             <!-- Search Button -->
@@ -139,8 +137,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <div class="bottom-footer-area d-flex justify-content-between align-items-center">
             <!-- Contact Info -->
             <div class="contact-info">
-                <a href="#"><span>Phone:</span> +44 300 303 0266</a>
-                <a href="#"><span>Email:</span> info@clever.com</a>
+                <a href="#"><span>Phone:</span> +84 369 435 608</a>
+                <a href="#"><span>Email:</span> xuanttbk@gmail.com</a>
             </div>
             <!-- Follow Us -->
             <div class="follow-us">
