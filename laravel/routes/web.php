@@ -145,6 +145,6 @@ Route::group(['prefix'=>'admin'],function(){
  });
 
 Route::get('test', function(){
-       return view('user.master');
+       return view('user.index');
 });
 
