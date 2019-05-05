@@ -58,7 +58,6 @@ class AdminVideoController extends Controller
     {
         $data = $request->all();
             // dd($data);
-
         
        // kiem tra audio
 //         if ($request->hasFile('link')) {
@@ -82,14 +81,14 @@ class AdminVideoController extends Controller
 
 //             // dd($link[0]);
 
-//             // dd($audio['link']);   
+//               
 //         }
 
         $video=array(
             'name' =>$data['name'],
             'description' =>$data['description'],
             'time' =>$data['time'],
-            'id_lecture' => '1',
+            'id_lecture' => $data['lecture'],
             'link' =>$data['link']
             
         );

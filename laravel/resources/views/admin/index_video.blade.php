@@ -1,6 +1,7 @@
 @extends('admin.layouts.admin_master');
 
 @section('content-header')
+<
 <ol class="breadcrumb">
 	<li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
 	<li class="active">Video</li>
@@ -67,7 +68,7 @@
 										
 										<div class="form-group">
 											<label for="">video</label>
-											<input id="link" class="form-control" type="text" name="video" multiple>
+											<input id="link" class="form-control" type="text" name="link" multiple>
 										</div>
 										
 										<div class="form-group">
@@ -115,9 +116,10 @@
 				<br>
 				<div class="col-lg-11"><table class="table table-bordered" >
 					<tbody>
+						
 						<tr>
 							<td rowspan="8" >
-								<video src="" alt="" id="show-video" width="100%" height="90%"></video>
+								<iframe src="" alt="" id="show-video" width="100%" height="300px" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen control></iframe>
 							</td>
 						</tr>
 						<tr>
@@ -238,7 +240,7 @@
 			url: '{!! route('admin_video.store') !!}',
 			data:{
 				name: $('#name').val(),
-				link: $('#link')[0].val(),
+				link: $('#link').val(),
 				description: $('#description').val(),
 				time: $('#time').val(),
 			},
@@ -267,7 +269,7 @@
 				$('#show-description').text(res.description);
 				$('#show-time').text(res.time);
 				$('#show-id_lecture').text(res.lecture);
-				var link='{{asset('')}}public/'+res.link;
+				var link=res.link;
 				$('#show-video').attr('src',''+link);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {

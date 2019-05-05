@@ -51,7 +51,7 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="{{ route('admin_list.register') }}" method="POST" role="form" enctype="multipart/form-data" id="formAdd" name="formAdd">
+					<form action="{{ route('admin_list.store') }}" method="POST" role="form" enctype="multipart/form-data" id="formAdd" name="formAdd">
 						@csrf
 						<div>
 							<table class="table table-hover">
@@ -96,7 +96,13 @@
 											<label for="">Confirm Password</label>
 											<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
 										</div>
-										
+										<div class="form-group">
+											<label for="">Thumbnail</label>
+											<div class="input-group">
+												<input id="thumbnail" class="form-control" type="file" name="thumbnail[]" multiple>
+											</div>
+
+										</div>
 										
 									</tr>
 								</tbody>
@@ -115,64 +121,105 @@
 			</div>
 		</div>
 	</div>
-	@endsection
 
 
-	@section('script')
-	<script type="text/javascript">
+	<div class="modal fade" id="modalShow">
+		<div class="container">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Audio INFORMATION </h4>
+				</div>
+				<br>
+				<div class="col-lg-11"><table class="table table-bordered" >
+					<tbody>
+						<tr>
+							<td rowspan="6" >
+								<audio src="" id="show-audio"  width="100%" height="90%" controls style="width: 480px;height: 75px;"></audio>	
+							</td>
+						</tr>
+						<tr>
+							<td width="15%">Name : </td>
+							<td id="show-name" width="35%"></td>
+						</tr>
+						<tr>
+							<td>Text : </td>
+							<td id="show-text"></td>
+						</tr>
+						<tr>
+							<td>video : </td>
+							<td id="show-video"></td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 
-		$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
-		});
+@endsection
 
-		$(function() {
-			$('#tblAdmin').DataTable({
-				processing: true,
-				serverSide: true,
-				ajax: '{{route('admin_list.dataTable')}}',
-				columns: [
-				{ data: 'id', name: 'id'},
-				{ data: 'name', name: 'name'},
-				{ data: 'email', name: 'email'},
-				{ data: 'created_at', name: 'created_at'},
-				{ data: 'action', name: 'action'},
 
-				]
-			})
-		});
+@section('script')
+<script type="text/javascript">
 
-		$('#btnAdd').on('click',function(event) {
-			event.preventDefault();
-			$('#modalAdd').modal('show');
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+	$(function() {
+		$('#tblAdmin').DataTable({
+			processing: true,
+			serverSide: true,
+			ajax: '{{route('admin_list.dataTable')}}',
+			columns: [
+			{ data: 'id', name: 'id'},
+			{ data: 'name', name: 'name'},
+			{ data: 'email', name: 'email'},
+			{ data: 'created_at', name: 'created_at'},
+			{ data: 'action', name: 'action'},
+
+			]
 		})
-	// 	$('#tblAdmin').on('submit',function(event) {
-	// 	event.preventDefault();
-	// 	// alert($('#link')[0].files[0]);
-	// 	$.ajax({
-	// 		type:'POST',
-	// 		url: '',
-	// 		data:{
-	// 			name: $('#name').val(),
-	// 			email: $('#email').val(),
-	// 			password: $('#password').val(),
-				
-	// 		},
-	// 		success: function(res){
-	// 			event.preventDefault();
-	// 			$('#modalAdd').modal('hide');
-	// 			toastr['success']('Add new Audio successfully!');
-	// 			$('#tblAudio').data.reload();
-	// 			// $('#tblAudio').DataTable().ajax.reload(null,false);
-	// 		},
+	});
 
-	// 		error: function(xhr, ajaxOptions, thrownError){
-	// 			event.preventDefault();
-	// 			toastr['error']('Add failed');
-	// 		}
-	// 	})
-	// });
+	$('#btnAdd').on('click',function(event) {
+		event.preventDefault();
+		$('#modalAdd').modal('show');
+	})
+		$('#tblAdmin').on('submit',function(event) {
+		event.preventDefault();
+		// alert($('#link')[0].files[0]);
+		$.ajax({
+			type:'POST',
+			url: '',
+			data:{
+				name: $('#name').val(),
+				email: $('#email').val(),
+				password: $('#password').val(),
+				thumbnail: $('#thumbnail')[0].files[0]
+
+			},
+			success: function(res){
+				event.preventDefault();
+				$('#modalAdd').modal('hide');
+				toastr['success']('Add new Audio successfully!');
+				$('#tblAdmin').data.reload();
+				// $('#tblAudio').DataTable().ajax.reload(null,false);
+			},
+
+			error: function(xhr, ajaxOptions, thrownError){
+				event.preventDefault();
+				toastr['error']('Add failed');
+			}
+		})
+	});
 	
 
 	$('#tblAdmin').on('click','.btnDelete',function(event) {
@@ -211,5 +258,10 @@
 			}
 		})
 	})
-	</script>
-	@endsection
+	$('#tblAdmin').on('click','.btnShow',function(event) {
+		var id = $(this).data('id');
+		event.preventDefault();
+		$('#modalShow').modal('show');
+	})
+</script>
+@endsection
