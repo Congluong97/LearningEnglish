@@ -1,5 +1,16 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
 
 // |--------------------------------------------------------------------------
 // | Web Routes
@@ -11,14 +22,6 @@
 // |
 
 
-// Route::get('',function(){
-// 	return view('admin.login');
-// });
-
-// Route::group(['prefix'=>'admin/login'],function(){
-// 	Route::get('','LoginController@getLogin')->name('login');
-// 	Route::post('','LoginController@postLogin');		
-// });
 
 Route::prefix('admin')->group(function(){
 	Route::get('login', 'AdminAuth\AdminLoginController@showLoginForm')->name('admin.showLoginForm');
@@ -68,6 +71,7 @@ Route::prefix('admin')->group(function(){
 
 
 // =======
+<<<<<<< HEAD
 // Route::get('logout','LoginController@logout');
 // Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
 // 	Route::get('home','HomeController@home');
@@ -129,5 +133,17 @@ Route::prefix('admin')->group(function(){
 
 	
 // });
+=======
 
+Route::get('logout','UserHomeController@logout');
 
+Route::get('home','UserHomeController@getHome')->middleware('checkLogout');
+Route::get('login','UserHomeController@getLogin')->name('login')->middleware('checkLogout');
+Route::post('login','UserHomeController@postLogin')->middleware('checkLogout');
+
+>>>>>>> ab0fcd36820a4eec4d00ae154726d63249a5048b
+
+Route::group(['middleware'=>'checkLogin'],function(){
+
+	Route::get('homelogin','UserHomeController@getHomeLogin');
+});

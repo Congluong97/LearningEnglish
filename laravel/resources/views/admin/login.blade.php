@@ -37,7 +37,7 @@
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form action="{{asset('admin/login')}}" method="POST">
+        <form action="{{asset('login')}}" method="POST">
           @include('errors.note')
           <div class="form-group has-feedback">
             <input type="email" class="form-control" placeholder="Email" name="email" value="{{old('email')}} ">
