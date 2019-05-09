@@ -80,4 +80,6 @@ Route::post('login','UserHomeController@postLogin')->middleware('checkLogout');
 Route::group(['middleware'=>'checkLogin'],function(){
 
 	Route::get('homelogin','UserHomeController@getHomeLogin');
+	Route::get('{user}/profile','UserHomeController@getProfile');
+	Route::post('{user}/profile','UserHomeController@postProfile');
 });
