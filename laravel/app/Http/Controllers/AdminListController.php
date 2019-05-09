@@ -46,6 +46,7 @@ class AdminListController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:admins',
             'password' => 'required|string|min:6|confirmed',
+            'thumbnail' => 'required|string|max:255'
         ]);
     }
     /**
@@ -54,13 +55,9 @@ class AdminListController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return Admin::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+    protected function create(array $data, Request $request)
+    {   
+
     }
 
     
@@ -73,7 +70,41 @@ class AdminListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->all();
+
+        if ($request->hasFile('thumbnail')) {
+            $date = date('YmdHis', time());
+
+            $link = $request->file('thumbnail');
+
+//             echo 'Kiểu files: ' . $file->getMimeType();
+                //lấy tên file
+            $name = $link[0]->getClientOriginalName();
+
+                //lấy đuôi file
+            $extension = '.'.$link[0]->getClientOriginalExtension();
+
+            $file_name = md5($request->name.$name).'_'. $date . $extension;;
+
+            $link[0]->storeAs('public/img_admin',$file_name);
+
+            $link[0] = 'storage/img_admin/'.$file_name;
+
+            // dd($link[0]);
+
+            // dd($audio['link']);   
+        }
+
+        return Admin::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'thumbnail' => $link[0]
+        ]);
+
+        return redirect()->route('admin_list.index',[
+            'success' => 'Add success!',
+        ]);
     }
 
     /**
@@ -95,7 +126,9 @@ class AdminListController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admin=Admin::findOrFail($id);
+
+        return $admin;
     }
 
     /**

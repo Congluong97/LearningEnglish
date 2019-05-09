@@ -82,7 +82,7 @@
                     <li><!-- start message -->
                       <a href="#">
                         <div class="pull-left">
-                          <img src="{{-- localhost/LearingEnglish/laravel/{{Auth::guard('admin')->user()->avatar}}" --}} class="img-circle" alt="User Image">
+                          <img src="http://localhost/LearningEnglish/laravel/public/{{Auth::guard('admin')->user()->thumbnail}}" class="img-circle" alt="User Image">
                         </div>
                         <h4>
                           Support Team
@@ -269,13 +269,13 @@
     <!-- User Account: style can be found in dropdown.less -->
     <li class="dropdown user user-menu">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+        <img src="http://localhost/LearningEnglish/laravel/public/{{Auth::guard('admin')->user()->thumbnail}}" class="user-image" alt="User Image">
         <span class="hidden-xs">{{Auth::guard('admin')->user()->name}}</span>
       </a>
       <ul class="dropdown-menu">
         <!-- User image -->
         <li class="user-header">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="http://localhost/LearningEnglish/laravel/public/{{Auth::guard('admin')->user()->thumbnail}}" class="img-circle" alt="User Image">
 
           <p>
             {{Auth::guard('admin')->user()->name}} - Web Developer
@@ -283,25 +283,9 @@
           </p>
         </li>
         <!-- Menu Body -->
-        <li class="user-body">
-          <div class="row">
-            <div class="col-xs-4 text-center">
-              <a href="#">Followers</a>
-            </div>
-            <div class="col-xs-4 text-center">
-              <a href="#">Sales</a>
-            </div>
-            <div class="col-xs-4 text-center">
-              <a href="#">Friends</a>
-            </div>
-          </div>
-          <!-- /.row -->
-        </li>
-        <!-- Menu Footer-->
+       
         <li class="user-footer">
-          <div class="pull-left">
-            <a href="#" class="btn btn-default btn-flat">Profile</a>
-          </div>
+          
           <div class="pull-right">
             <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
@@ -328,7 +312,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        <img src="http://localhost/LearningEnglish/laravel/public/{{Auth::guard('admin')->user()->thumbnail}}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
         <p>{{Auth::guard('admin')->user()->name}}</p>
