@@ -70,7 +70,7 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                          <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{asset('homelogin')}}">Home</a></li>
                             <li><a href="#">Level</a>
                                 <ul class="dropdown">
                                     <li><a href="index.html">Level 1</a></li>
@@ -101,7 +101,7 @@
                                     <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Megan Fox</a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
                                         <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
-                                        <a class="dropdown-item" href="#">Account Info</a>
+                                        <a class="dropdown-item" href="{{asset}}">History</a>
                                         <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
                                     </div>
                                 </div>

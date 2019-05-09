@@ -75,7 +75,8 @@ Route::prefix('admin')->group(function(){
 });
 
 Route::get('logout','UserHomeController@logout');
-
+Route::get('register','UserHomeController@getRegister');
+Route::post('register','UserHomeController@postRegister');
 Route::get('home','UserHomeController@getHome')->middleware('checkLogout');
 Route::group(['prefix'=>'login','middleware'=>'checkLogout'],function(){
 	Route::get('','UserHomeController@getLogin');
@@ -85,6 +86,7 @@ Route::group(['middleware'=>'checkLogin'],function(){
 	Route::get('homelogin','UserHomeController@getHomeLogin');
 	Route::get('{user}/profile','UserHomeController@getProfile');
 	Route::post('{user}/profile','UserHomeController@postProfile');
+	Route::get('history','UserHomeController@getHistory');
 });
 
 
