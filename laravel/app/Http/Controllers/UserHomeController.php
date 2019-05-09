@@ -93,8 +93,9 @@ class UserHomeController extends Controller
 
 	public function getHistory (){
 		$user = Auth::user();
-		if($user)
+		if($user){
 			$data['history'] = History::where('id_user',$user->id)->get();
+		}
 		return view('user.history',$data);
 	}
 }

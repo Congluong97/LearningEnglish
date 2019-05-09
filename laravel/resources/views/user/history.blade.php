@@ -37,8 +37,7 @@
 								@foreach($history as $hi)
 								<tr>
 									<td>{{$hi->create_at}}</td>
-									<td>
-									</td>
+									<td><a href="{{asset('')}}" title="">{{$hi->name_lecture}}</a></td>
 									<td><button type="" class="btn btn-danger">Xóa</button></td>
 								</tr>
 								@endforeach
