@@ -7,12 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Level_User;
 use App\History;
+use App\Event;
+use App\Http\Controllers\DB;
 use  App\Http\Requests\UserRequest;
 
 class UserHomeController extends Controller
 {
     public function getHome(){
-    	return view('user.index');
+    	$data['event'] = Event::take(3)->get();
+    	return view('user.index',$data);
     }
     public function getLogin(){
     	return view('admin.login');
