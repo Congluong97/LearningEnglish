@@ -15,6 +15,7 @@
 </section>
 <!-- ##### Hero Area End ##### -->
 
+<<<<<<< HEAD
 <!-- ##### Cool Facts Area Start ##### -->
 <section class="cool-facts-area section-padding-100-0">
     <div class="container">
@@ -24,17 +25,42 @@
                 <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="250ms">
                     <div class="icon">
                         <img src="img/core-img/docs.png" alt="">
+=======
+    <!-- ##### Cool Facts Area Start ##### -->
+    <section class="cool-facts-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="250ms">
+                        <div class="icon">
+                            <img src="img/core-img/docs.png" alt="">
+                        </div>
+                        <h2><span class="counter">1912</span></h2>
+                        <h5>Available Lectures</h5>
+>>>>>>> cd14eecbfa10bccd94b00bf896ad4eb8d6fe6f1a
                     </div>
                     <h2><span class="counter">1912</span></h2>
                     <h5>Success Stories</h5>
                 </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Single Cool Facts Area -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
                     <div class="icon">
                         <img src="img/core-img/star.png" alt="">
+=======
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="icon">
+                            <img src="img/core-img/star.png" alt="">
+                        </div>
+                        <h2><span class="counter">123</span></h2>
+                        <h5>User</h5>
+>>>>>>> cd14eecbfa10bccd94b00bf896ad4eb8d6fe6f1a
                     </div>
                     <h2><span class="counter">123</span></h2>
                     <h5>Dedicated Tutors</h5>
@@ -52,11 +78,22 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Single Cool Facts Area -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="1000ms">
                     <div class="icon">
                         <img src="img/core-img/earth.png" alt="">
+=======
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="1000ms">
+                        <div class="icon">
+                            <img src="img/core-img/earth.png" alt="">
+                        </div>
+                        <h2><span class="counter">56</span></h2>
+                        <h5>Favorites</h5>
+>>>>>>> cd14eecbfa10bccd94b00bf896ad4eb8d6fe6f1a
                     </div>
                     <h2><span class="counter">56</span></h2>
                     <h5>Available Courses</h5>
@@ -67,6 +104,7 @@
 </section>
 <!-- ##### Cool Facts Area End ##### -->
 
+<<<<<<< HEAD
 <!-- ##### Popular Courses Start ##### -->
 <section class="popular-courses-area section-padding-100-0" style="background-image: url(img/core-img/texture.png);">
     <div class="container">
@@ -74,6 +112,16 @@
             <div class="col-12">
                 <div class="section-heading">
                     <h3>Popular Online Courses</h3>
+=======
+    <!-- ##### Popular Courses Start ##### -->
+    <section class="popular-courses-area section-padding-100-0" style="background-image: url(img/core-img/texture.png);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Popular Online Lectures</h3>
+                    </div>
+>>>>>>> cd14eecbfa10bccd94b00bf896ad4eb8d6fe6f1a
                 </div>
             </div>
         </div>
@@ -172,6 +220,7 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
 </section>
 <!-- ##### Popular Courses End ##### -->
@@ -183,6 +232,151 @@
             <div class="col-12">
                 <div class="section-heading">
                     <h3>The Best Tutors in Town</h3>
+=======
+    </section>
+    <!-- ##### Popular Courses End ##### -->
+ <!-- ##### Upcoming Events Start ##### -->
+    <section class="upcoming-events section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Upcoming events</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Single Upcoming Events -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="250ms">
+                        <!-- Events Thumb -->
+                        <div class="events-thumb">
+                            <img src="img/bg-img/e1.jpg" alt="">
+                            <h6 class="event-date">August 26</h6>
+                            <h4 class="event-title">Networking Day</h4>
+                        </div>
+                        <!-- Date & Fee -->
+                        <div class="date-fee d-flex justify-content-between">
+                            <div class="date">
+                                <p><i class="fa fa-clock"></i> August 26 @ 9:00 am</p>
+                            </div>
+                            <div class="events-fee">
+                                <a href="#">$45</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Upcoming Events -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="500ms">
+                        <!-- Events Thumb -->
+                        <div class="events-thumb">
+                            <img src="img/bg-img/e2.jpg" alt="">
+                            <h6 class="event-date">August 7</h6>
+                            <h4 class="event-title">Open Doors Day</h4>
+                        </div>
+                        <!-- Date & Fee -->
+                        <div class="date-fee d-flex justify-content-between">
+                            <div class="date">
+                                <p><i class="fa fa-clock"></i> August 7 @ 9:00 am</p>
+                            </div>
+                            <div class="events-fee">
+                                <a href="#" class="free">Free</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Upcoming Events -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="750ms">
+                        <!-- Events Thumb -->
+                        <div class="events-thumb">
+                            <img src="img/bg-img/e3.jpg" alt="">
+                            <h6 class="event-date">August 3</h6>
+                            <h4 class="event-title">Creative Leadership</h4>
+                        </div>
+                        <!-- Date & Fee -->
+                        <div class="date-fee d-flex justify-content-between">
+                            <div class="date">
+                                <p><i class="fa fa-clock"></i> August 3 @ 9:00 am</p>
+                            </div>
+                            <div class="events-fee">
+                                <a href="#">$45</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Upcoming Events End ##### -->
+    
+    <!-- ##### Register Now Start ##### -->
+    <section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center" style="background-image: url(img/core-img/texture.png);">
+        <!-- Register Contact Form -->
+        <div class="register-contact-form mb-100 wow fadeInUp" data-wow-delay="250ms">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="forms">
+                            <h4>Courses For Free</h4>
+                            <form action="#" method="post">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="text" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="site" placeholder="Site">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn clever-btn w-100">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Now Countdown -->
+        <div class="register-now-countdown mb-100 wow fadeInUp" data-wow-delay="500ms">
+            <h3>Register Now</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae. Donec bibendum tortor sed mi faucibus vehicula. Sed erat lorem</p>
+            <!-- Register Countdown -->
+            <div class="register-countdown">
+                <div class="events-cd d-flex flex-wrap" data-countdown="2019/03/01"></div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Register Now End ##### -->
+
+   <!-- ##### Best Tutors Start ##### -->
+    <section class="best-tutors-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Developer</h3>
+                    </div>
+>>>>>>> cd14eecbfa10bccd94b00bf896ad4eb8d6fe6f1a
                 </div>
             </div>
         </div>
@@ -292,6 +486,7 @@
 </section>
 <!-- ##### Best Tutors End ##### -->
 
+<<<<<<< HEAD
 <!-- ##### Register Now Start ##### -->
 <section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center" style="background-image: url(img/core-img/texture.png);">
     <!-- Register Contact Form -->
@@ -438,4 +633,10 @@
     </div>
 </section>
 <!-- ##### Blog Area End ##### -->
+=======
+
+    <!-- ##### Blog Area Start ##### -->
+    
+    <!-- ##### Blog Area End ##### -->
+>>>>>>> cd14eecbfa10bccd94b00bf896ad4eb8d6fe6f1a
 @endsection()
