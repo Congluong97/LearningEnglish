@@ -90,7 +90,7 @@ Route::group(['middleware'=>'checkLogin'],function(){
 });
 
 
-Route::get('test', function(){
+Route::get('index', function(){
 	return view('user.index');
 
 });
