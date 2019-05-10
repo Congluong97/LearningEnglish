@@ -104,5 +104,5 @@ Route::get('level1', [
 ]);
 Route::get('single_lectures', [
 	'as'=>'single_lectures',
-	'uses'=>'single_lecturesController@getLevel1'
+	'uses'=>'single_lecturesController@getSingle_lectures'
 ]);

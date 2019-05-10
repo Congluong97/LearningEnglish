@@ -68,66 +68,24 @@
                                  <div class="about-course mb-30">
                                  
                                         <h4>Click the track want to listen</h4>
-                                        <div>
-                                            <select name="" multiple>
-                                            <option value="">track 1</option>
-                                            <option value="">track 2</option>
-                                        </select>
-                                        </div>
+
+                                        @foreach( $audio1 as $data)
                                         <div class="about-course mb-30">
-                                            <audio width="650" height="300" controls loop>  
-                                              <source src="{{ url('public/user/video/2.mp3') }}" loop="true" autoplay="true" type="audio/mp3"> 
+                                            <audio width="500" height="300" controls loop>  
+                                              <source src="../../public/user/video/level1/video1/{{$data->link}}" loop="true" autoplay="true" type="audio/mp3"> 
                                         </audio>
                                         
                                         
-                                         <textarea name="" placeholder="Enter your answer"></textarea> 
+                                         <textarea name="" placeholder="Enter your answer" style="border: 1px solid; margin-bottom: 5px; margin-left: 5px"></textarea>
+                                         
+                                        <button type="" style="display: inline; margin-bottom: 40px;margin-left: 5px" class="btn btn-success" name="">submit</button>  
+                                        <input type="text" name="" value="result" disabled="false">
+                                        
                                         </div>
+                                        @endforeach()
                                     </div>
                                     <!-- FAQ -->
-                                    <div class="clever-faqs">
-                                        <h4>FAQs</h4>
-
-                                        <div class="accordions" id="accordion" role="tablist" aria-multiselectable="true">
-
-                                            <!-- Single Accordian Area -->
-                                            <div class="panel single-accordion">
-                                                <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">What is the curriculum like?
-                                                    <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                    <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                </a></h6>
-                                                <div id="collapseOne" class="accordion-content collapse show">
-                                                    <p>When you join the website, Learning English will provide free video, audio that match your English level. Selected curriculum from Ucan.vn,... are being used to teach in English programs at famous universities around the world.</p>
-                                                </div>
-                                            </div>
-
-                                            <!-- Single Accordian Area -->
-                                            <div class="panel single-accordion">
-                                                <h6>
-                                                    <a role="button" aria-expanded="true" aria-controls="collapseThree" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseThree">What background knowledge is necessary?
-                                                        <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    </a>
-                                                </h6>
-                                                <div id="collapseThree" class="accordion-content collapse">
-                                                    <p>You can start learning from many different levels: beginner, intermediate, elementary ... Learning Enghlish will have lessons that suit your poisoning</p>
-                                                </div>
-                                            </div>
-
-                                            <!-- Single Accordian Area -->
-                                            <div class="panel single-accordion">
-                                                <h6>
-                                                    <a role="button" aria-expanded="true" aria-controls="collapseFour" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseFour">Do i need to take the courses in a specific order?
-                                                        <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    </a>
-                                                </h6>
-                                                <div id="collapseFour" class="accordion-content collapse">
-                                                    <p>Unnecessary, you can learn from the level that you currently have.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                   
                                 </div>
                             </div>
 
@@ -153,7 +111,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-lg-4" style="display: inline">
 
 
                     <!-- Widget -->
