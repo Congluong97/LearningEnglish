@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class LecturesTableSeeder extends Seeder
+class SingleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,8 @@ class LecturesTableSeeder extends Seeder
      */
     public function run()
     {
-    	DB::table('lectures')->insert(
+        //
+       DB::table('video')->insert(
     		[
     			[
     				'id'=>1,
