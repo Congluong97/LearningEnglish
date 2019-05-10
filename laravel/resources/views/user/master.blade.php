@@ -70,20 +70,20 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="{{asset('index')}}">Home</a></li>
-                                <li><a href="{{asset('level')}}">Level</a>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="#">Level</a>
                                     <ul class="dropdown">
-                                        <li><a href="{{asset('level1')}}">Level 1</a></li>
-                                        <li><a href="{{asset('level2')}}">Level 2</a></li>
-                                        <li><a href="{{asset('level3')}}">Level 3</a></li>
-                                        <li><a href="{{asset('level4')}}">Level 4</a></li>
-                                        <li><a href="{{asset('level5')}}">Level 5</a></li>
+                                        <li><a href="index.html">Level 1</a></li>
+                                        <li><a href="courses.html">Level 2</a></li>
+                                        <li><a href="single-course.html">Level 3</a></li>
+                                        <li><a href="instructors.html">Level 4</a></li>
+                                        <li><a href="blog.html">Level 5</a></li>
 
                                     </ul>
                                 </li>
-                                <li><a href="{{asset('lectures')}}">Lectures</a></li>
-                                <li><a href="{{asset('instructors')}}">Instructors</a></li>
-                                <li><a href="{{asset('vocabulary')}}">Vocabulary</a></li>
+                                <li><a href="courses.html">Lectures</a></li>
+                                <li><a href="instructors.html">Instructors</a></li>
+                                <li><a href="blog.html">Vocabulary</a></li>
 
                             </ul>
 
