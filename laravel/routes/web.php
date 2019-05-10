@@ -90,7 +90,7 @@ Route::group(['middleware'=>'checkLogin'],function(){
 });
 
 
-Route::get('index', function(){
+Route::get('test', function(){
 	return view('user.index');
 
 });
@@ -101,8 +101,10 @@ Route::get('lectures', [
 Route::get('level1', [
 	'as'=>'level1',
 	'uses'=>'Level1Controller@getLevel1'
+
 ]);
 Route::get('single_lectures', [
 	'as'=>'single_lectures',
 	'uses'=>'single_lecturesController@getSingle_lectures'
 ]);
+

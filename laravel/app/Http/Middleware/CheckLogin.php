@@ -18,13 +18,10 @@ class CheckLogin
     {
 
         if(Auth::check()){
-            $user = Auth::user();
-            if($user->level == 2 || $user->level == 1 ){
-                return $next($request); 
-            }else{
-
-                return redirect('login')->with('error','Tài khoản không có quyền truy cập vào trang web này');
-            }
+            
+            return $next($request);
+            
+            
         }elseif(Auth::guest()){
             return redirect('login');
         }

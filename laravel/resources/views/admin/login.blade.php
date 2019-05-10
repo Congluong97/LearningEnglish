@@ -31,7 +31,7 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="#"><b>Admin</b>Login</a>
+        <a href="{{asset('home')}}"><b>Admin</b>Login</a>
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
@@ -62,8 +62,9 @@
             </div>
             <!-- /.col -->
           </div>
-          <a href="{{asset('admin/register')}}" class="text-center">Register a new membership</a>
+          <a href="{{asset('register')}}" class="text-center">Register a new membership</a><br>
           {{csrf_field()}}
+           <a href="{{asset('home')}}" class="text-center"> -- Back to home--</a>
         </form>
 
         <!-- /.social-auth-links -->
