@@ -56,6 +56,7 @@
                         <div class="tab-content" id="myTabContent">
                             <!-- Tab Text -->
                             <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab--1">
+<<<<<<< HEAD
                                 <!-- Single Popular Course -->
                                 xuân
                             </div>
@@ -141,14 +142,117 @@
                         <div class="content">
                             <h5>Vocabulary</h5>
                             <h6>$20</h6>
+=======
+                                <div class="clever-description">
+
+                                    <!-- About Course -->
+                                    <div class="about-course mb-30">
+                                        <h4>First Snow Fall</h4>
+                                        <video width="650" height="300" controls>  
+                                              <source src="{{ url('public/user/video/example.mp4') }}" type="video/mp4"> 
+                                        </video>
+                                    </div>
+                                 <div class="about-course mb-30">
+                                 
+                                        <h4>Click the track want to listen</h4>
+
+                                        @foreach( $audio1 as $data)
+                                        <div class="about-course mb-30">
+                                            <audio width="500" height="300" controls loop>  
+                                              <source src="../../public/user/video/level1/video1/{{$data->link}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                        </audio>
+                                        
+                                        
+                                         <textarea name="" placeholder="Enter your answer" style="border: 1px solid; margin-bottom: 5px; margin-left: 5px"></textarea>
+                                         
+                                        <button type="" style="display: inline; margin-bottom: 40px;margin-left: 5px" class="btn btn-success" name="">submit</button>  
+                                        <input type="text" name="" value="result" disabled="false">
+                                        
+                                        </div>
+                                        @endforeach()
+                                    </div>
+                                    <!-- FAQ -->
+                                   
+                                </div>
+                            </div>
+
+                            <!-- Tab Text -->
+                            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+                                <div class="clever-curriculum">
+
+                                    <!-- Curriculum Level -->
+                                    <div class="curriculum-level mb-30">
+                                        
+                                        <div class="row">
+                                            <!-- Single Popular Course -->
+                                            
+                                            <h5>kkkk</h5>
+                                            
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4" style="display: inline">
+
+
+                    <!-- Widget -->
+                    <div class="sidebar-widget">
+                        <h4>You may like</h4>
+
+                        <!-- Single Courses -->
+                        <div class="single--courses d-flex align-items-center">
+                            <div class="thumb">
+                                <img src="img/bg-img/yml.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <h5>Vocabulary</h5>
+                                <h6>$20</h6>
+                            </div>
+                        </div>
+
+                        <!-- Single Courses -->
+                        <div class="single--courses d-flex align-items-center">
+                            <div class="thumb">
+                                <img src="img/bg-img/yml2.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <h5>Expository writing</h5>
+                                <h6>$45</h6>
+                            </div>
+                        </div>
+
+                        <!-- Single Courses -->
+                        <div class="single--courses d-flex align-items-center">
+                            <div class="thumb">
+                                <img src="img/bg-img/yml3.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <h5>Vocabulary</h5>
+                                <h6>$20</h6>
+                            </div>
+>>>>>>> 5527ee9e156e9a880d05f98fc68b8ba3e550a7f1
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     <!-- ##### Courses Content End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     @endsection()
+=======
+</div>
+<!-- ##### Courses Content End ##### -->
+
+<!-- ##### Footer Area Start ##### -->
+@endsection()
+>>>>>>> 5527ee9e156e9a880d05f98fc68b8ba3e550a7f1

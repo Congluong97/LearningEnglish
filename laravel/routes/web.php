@@ -100,8 +100,14 @@ Route::get('lectures', [
 ]);
 Route::get('level1', [
 	'as'=>'level1',
-	'uses'=>'LevelController@getLevel1'
+	'uses'=>'Level1Controller@getLevel1'
+
 ]);
+Route::get('single_lectures', [
+	'as'=>'single_lectures',
+	'uses'=>'single_lecturesController@getSingle_lectures'
+]);
+
 Route::get('level2', [
 	'as'=>'level2',
 	'uses'=>'LevelController@getLevel2'
@@ -118,4 +124,7 @@ Route::get('level5', [
 	'as'=>'level5',
 	'uses'=>'LevelController@getLevel5'
 ]);
+<<<<<<< HEAD
 Route::get('video{id}/audio/','Single_lecturesController@getVocabulary');
+=======
+>>>>>>> 5527ee9e156e9a880d05f98fc68b8ba3e550a7f1
