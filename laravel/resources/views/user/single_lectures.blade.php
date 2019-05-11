@@ -57,37 +57,65 @@
                             <!-- Tab Text -->
                             <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab--1">
                                 <!-- Single Popular Course -->
-                                xuân
-                            </div>
+                                <div class="clever-description">
 
-                        <!-- Tab Text -->
-                        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
-                            <div class="clever-curriculum">
+                                    <!-- About Course -->
+                                    <div class="about-course mb-30">
+                                        <h4>{{$video[0]->name}}</h4>
+                                        <video width="650" height="300" controls>  
+                                          <source src="../../public/user/video/level1/video1/{{$video[0]->link}}" type="video/mp4"> 
+                                          </video>
+                                      </div>
+                                      <div class="about-course mb-30">
 
-                                <!-- Curriculum Level -->
-                                <div class="curriculum-level mb-30">
-                                    <!-- Single Popular Course -->
-                                    <!-- @foreach($new_lecture as $new1) -->
+                                        <h4>Click the track want to listen</h4>
 
-                                    <table>
-                                        @foreach($new_word as $new2)
-                                        @if($new2->id_lecture ==$new1->id )
-                                        <div class="row">
-                                            <tr>
-                                                <td>{{$new2->name}}:</td>
-                                                <td>&nbsp;</td>
-                                                <td>{{$new2->mean}}</td>
-                                                <td>
-                                                        <!-- <span media-url="../../public/user/video/level1/video1/Vocabulary/{{$new2->pronunciation}}" class="uba_audioButton on-ended-audio">
-                                                        </span> -->
+                                        @foreach($audio as $au)
+                                        <div class="about-course mb-30">
+                                            <div>{{$au->name}}</div>
+                                            <audio width="300" height="300" controls >  
+                                              <source src="../../public/user/video/level1/video1/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                              </audio>
+
+
+                                              <textarea name="" placeholder="Enter your answer" style="border: 1px solid; margin-bottom: 5px; margin-left: 5px"></textarea>
+
+                                              <button type="" style="display: inline; margin-bottom: 45px;margin-left: 5px" class="btn btn-success" name="">submit</button>  
+                                              <input style="border: 1px solid" disabled=""  type="text" name="" value="result">
+
+                                          </div>
+                                          @endforeach
+
+                                      </div>
+                                      <!-- FAQ -->
+
+                                  </div>
+                              </div>
+
+                              <!-- Tab Text -->
+                              <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+                                <div class="clever-curriculum">
+
+                                    <!-- Curriculum Level -->
+                                    <div class="curriculum-level mb-30">
+                                        <!-- Single Popular Course -->
+                                        @foreach($new_lecture as $new1)
+
+                                        <table border="1">
+                                            @foreach($new_word as $new2)
+                                            @if($new2->id_lecture ==$new1->id )
+                                          
+                                                <tr>
+                                                    <td style="width: 100px;padding: 3px" >{{$new2->name}}:</td>
+                                                    
+                                                    <td style="width: 100px;padding: 3px">{{$new2->mean}}</td>
+                                                    <td>
                                                         <audio controls >  
                                                             <source src="../../public/user/video/level1/video1/Vocabulary/{{$new2->pronunciation}}" loop="true" autoplay="true" type="audio/mp3"> 
                                                             </audio>
-                                                           
+
                                                         </td>
-                                                    </tr>
-                                                    <br/>
-                                                </div>
+                                                    </tr>           
                                                 @endif
                                                 @endforeach()
                                             </table>
@@ -102,102 +130,6 @@
                     </div>
 
                 </div>
-            </div>
-
-            <div class="col-12 col-lg-4" style="display: inline">
-
-
-                <!-- Widget -->
-                <div class="sidebar-widget">
-                    <h4>You may like</h4>
-
-                    <!-- Single Courses -->
-                    <div class="single--courses d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/bg-img/yml.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <h5>Vocabulary</h5>
-                            <h6>$20</h6>
-                        </div>
-                    </div>
-
-                    <!-- Single Courses -->
-                    <div class="single--courses d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/bg-img/yml2.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <h5>Expository writing</h5>
-                            <h6>$45</h6>
-                        </div>
-                    </div>
-
-                    <!-- Single Courses -->
-                    <div class="single--courses d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/bg-img/yml3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <h5>Vocabulary</h5>
-                            <h6>$20</h6>
-                                <div class="clever-description">
-
-                                    <!-- About Course -->
-                                    <div class="about-course mb-30">
-                                        <h4>{{$video[0]->name}}</h4>
-                                        <video width="650" height="300" controls>  
-                                              <source src="../../public/user/video/level1/video1/{{$video[0]->link}}" type="video/mp4"> 
-                                        </video>
-                                    </div>
-                                 <div class="about-course mb-30">
-                                 
-                                        <h4>Click the track want to listen</h4>
-
-                                       @foreach($audio as $au)
-                                        <div class="about-course mb-30">
-                                            <div>{{$au->name}}</div>
-                                            <audio width="300" height="300" controls >  
-                                              <source src="../../public/user/video/level1/video1/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
-                                        </audio>
-                                        
-                                        
-                                         <textarea name="" placeholder="Enter your answer" style="border: 1px solid; margin-bottom: 5px; margin-left: 5px"></textarea>
-                                         
-                                        <button type="" style="display: inline; margin-bottom: 45px;margin-left: 5px" class="btn btn-success" name="">submit</button>  
-                                        <input style="border: 1px solid" disabled=""  type="text" name="" value="result">
-                                        
-                                        </div>
-                                        @endforeach
-                                      
-                                    </div>
-                                    <!-- FAQ -->
-                                   
-                                </div>
-                            </div>
-
-                            <!-- Tab Text -->
-                            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
-                                <div class="clever-curriculum">
-
-                                    <!-- Curriculum Level -->
-                                    <div class="curriculum-level mb-30">
-                                        
-                                        <div class="row">
-                                            <!-- Single Popular Course -->
-                                            
-                                            <h5>kkkk</h5>
-                                            
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-12 col-lg-4" style="display: inline">
 
 
@@ -231,8 +163,13 @@
                     </div>
                 </div>
             </div>
+
+
+
+
         </div>
     </div>
+    
 
 
     <!-- ##### Courses Content End ##### -->

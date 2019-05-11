@@ -128,5 +128,4 @@ Route::get('testajax1','UserHomeController@test1')->name('testajax1');
 Route::post('testajax','UserHomeController@test')->name('testajax');
 Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');
 
-Route::get('video{id}/audio/','Single_lecturesController@getVocabulary');
 
