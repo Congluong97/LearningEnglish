@@ -56,6 +56,93 @@
                         <div class="tab-content" id="myTabContent">
                             <!-- Tab Text -->
                             <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab--1">
+<<<<<<< HEAD
+                                <!-- Single Popular Course -->
+                                xuân
+                            </div>
+
+                        <!-- Tab Text -->
+                        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+                            <div class="clever-curriculum">
+
+                                <!-- Curriculum Level -->
+                                <div class="curriculum-level mb-30">
+                                    <!-- Single Popular Course -->
+                                    @foreach($new_lecture as $new1)
+
+                                    <table>
+                                        @foreach($new_word as $new2)
+                                        @if($new2->id_lecture ==$new1->id )
+                                        <div class="row">
+                                            <tr>
+                                                <td>{{$new2->name}}:</td>
+                                                <td>&nbsp;</td>
+                                                <td>{{$new2->mean}}</td>
+                                                <td>
+                                                        <!-- <span media-url="../../public/user/video/level1/video1/Vocabulary/{{$new2->pronunciation}}" class="uba_audioButton on-ended-audio">
+                                                        </span> -->
+                                                        <audio controls >  
+                                                            <source src="../../public/user/video/level1/video1/Vocabulary/{{$new2->pronunciation}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                                            </audio>
+                                                           
+                                                        </td>
+                                                    </tr>
+                                                    <br/>
+                                                </div>
+                                                @endif
+                                                @endforeach()
+                                            </table>
+
+                                            @endforeach()
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4" style="display: inline">
+
+
+                <!-- Widget -->
+                <div class="sidebar-widget">
+                    <h4>You may like</h4>
+
+                    <!-- Single Courses -->
+                    <div class="single--courses d-flex align-items-center">
+                        <div class="thumb">
+                            <img src="img/bg-img/yml.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h5>Vocabulary</h5>
+                            <h6>$20</h6>
+                        </div>
+                    </div>
+
+                    <!-- Single Courses -->
+                    <div class="single--courses d-flex align-items-center">
+                        <div class="thumb">
+                            <img src="img/bg-img/yml2.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h5>Expository writing</h5>
+                            <h6>$45</h6>
+                        </div>
+                    </div>
+
+                    <!-- Single Courses -->
+                    <div class="single--courses d-flex align-items-center">
+                        <div class="thumb">
+                            <img src="img/bg-img/yml3.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h5>Vocabulary</h5>
+                            <h6>$20</h6>
+=======
                                 <div class="clever-description">
 
                                     <!-- About Course -->
@@ -151,14 +238,23 @@
                                 <h5>Vocabulary</h5>
                                 <h6>$20</h6>
                             </div>
+>>>>>>> 5527ee9e156e9a880d05f98fc68b8ba3e550a7f1
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+
+    <!-- ##### Courses Content End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    @endsection()
+=======
 </div>
 <!-- ##### Courses Content End ##### -->
 
 <!-- ##### Footer Area Start ##### -->
 @endsection()
+>>>>>>> 5527ee9e156e9a880d05f98fc68b8ba3e550a7f1

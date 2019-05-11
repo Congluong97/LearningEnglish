@@ -100,7 +100,11 @@ Route::get('lectures', [
 ]);
 Route::get('level1', [
 	'as'=>'level1',
+<<<<<<< HEAD
 	'uses'=>'LevelController@getLevel1'
+=======
+	'uses'=>'Level1Controller@getLevel1'
+>>>>>>> 62a6f6f07979ceaebbad89a9bce6842b0bf1bd2f
 
 ]);
 Route::get('single_lectures', [
@@ -124,6 +128,13 @@ Route::get('level5', [
 	'as'=>'level5',
 	'uses'=>'LevelController@getLevel5'
 ]);
+<<<<<<< HEAD
 Route::get('testajax1','UserHomeController@test1')->name('testajax1');
 Route::post('testajax','UserHomeController@test')->name('testajax');
 Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');
+=======
+<<<<<<< HEAD
+Route::get('video{id}/audio/','Single_lecturesController@getVocabulary');
+=======
+>>>>>>> 5527ee9e156e9a880d05f98fc68b8ba3e550a7f1
+>>>>>>> 62a6f6f07979ceaebbad89a9bce6842b0bf1bd2f
