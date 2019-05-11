@@ -56,7 +56,6 @@
                         <div class="tab-content" id="myTabContent">
                             <!-- Tab Text -->
                             <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab--1">
-<<<<<<< HEAD
                                 <!-- Single Popular Course -->
                                 xuân
                             </div>
@@ -68,7 +67,7 @@
                                 <!-- Curriculum Level -->
                                 <div class="curriculum-level mb-30">
                                     <!-- Single Popular Course -->
-                                    @foreach($new_lecture as $new1)
+                                    <!-- @foreach($new_lecture as $new1) -->
 
                                     <table>
                                         @foreach($new_word as $new2)
@@ -142,7 +141,6 @@
                         <div class="content">
                             <h5>Vocabulary</h5>
                             <h6>$20</h6>
-=======
                                 <div class="clever-description">
 
                                     <!-- About Course -->
@@ -230,31 +228,14 @@
                         </div>
 
                         <!-- Single Courses -->
-                        <div class="single--courses d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="img/bg-img/yml3.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <h5>Vocabulary</h5>
-                                <h6>$20</h6>
-                            </div>
->>>>>>> 5527ee9e156e9a880d05f98fc68b8ba3e550a7f1
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
+
 
     <!-- ##### Courses Content End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     @endsection()
-=======
-</div>
-<!-- ##### Courses Content End ##### -->
-
-<!-- ##### Footer Area Start ##### -->
-@endsection()
->>>>>>> 5527ee9e156e9a880d05f98fc68b8ba3e550a7f1
