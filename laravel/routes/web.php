@@ -118,3 +118,4 @@ Route::get('level5', [
 	'as'=>'level5',
 	'uses'=>'LevelController@getLevel5'
 ]);
+Route::get('video{id}/audio/','Single_lecturesController@getVocabulary');
