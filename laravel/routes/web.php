@@ -100,8 +100,7 @@ Route::get('lectures', [
 ]);
 Route::get('level1', [
 	'as'=>'level1',
-<<<<<<< HEAD
-	'uses'=>'Level1Controller@getLevel1'
+	'uses'=>'LevelController@getLevel1'
 
 ]);
 Route::get('single_lectures', [
@@ -109,9 +108,6 @@ Route::get('single_lectures', [
 	'uses'=>'single_lecturesController@getSingle_lectures'
 ]);
 
-=======
-	'uses'=>'LevelController@getLevel1'
-]);
 Route::get('level2', [
 	'as'=>'level2',
 	'uses'=>'LevelController@getLevel2'
@@ -128,4 +124,6 @@ Route::get('level5', [
 	'as'=>'level5',
 	'uses'=>'LevelController@getLevel5'
 ]);
->>>>>>> 233f5dae1eea42ccb3ff5c25bdf12dfbb622649e
+Route::get('testajax1','UserHomeController@test1')->name('testajax1');
+Route::post('testajax','UserHomeController@test')->name('testajax');
+Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');

@@ -359,27 +359,67 @@
 
         <div class="row">
             <!-- Single Upcoming Events -->
-            @foreach($event as $e)
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="250ms">
                     <!-- Events Thumb -->
                     <div class="events-thumb">
-                        <img style="width: 350px; height: 175px" src="{{$e->image}}" alt="">
-                        <h6 class="event-date">{{date("d M", strtotime($e->created_at))}}</h6>
-                        <h4 class="event-title">{{$e->name}}</h4>
+                        <img src="img/bg-img/e1.jpg" alt="">
+                        <h6 class="event-date">August 26</h6>
+                        <h4 class="event-title">Networking Day</h4>
                     </div>
                     <!-- Date & Fee -->
-                    <div class="tutor-information text-center">
-
-                        <p style="width: 350px; height: 70px">{{$e->detail}}.</p>
-
+                    <div class="date-fee d-flex justify-content-between">
+                        <div class="date">
+                            <p><i class="fa fa-clock"></i> August 26 @ 9:00 am</p>
+                        </div>
+                        <div class="events-fee">
+                            <a href="#">$45</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            @endforeach()
 
             <!-- Single Upcoming Events -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="500ms">
+                    <!-- Events Thumb -->
+                    <div class="events-thumb">
+                        <img src="img/bg-img/e2.jpg" alt="">
+                        <h6 class="event-date">August 7</h6>
+                        <h4 class="event-title">Open Doors Day</h4>
+                    </div>
+                    <!-- Date & Fee -->
+                    <div class="date-fee d-flex justify-content-between">
+                        <div class="date">
+                            <p><i class="fa fa-clock"></i> August 7 @ 9:00 am</p>
+                        </div>
+                        <div class="events-fee">
+                            <a href="#" class="free">Free</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Single Upcoming Events -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="750ms">
+                    <!-- Events Thumb -->
+                    <div class="events-thumb">
+                        <img src="img/bg-img/e3.jpg" alt="">
+                        <h6 class="event-date">August 3</h6>
+                        <h4 class="event-title">Creative Leadership</h4>
+                    </div>
+                    <!-- Date & Fee -->
+                    <div class="date-fee d-flex justify-content-between">
+                        <div class="date">
+                            <p><i class="fa fa-clock"></i> August 3 @ 9:00 am</p>
+                        </div>
+                        <div class="events-fee">
+                            <a href="#">$45</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

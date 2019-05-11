@@ -9,11 +9,11 @@ use App\Audio;
 class Single_lecturesController extends Controller
 {
     //
-     public function getSingle_lectures()
+     public function getSingle_lectures($id)
     {
-        $video = Video::select('id','name','link','description','time','id_lecture')->get()->ToArray();
-        $audio = Audio::select('id','name','id_video','link','text')->get()->ToArray();
-        $audio1= Audio::where('id_video',1)->get();
-       return view('user.single_lectures',compact('video','audio','audio1'));
+        $data['video'] = Video::where('id_lecture',$id)->get();
+        $id_video = $data['video'][0]->id;
+        $data['audio'] = Audio::where('id_video',$id_video)->get();
+       return view('user.single_lectures',$data);
     }
 }

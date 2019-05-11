@@ -60,29 +60,31 @@
 
                                     <!-- About Course -->
                                     <div class="about-course mb-30">
-                                        <h4>First Snow Fall</h4>
+                                        <h4>{{$video[0]->name}}</h4>
                                         <video width="650" height="300" controls>  
-                                              <source src="{{ url('public/user/video/example.mp4') }}" type="video/mp4"> 
+                                              <source src="../../public/user/video/level1/video1/{{$video[0]->link}}" type="video/mp4"> 
                                         </video>
                                     </div>
                                  <div class="about-course mb-30">
                                  
                                         <h4>Click the track want to listen</h4>
 
-                                        @foreach( $audio1 as $data)
+                                       @foreach($audio as $au)
                                         <div class="about-course mb-30">
-                                            <audio width="500" height="300" controls loop>  
-                                              <source src="../../public/user/video/level1/video1/{{$data->link}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                            <div>{{$au->name}}</div>
+                                            <audio width="300" height="300" controls >  
+                                              <source src="../../public/user/video/level1/video1/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
                                         </audio>
                                         
                                         
                                          <textarea name="" placeholder="Enter your answer" style="border: 1px solid; margin-bottom: 5px; margin-left: 5px"></textarea>
                                          
-                                        <button type="" style="display: inline; margin-bottom: 40px;margin-left: 5px" class="btn btn-success" name="">submit</button>  
-                                        <input type="text" name="" value="result" disabled="false">
+                                        <button type="" style="display: inline; margin-bottom: 45px;margin-left: 5px" class="btn btn-success" name="">submit</button>  
+                                        <input style="border: 1px solid" disabled=""  type="text" name="" value="result">
                                         
                                         </div>
-                                        @endforeach()
+                                        @endforeach
+                                      
                                     </div>
                                     <!-- FAQ -->
                                    

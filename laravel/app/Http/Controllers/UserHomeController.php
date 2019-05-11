@@ -101,4 +101,16 @@ class UserHomeController extends Controller
 		}
 		return view('user.history',$data);
 	}
+
+	public function test1(){
+		return view('user.test');
+	}
+
+	public function test(Request $request){
+
+        $data = $request->all();
+         dd($data);
+          return redirect('testajax')->with('success',$data);
+
+	}
 }

@@ -26,7 +26,7 @@
             @foreach($new_lession as $new)
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-popular-course mb-100 wow fadeInUp" >
-                    <a href="">
+                    <a href="{{asset('single_lectures/'.$new->id)}}">
                         <img src="../../public/user/img/bg-img/{{$new->image}}" alt="" height="250px"></a>
                         <!-- Course Content -->
                         <div class="course-content">
