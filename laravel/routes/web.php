@@ -11,7 +11,6 @@
 |
 */
 
-
 // |--------------------------------------------------------------------------
 // | Web Routes
 // |--------------------------------------------------------------------------
@@ -22,6 +21,14 @@
 // |
 
 
+// Route::get('',function(){
+// 	return view('admin.login');
+// });
+
+// Route::group(['prefix'=>'admin/login'],function(){
+// 	Route::get('','LoginController@getLogin')->name('login');
+// 	Route::post('','LoginController@postLogin');		
+// });
 
 Route::prefix('admin')->group(function(){
 	Route::get('login', 'AdminAuth\AdminLoginController@showLoginForm')->name('admin.showLoginForm');
@@ -67,9 +74,9 @@ Route::prefix('admin')->group(function(){
 		Route::get('listadmin/get-data','AdminListController@anyData')->name('admin_list.dataTable');
 		// dang ky admin
 		// Route::get('register', 'AdminAuth\AdminRegisterController@showRegistrationForm')->name('admin.showRegistrationForm');
-		Route::post('listadmin/store', 'AdminListController@store')->name('admin_list.store');
-		Route::get('listadmin/{id}','AdminListController@show')->name('admin_list.show');
+		Route::post('listadmin/register', 'AdminAuth\AdminRegisterController@register')->name('admin_list.register');
 		Route::delete('listadmin/{id}','AdminListController@destroy')->name('admin_list.destroy');
+<<<<<<< HEAD
 
 
 		Route::get('level','AdminLevelController@index')->name('admin_level.index');
@@ -145,14 +152,63 @@ Route::prefix('admin')->group(function(){
 	
 // });
 
-Route::get('logout','UserHomeController@logout');
-
-Route::get('home','UserHomeController@getHome')->middleware('checkLogout');
-Route::get('login','UserHomeController@getLogin')->name('login')->middleware('checkLogout');
-Route::post('login','UserHomeController@postLogin')->middleware('checkLogout');
-
-
-Route::group(['middleware'=>'checkLogin'],function(){
-
-	Route::get('homelogin','UserHomeController@getHomeLogin');
+=======
+	});
 });
+
+>>>>>>> 33f5da64d917065a311731aaf23dc9aeeb396955
+Route::get('logout','UserHomeController@logout');
+Route::get('register','UserHomeController@getRegister');
+Route::post('register','UserHomeController@postRegister');
+Route::get('home','UserHomeController@getHome')->middleware('checkLogout');
+Route::group(['prefix'=>'login','middleware'=>'checkLogout'],function(){
+	Route::get('','UserHomeController@getLogin');
+	Route::post('','UserHomeController@postLogin');
+});
+Route::group(['middleware'=>'checkLogin'],function(){
+	Route::get('homelogin','UserHomeController@getHomeLogin');
+	Route::get('{user}/profile','UserHomeController@getProfile');
+	Route::post('{user}/profile','UserHomeController@postProfile');
+	Route::get('history','UserHomeController@getHistory');
+});
+
+
+Route::get('test', function(){
+	return view('user.index');
+
+});
+Route::get('lectures', [
+	'as'=>'lectures',
+	'uses'=>'LectureController@getLecture'
+]);
+Route::get('level1', [
+	'as'=>'level1',
+	'uses'=>'LevelController@getLevel1'
+]);
+Route::get('single_lectures', [
+	'as'=>'single_lectures',
+	'uses'=>'single_lecturesController@getSingle_lectures'
+]);
+
+Route::get('level2', [
+	'as'=>'level2',
+	'uses'=>'LevelController@getLevel2'
+]);
+Route::get('level3', [
+	'as'=>'level3',
+	'uses'=>'LevelController@getLevel3'
+]);
+Route::get('level4', [
+	'as'=>'level4',
+	'uses'=>'LevelController@getLevel4'
+]);
+Route::get('level5', [
+	'as'=>'level5',
+	'uses'=>'LevelController@getLevel5'
+]);
+
+Route::get('testajax1','UserHomeController@test1')->name('testajax1');
+Route::post('testajax','UserHomeController@test')->name('testajax');
+Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');
+
+

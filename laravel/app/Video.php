@@ -15,3 +15,7 @@ class Video extends Model
     	return $this->belongsTo('App\Lecture','id_lecture');
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 33f5da64d917065a311731aaf23dc9aeeb396955
