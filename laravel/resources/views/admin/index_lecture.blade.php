@@ -20,8 +20,9 @@
 								<th width="5%" class="text-center">ID</th>
 								<th class="text-center" width="20%">Name</th>
 								<th class="text-center" width="20%">Image</th>
+								<th class="text-center" width="20%">Level</th>
 								<th class="text-center" width="20%">Time</th>
-								<th class="text-center" width="20%">status</th>
+
 								<th class="text-center" width="15%">Action</th>
 							</tr>
 						</thead>
@@ -69,6 +70,15 @@
 											<label for="">Status</label>
 											<input id="status" class="form-control" type="text" name="status" >
 										</div>
+										<div class="form-group">
+											<label for="">Level</label>
+											<select name="level" id="inputlevel" class="form-control">
+												@foreach ($levels as $level)
+												<option id="level" value="{!!$level['id']!!}">{!!$level['name']!!}</option>
+												@endforeach
+
+											</select>
+										</div>
 									</tr>
 								</tbody>
 
@@ -87,7 +97,7 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="modalShow">
+	{{-- <div class="modal fade" id="modalShow">
 		<div class="container">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -124,14 +134,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
 	<div class="modal fade" id="modalEdit">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Edit Audio</h4>
+					<h4 class="modal-title">Edit Lecture</h4>
 				</div>
 				<div class="modal-body">
 					<form action="" role="form" id="formEdit" enctype="multipart/form-data">
@@ -144,16 +154,16 @@
 						</div>
 
 						<div class="form-group">
-							<label for="">Audio</label>
+							<label for="">Image</label>
 							<div class="input-group">
-								<input id="edit-link" class="form-control" type="file" name="edit-link[]" multiple>
+								<input id="edit-image" class="form-control" type="file" name="edit-image[]" multiple>
 							</div>
 
 						</div>
 
 						<div class="form-group">
-							<label for="">Text</label>
-							<input type="text" class="form-control" id="edit-text" placeholder="Text" name="edit-text">
+							<label for="">status</label>
+							<input type="text" class="form-control" id="edit-status" placeholder="Text" name="edit-text">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -186,9 +196,10 @@
 			{data: 'id', name: 'id'},
 			{data: 'name', name: 'name'},
 			{data: 'image', name: 'image'},
+			{data: 'id_level', name: 'id_level'},
 			
 			{data: 'created_at', name: 'created_at'},
-			{data: 'status', name: 'status'},
+
 			{data: 'action', name: 'action'},
 			] 
 		})
@@ -198,20 +209,28 @@
 		$('#modalAdd').modal('show');
 	})
 
-	$('#tblLecture').on('submit',function(event) {
+	$('#formAdd').on('submit',function(event) {
 		event.preventDefault();
+		var image=$('#image').get(0).files[0];
+		var fd = new FormData();
+
+		fd.append('name',$('#name').val());
+		fd.append('image',image);
+		fd.append('level',$('#inputlevel').val());
+		fd.append('status',$('#status').val());
+
 		$.ajax({
 			type: 'POST',
 			url: '{{route('admin_lecture.store')}}',
-			data:{
-				name: $('#name').val(),
-				image: $('#image')[0].file[0],
-				status: $('#status').val()
-			},
+			cache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data:fd,
 			success: function(res){
 				$('#modalAdd').modal('hide');
 				toastr['success']('Add new Audio successfully!');
-				$('#tblAudio').DataTable().ajax.reload(null,false);
+				$('#tblLecture').DataTable().ajax.reload(null,false);
 			},
 
 			error: function(xhr, ajaxOptions, thrownError){
@@ -252,6 +271,26 @@
 					icon: "success",
 					button: "OK!",
 				});
+			}
+		})
+	})
+
+	$('#tblLecture').on('click','.btnEdit',function(event) {
+		event.preventDefault();
+		var id=$(this).data('id');
+		
+		$.ajax({
+			url: '{{ asset('') }}admin/lecture/'+id,
+			type: 'GET',
+			success: function(res){
+				$('#modalEdit').modal('show');
+				$('#edit-name').attr('value',res.name);
+				$('#edit-status').attr('value',res.status);
+				$('#edit-id').attr('value',res.id);
+				
+			},
+			error: function(xhr, ajaxOptions, thrownError){
+				toastr['error']('Can\'t display category to edit');
 			}
 		})
 	})

@@ -79,32 +79,33 @@ class AdminListController extends Controller
 
 //             echo 'Kiểu files: ' . $file->getMimeType();
                 //lấy tên file
-            $name = $link[0]->getClientOriginalName();
+            $name = $link->getClientOriginalName();
 
                 //lấy đuôi file
-            $extension = '.'.$link[0]->getClientOriginalExtension();
+            $extension = '.'.$link->getClientOriginalExtension();
 
             $file_name = md5($request->name.$name).'_'. $date . $extension;;
 
-            $link[0]->storeAs('public/img_admin',$file_name);
+            $link->storeAs('public/img_admin',$file_name);
 
-            $link[0] = 'storage/img_admin/'.$file_name;
+            $link = 'storage/img_admin/'.$file_name;
 
             // dd($link[0]);
 
             // dd($audio['link']);   
         }
 
-        return Admin::create([
+        $admin= array(
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'thumbnail' => $link[0]
-        ]);
+            'thumbnail' => $link
+        );
 
-        return redirect()->route('admin_list.index',[
-            'success' => 'Add success!',
-        ]);
+        return Admin::create($admin);
+        // return redirect()->route('admin_list.index',[
+        //     'success' => 'Add success!',
+        // ]);
     }
 
     /**

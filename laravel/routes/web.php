@@ -44,17 +44,22 @@ Route::prefix('admin')->group(function(){
 		Route::get('video/get-data','AdminVideoController@anyData')->name('admin_video.dataTable');
 		Route::get('video/{id}','AdminVideoController@show')->name('admin_video.show');
 		Route::post('video/store','AdminVideoController@store')->name('admin_video.store');
+		Route::get('video/{id}','AdminVideoController@edit');
+		Route::put('video/{id}','AdminVideoController@update');
 		Route::delete('video/delete/{id}','AdminVideoController@destroy')->name('admin_video.destroy');
 
 		Route::get('vocabulary','AdminVocabularyController@index')->name('admin_vocabulary.index');
 		Route::get('vocabulary/get-data','AdminVocabularyController@anyData')->name('admin_vocabulary.dataTable');
 		Route::post('vocabulary/store','AdminVocabularyController@Store')->name('admin_vocabulary.store');
 		Route::get('vocabulary/{id}','AdminVocabularyController@show')->name('admin_vocabulary.show');
+		// Route::get('vocabulary/{id}','AdminVocabularyController@edit')->name('admin_vocabulary.edit');
+		Route::put('vocabulary/{id}','AdminVocabularyController@update')->name('admin_vocabulary.update');
 		Route::delete('vocabulary/delete/{id}','AdminVocabularyController@destroy')->name('admin_vocabulary.destroy');
 
 		Route::get('lecture','AdminLectureController@index')->name('admin_lecture.index');
 		Route::get('lecture/get-data','AdminLectureController@anyData')->name('admin_lecture.dataTable');
 		Route::post('lecture/store','AdminLectureController@store')->name('admin_lecture.store');
+		Route::get('lecture/{id}','AdminLectureController@edit')->name('admin_lecture.edit');
 		Route::delete('lecture/delete/{id}','AdminLectureController@destroy')->name('admin_lecture.destroy');
 
 
@@ -66,12 +71,18 @@ Route::prefix('admin')->group(function(){
 		Route::get('listadmin/{id}','AdminListController@show')->name('admin_list.show');
 		Route::delete('listadmin/{id}','AdminListController@destroy')->name('admin_list.destroy');
 
+
+		Route::get('level','AdminLevelController@index')->name('admin_level.index');
+		Route::get('level/get-data','AdminLevelController@anyData')->name('admin_level.dataTable');
+		Route::post('level/store','AdminLevelController@store')->name('admin_level.store');
+		Route::delete('level/delete/{id}','AdminLevelController@destroy')->name('admin_level.destroy');
+
 	});
 });
 
 
 // =======
-<<<<<<< HEAD
+
 // Route::get('logout','LoginController@logout');
 // Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
 // 	Route::get('home','HomeController@home');
@@ -133,7 +144,6 @@ Route::prefix('admin')->group(function(){
 
 	
 // });
-=======
 
 Route::get('logout','UserHomeController@logout');
 
@@ -141,7 +151,6 @@ Route::get('home','UserHomeController@getHome')->middleware('checkLogout');
 Route::get('login','UserHomeController@getLogin')->name('login')->middleware('checkLogout');
 Route::post('login','UserHomeController@postLogin')->middleware('checkLogout');
 
->>>>>>> ab0fcd36820a4eec4d00ae154726d63249a5048b
 
 Route::group(['middleware'=>'checkLogin'],function(){
 

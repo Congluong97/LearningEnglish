@@ -70,14 +70,14 @@
 										<input type="text"  id="pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="pronunciation" >
 									</div>
 									<div class="form-group">
-											<label for="">Lecture</label>
-											<select name="lecture" id="inputlecture" class="form-control">
-												@foreach ($lectures as $lecture)
-												<option id="video" value="{!!$lecture['id']!!}">{!!$lecture['name']!!}</option>
-												@endforeach
+										<label for="">Lecture</label>
+										<select name="lecture" id="inputlecture" class="form-control">
+											@foreach ($lectures as $lecture)
+											<option id="lecture" value="{!!$lecture['id']!!}">{!!$lecture['name']!!}</option>
+											@endforeach
 
-											</select>
-										</div>
+										</select>
+									</div>
 
 								</tr>
 							</tbody>
@@ -96,44 +96,48 @@
 		</div>
 	</div>
 </div>
-	<div class="modal fade" id="modalShow">
-		<div class="container">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">VOCABULARY INFORMATION </h4>
-				</div>
-				<br>
-				<div class="col-lg-11"><table class="table table-bordered" >
-					<tbody>
-						
-						<tr>
-							<td width="30%">Name : </td>
-							<td id="show-name" width="50%"></td>
-						</tr>
-						<tr>
-							<td width="30%">Mean : </td>
-							<td id="show-mean" width="50%"></td>
-						</tr>
-						<tr>
-							<td>Pronunciation : </td>
-							<td id="show-pronunciation"></td>
-						</tr>
-						<tr>
-							<td>lecture : </td>
-							<td id="show-id_lecture"></td>
-						</tr>
-						
-					</tbody>
-				</table>
+<div class="modal fade" id="modalShow">
+	<div class="container">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">VOCABULARY INFORMATION </h4>
 			</div>
+			<br>
+			<div class="col-lg-11"><table class="table table-bordered" >
+				<tbody>
+
+					<tr>
+						<td width="30%">Name : </td>
+						<td id="show-name" width="50%"></td>
+					</tr>
+					<tr>
+						<td width="30%">Mean : </td>
+						<td id="show-mean" width="50%"></td>
+					</tr>
+					<tr>
+						<td>Pronunciation : </td>
+						<td id="show-pronunciation"></td>
+					</tr>
+					<tr>
+						<td>lecture : </td>
+						<td id="show-id_lecture"></td>
+					</tr>
+					<tr>
+						<td>Create At : </td>
+						<td id="show-create_at"></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
 
 
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		</div>
 	</div>
+</div>
 </div>
 
 <div class="modal fade" id="modalEdit">
@@ -144,75 +148,86 @@
 				<h4 class="modal-title">Edit Vocabulary</h4>
 			</div>
 			<div class="modal-body">
-				<form action="" role="form" id="formEdit" enctype="multipart/form-data">
+				<form action="" role="form" id="formEdit" method="" enctype="multipart/form-data">
+					
 					<input type="hidden" name="_method" value="PUT">
 					@csrf
 					<input type="hidden" name="edit-id" id="edit-id">
 					<div class="form-group">
-					<div class="form-group">
-										<label for="">Name</label>
-										<input type="text" class="form-control" id="edit-name" placeholder="Name of Vocabulary..." name="edit-name">
-									</div>
-									
-									<div class="form-group">
-										<label for="">Mean</label>
-										<input type="text" class="form-control" id="edit-mean" placeholder="mean of Vocabulary..." name="edit-mean">
-									</div>
-									<div class="form-group">
-										<label for="">pronunciation</label>
-										<input type="text"  id="edit-pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="edit-pronunciation" >
-									</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Update</button>
-					</div>
-				</form>
-			</div>
+						<div class="form-group">
+							<label for="">Name</label>
+							<input type="text" class="form-control" id="edit-name" placeholder="Name of Vocabulary..." name="edit-name">
+						</div>
 
+						<div class="form-group">
+							<label for="">Mean</label>
+							<input type="text" class="form-control" id="edit-mean" placeholder="mean of Vocabulary..." name="edit-mean">
+						</div>
+						<div class="form-group">
+							<label for="">pronunciation</label>
+							<input type="text"  id="edit-pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="edit-pronunciation" >
+						</div>
+						<div class="form-group">
+							<label for="">Lecture</label>
+							<select name="lecture" id="edit-lecture" class="form-control">
+								@foreach ($lectures as $lecture)
+								<option id="lecture" value="{!!$lecture['id']!!}">{!!$lecture['name']!!}</option>
+								@endforeach
+
+							</select>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Update</button>
+						</div>
+					</form>
+				</div>
+
+			</div>
 		</div>
 	</div>
-</div>
-@endsection
+	@endsection
 
-@section('script')
+	@section('script')
 
-<script type="text/javascript">
-	$.ajaxSetup({
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		}
-	});
+	<script type="text/javascript">
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
 
-	$(function(){
-		$('#tblVocabulary').DataTable({
-			processing: true,
-			serverSide: true,
-			ajax: '{{ route('admin_vocabulary.dataTable')}}'	,
-			columns: [
-			{data: 'id', name: 'id'},
-			{data: 'name', name: 'name'},
-		
-			{data: 'created_at', name: 'created_at'},
-			{data: 'action', name: 'action',orderable:false,searchable:false},
-			]
+		$(function(){
+			$('#tblVocabulary').DataTable({
+				processing: true,
+				serverSide: true,
+				ajax: '{{ route('admin_vocabulary.dataTable')}}'	,
+				columns: [
+				{data: 'id', name: 'id'},
+				{data: 'name', name: 'name'},
+
+				{data: 'id_lecture', name: 'id_lecture'},
+				{data: 'action', name: 'action',orderable:false,searchable:false},
+				]
+			})
+		});
+
+		$('#btnAdd').on('click', function(event){
+			event.preventDefault();
+			$('#modalAdd').modal('show');
 		})
-	});
-
-	$('#btnAdd').on('click', function(event){
-		event.preventDefault();
-		$('#modalAdd').modal('show');
-	})
-	$('#tblVocabulary').on('submit',function(event) {
-		event.preventDefault();
-		$.ajax({
-			type: 'POST',
-			url: '{{route('admin_vocabulary.store')}}',
-			data: {
-				name: $('#name').val(),
-				mean: $('#mean').val(),
-				pronunciation: $('#pronunciation').val(),
-			},
-			success: function(res){
+		$('#formAdd').on('submit',function(event) {
+			event.preventDefault();
+			$.ajax({
+				type: 'POST',
+				url: '{{route('admin_vocabulary.store')}}',
+				data: {
+					name: $('#name').val(),
+					mean: $('#mean').val(),
+					pronunciation: $('#pronunciation').val(),
+					lecture: $('#inputlecture').val()
+				},
+				success: function(res){
 					$('#modalAdd').modal('hide');
 					toastr['success']('Add new Vocabulary successfully!');
 					$('#tblVocabulary').DataTable().ajax.reload(null,false);
@@ -221,80 +236,107 @@
 				error: function(xhr, ajaxOptions, thrownError){
 					toastr['error']('Add failed');
 				}
+			})
 		})
-	})
 
-	$('#tblVocabulary').on('click','.btnShow',function(event) {
-		var id=$(this).data('id');
-		event.preventDefault();
-		$('#modalShow').modal('show');
-		$.ajax({
-			type: 'GET',
-			url: '{{asset('')}}admin/vocabulary/' +id,
-			success: function(res) {
-				$('#show-name').text(res.name);
-				$('#show-mean').text(res.mean);
-				$('#show-pronunciation').text(res.pronunciation);
-				$('#show-id_lecture').text(res.lecture);
-			
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				toastr['error']('Load this product failed!');
-			}
-		})
-	})
+		$('#tblVocabulary').on('click','.btnShow',function(event) {
+			var id=$(this).data('id');
+			event.preventDefault();
+			$('#modalShow').modal('show');
+			$.ajax({
+				type: 'GET',
+				url: '{{asset('')}}admin/vocabulary/' +id,
+				success: function(res) {
+					$('#show-name').text(res.name);
+					$('#show-mean').text(res.mean);
+					$('#show-pronunciation').text(res.pronunciation);
+					$('#show-id_lecture').text(res.lecture);
+					$('#show-create_at').text(res.created_at);
 
-	$('#tblVocabulary').on('click','.btnEdit',function(event) {
-		var id=$(this).data('id');
-		event.preventDefault();
-		$.ajax({
-			url: '{{ asset('') }}admin/vocabulary/'+id,
-			type: 'GET',
-			success: function(res){
-				$('#modalEdit').modal('show');
-				$('#edit-name').attr('value',res.name);
-				$('#edit-mean').attr('value',res.mean);
-				$('#edit-pronunciation').attr('value',res.pronunciation);
-			},
-			error: function(xhr, ajaxOptions, thrownError){
-				toastr['error']('Can\'t display category to edit');
-			}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					toastr['error']('Load this product failed!');
+				}
+			})
 		})
-	})
-	$('#tblVocabulary').on('click','.btnDelete',function(){
-		var id=$(this).data('id');
-		swal({
-			title: 'Are you sure?',
-			text: 'Once deleted, you will not be able to recover this imaginary file!',
-			icon: 'warning',
-			buttons: true,
-			dangermode: true, 
+
+		$('#tblVocabulary').on('click','.btnEdit',function(event) {
+			var id=$(this).data('id');
+			event.preventDefault();
+			$.ajax({
+				url: '{{ asset('') }}admin/vocabulary/'+id,
+				type: 'GET',
+				success: function(res){
+					$('#modalEdit').modal('show');
+					$('#edit-name').attr('value',res.name);
+					$('#edit-mean').attr('value',res.mean);
+					$('#edit-pronunciation').attr('value',res.pronunciation);
+					$('#edit-lecture').attr('value',res.id_lecture);
+					$('#edit-id').attr('value',res.id);
+				},
+				error: function(xhr, ajaxOptions, thrownError){
+					toastr['error']('Can\'t display vocabulary to edit');
+				}
+			})
 		})
-		.then((willDelete) =>{
-			if(willDelete) {
-				$.ajax({
-					type: 'delete',
-					url: '{{asset('')}}admin/vocabulary/delete/' +id,
-					success: function(response) {
-						swal({
-							title: 'The Vocabulary has been delete!',
-							icon: 'success'
-						});
-						$('#tblVocabulary').DataTable().ajax.reload(null,false);
-					},
-					error: function(xhr, ajaxOptions, thrownError) {
-						toastr.error(thrownError);
-					}
-				})
-			}
-			else{
-				swal({
-					title: 'The Vocabulary is safety!',
-					icon: 'success',
-					button: 'OK!',
-				});
-			}
+		$('#formEdit').on('submit',function(event) {
+			event.preventDefault();
+			var id=$('#edit-id').val();
+			$.ajax({
+				url: '{!! asset('') !!}/admin/vocabulary/' +id,
+				type: 'PUT',
+				data: {
+					name: $('#edit-name').val(),
+					mean: $('#edit-mean').val(),
+					pronunciation: $('#edit-pronunciation').val(),
+					lecture: $('#edit-lecture').val(),
+				},
+				success: function(res){
+					$('#modalEdit').modal('hide');
+					toastr['success']('Update Vocabulary successfully!');
+					$('#tblVocabulary').DataTable().ajax.reload(null,false);
+
+				},
+				error: function(xhr, ajaxOptions, thrownError){
+					toastr['error']('Update failed');
+				}
+			})
 		})
-	})
-</script>
-@endsection
+
+		$('#tblVocabulary').on('click','.btnDelete',function(){
+			var id=$(this).data('id');
+			swal({
+				title: 'Are you sure?',
+				text: 'Once deleted, you will not be able to recover this imaginary file!',
+				icon: 'warning',
+				buttons: true,
+				dangermode: true, 
+			})
+			.then((willDelete) =>{
+				if(willDelete) {
+					$.ajax({
+						type: 'delete',
+						url: '{{asset('')}}admin/vocabulary/delete/' +id,
+						success: function(response) {
+							swal({
+								title: 'The Vocabulary has been delete!',
+								icon: 'success'
+							});
+							$('#tblVocabulary').DataTable().ajax.reload(null,false);
+						},
+						error: function(xhr, ajaxOptions, thrownError) {
+							toastr.error(thrownError);
+						}
+					})
+				}
+				else{
+					swal({
+						title: 'The Vocabulary is safety!',
+						icon: 'success',
+						button: 'OK!',
+					});
+				}
+			})
+		})
+	</script>
+	@endsection

@@ -32,9 +32,11 @@ class AdminVideoController extends Controller
             <button title="Update video" class="btn btn-warning  btnEdit button1" data-id='.$video["id"].'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button title="Delete video" class="btn btn-danger b btnDelete button1" data-id='.$video["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
         })
-        
+        ->editColumn('id_lecture', function($video) {
+            return $video->Lecture->name;
+        })
         ->setRowId('id')
-     
+
         ->make(true);
     }
 
@@ -56,9 +58,7 @@ class AdminVideoController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-            // dd($data);
-        
+        $data = $request->all();    
        // kiem tra audio
 //         if ($request->hasFile('link')) {
 //             echo "";
@@ -92,12 +92,17 @@ class AdminVideoController extends Controller
             'link' =>$data['link']
             
         );
-     // dd($audio);
-        Video::create($video);
+        $excist=Video::where([
+            ['name','=',$data['name']],
+            ['id_lecture','=',$data['lecture']]
+        ])->first();
+
+        if (!isset($excist)) {
+            return Video::create($video);
+        }else{
+            return response($content = 'error', $status = 400);
+        }
         
-        return redirect()->route('admin_video.index',[
-            'success' => 'Add success!',
-        ]);
     }
 
     /**
@@ -108,12 +113,14 @@ class AdminVideoController extends Controller
      */
     public function show($id)
     {
-        $video=Video::findOrFail($id);
-        if ($video) {
-        $video['lecture'] = Lecture::find($video['id_lecture'])['name'];
+        $video = Video::findOrFail($id);
+        dd($video);
+      if ($video) {
+        $video['lecture'] = Video::find($video['id_video'])['name'];
     }
-        return $video;
-    }
+    // dd($audio);
+    return $video;   
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -123,7 +130,9 @@ class AdminVideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video= Video::find($id);
+        // dd($video);
+        return $video;
     }
 
     /**
@@ -135,8 +144,13 @@ class AdminVideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+     $res=Video::find($id)->update();
+     if ($res==true) {
+        return  Video::find($id);
+    }else{
+        return response($content = 'error',$status = 400);
     }
+}
 
     /**
      * Remove the specified resource from storage.

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Lecture;
+use App\Level;
 use Yajra\Datatables\Datatables;
 class AdminLectureController extends Controller
 {
@@ -13,8 +14,8 @@ class AdminLectureController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.index_lecture');
+    {   $levels=Level::all();
+        return view('admin.index_lecture',['levels' => $levels]);
     }
 
     /**
@@ -24,17 +25,19 @@ class AdminLectureController extends Controller
      */
     
     public function anyData()
-    {           $list=Lecture::orderBy('id','desc');
+    {           $list=Lecture::with(['level'])->orderBy('id', 'desc');
         return Datatables::of($list)
         ->addColumn('action',function($lecture) {
-            return '<button title="Detail Lecture" class="btn btn-info btnShow button1" data-id='.$lecture["id"].'><i class="fa fa-address-book" aria-hidden="true"></i></button>
+            return '
             <button title="Update Lecture" class="btn btn-warning  btnEdit button1" data-id='.$lecture["id"].'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button title="Delete Lecture" class="btn btn-danger b btnDelete button1" data-id='.$lecture["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
         })
           ->editColumn('image', function($lecture) {
             return '<img src="'. asset(\url($lecture->image)) .'"style="width:50px; height=50px;">';
         })
-
+          ->editcolumn('id_level',function($lecture) {
+            return $lecture->Level->name;
+          })
         ->setRowId('id')
         ->rawColumns(['image','action'])
         ->make(true);
@@ -59,27 +62,35 @@ class AdminLectureController extends Controller
 
             $image=$request->file('image');
 
-            $name=$image[0]->getClientOriginalName();
+            $name=$image->getClientOriginalName();
 
-            $extension='.'.$image[0]->getClientOriginalExtension();
+            $extension='.'.$image->getClientOriginalExtension();
 
             $file_name = md5($request->name.$name).'_'. $date . $extension;
 
-            $image[0]->storeAs('public/images',$file_name);
+            $image->storeAs('public/images',$file_name);
 
-            $image[0]='public/storage/images/'.$file_name;
+            $image='public/storage/images/'.$file_name;
         }
 
         $lecture = array('name' =>$data['name'] ,
-           'image' =>$image[0] ,
-           'status' =>$data['status'] 
-       );
-        // dd($lecture);
-        Lecture::create($lecture);
+                        'image' =>$image ,
+                        'status' =>$data['status'],
+                        'id_level' =>$data['level'] 
+                            );
 
-        return redirect()->route('admin_lecture.index',[
-            'success' => 'Add success!',
-        ]);
+        $excist=Lecture::where( 'name','=',$data['name'] )->first();
+
+        if (!isset($excist)) {
+            return Lecture::create($lecture);
+        }else{
+            return $response($content='error',$status=400);
+        }
+        
+
+        // return redirect()->route('admin_lecture.index',[
+        //     'success' => 'Add success!',
+        // ]);
     }
 
     /**
@@ -101,7 +112,7 @@ class AdminLectureController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Lecture::find($id);
     }
 
     /**
@@ -113,7 +124,12 @@ class AdminLectureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $res=Lecture::find($id)->update();
+        if ($res==true) {
+            return  Lecture::find($id);
+        }else{
+            return response($content = 'error',$status = 400);
+        }
     }
 
     /**

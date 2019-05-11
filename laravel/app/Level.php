@@ -8,5 +8,7 @@ class Level extends Model
 {
     protected $table='levels';
 
-    protected $fillable=['name','id_lecture'];
+    protected $fillable=['name'];
+
+   
 }
