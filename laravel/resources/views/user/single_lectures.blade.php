@@ -63,7 +63,7 @@
                                     <div class="about-course mb-30">
                                         <h4>{{$video[0]->name}}</h4>
                                         <video width="650" height="300" controls>  
-                                          <source src="../../public/user/video/level1/video1/{{$video[0]->link}}" type="video/mp4"> 
+                                          <source src="../../public/user/video/{{$video[0]->link}}" type="video/mp4"> 
                                           </video>
                                       </div>
                                       <div class="about-course mb-30">
@@ -76,7 +76,7 @@
                                          <div class="about-course mb-30">
                                             <div>{{$au->name}}</div>
                                             <audio width="300" height="300" controls >  
-                                              <source src="../../public/user/video/level1/video1/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                              <source src="../../public/user/audio/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
                                               </audio>
 
 
@@ -101,10 +101,40 @@
                           <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
                             <div class="clever-curriculum">
 
+<<<<<<< HEAD
                                 <!-- Curriculum Level -->
                                 <div class="curriculum-level mb-30">
                                     <!-- Single Popular Course -->
                                     @foreach($new_lecture as $new1)
+=======
+                              <!-- Tab Text -->
+                              <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+                                <div class="clever-curriculum">
+
+                                    <!-- Curriculum Level -->
+                                    <div class="curriculum-level mb-30">
+                                        <!-- Single Popular Course -->
+                                        @foreach($new_lecture as $new1)
+
+                                        <table border="1">
+                                            @foreach($new_word as $new2)
+                                            @if($new2->id_lecture ==$new1->id )
+                                          
+                                                <tr>
+                                                    <td style="width: 100px;padding: 3px" >{{$new2->name}}:</td>
+                                                    
+                                                    <td style="width: 100px;padding: 3px">{{$new2->mean}}</td>
+                                                    <td>
+                                                        <audio controls >  
+                                                            <source src="../../public/user/Vocabulary/{{$new2->pronunciation}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                                            </audio>
+
+                                                        </td>
+                                                    </tr>           
+                                                @endif
+                                                @endforeach()
+                                            </table>
+>>>>>>> fef219e2bea2bffa2d0f8ee774aad4504d0ef96f
 
                                     <table border="1">
                                         @foreach($new_word as $new2)

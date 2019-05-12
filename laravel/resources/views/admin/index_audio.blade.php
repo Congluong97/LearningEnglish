@@ -80,11 +80,11 @@
 										<div class="form-group">
 											<label for="">Video</label>
 											<select name="video" id="inputvideo" class="form-control">
-													@foreach ($videos as $video)
-													<option id="video" value="{!!$video['id']!!}">{!!$video['name']!!}</option>
-													@endforeach
+												@foreach ($videos as $video)
+												<option id="video" value="{!!$video['id']!!}">{!!$video['name']!!}</option>
+												@endforeach
 
-												</select>
+											</select>
 										</div>
 										
 										
@@ -173,10 +173,20 @@
 						<label for="">Text</label>
 						<input type="text" class="form-control" id="edit-text" placeholder="Text" name="edit-text">
 					</div>
+					<div class="form-group">
+						<label for="">Video</label>
+						<select name="video" id="inputvideo" class="form-control" id="edit-video">
+							@foreach ($videos as $video)
+							<option id="video" value="{!!$video['id']!!}">{!!$video['name']!!}</option>
+							@endforeach
+
+						</select>
+					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-primary">Update</button>
 					</div>
+					
 				</form>
 			</div>
 
@@ -215,24 +225,29 @@
 		/* Act on the event */
 		$('#modalAdd').modal('show');
 	});
-	$('#tblAudio').on('submit',function(event) {
+	$('#formAdd').on('submit',function(event) {
 		event.preventDefault();
-		// alert($('#link')[0].files[0]);
+		var link = $('#link').get(0).files[0];
+		var fd = new FormData();
+
+		fd.append('name',$('#name').val());
+		fd.append('link',link);
+		fd.append('text',$('#text').val());
+		fd.append('video',$('#inputvideo').val());
+		
 		$.ajax({
 			type:'POST',
 			url: '{!! route('admin_audio.store') !!}',
-			data:{
-				name: $('#name').val(),
-				link: $('#link')[0].files[0],
-				text: $('#text').val(),
-				video: $('#video').val(),
-			},
+			cache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data:fd,
 			success: function(res){
-				event.preventDefault();
+				
 				$('#modalAdd').modal('hide');
 				toastr['success']('Add new Audio successfully!');
-				$('#tblAudio').data.reload();
-				// $('#tblAudio').DataTable().ajax.reload(null,false);
+				$('#tblAudio').DataTable().ajax.reload(null,false);
 			},
 
 			error: function(xhr, ajaxOptions, thrownError){
@@ -250,13 +265,11 @@
 			type: 'GET',
 			success: function(res) {
 				$('#show-name').text(res.name);
-
 				$('#show-text').text(res.text);
 				$('#show-video').text(res.video);
 				
 				var link = '{{asset('')}}public/'+res.link;
 				$('#show-audio').attr('src',''+link);
-				// alert(link);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				toastr['error']('Load this Audio failed!');
@@ -304,7 +317,7 @@
 	$('#tblAudio').on('click','.btnEdit',function(event) {
 		event.preventDefault();
 		var id=$(this).data('id');
-		event.preventDefault();
+		
 		$.ajax({
 			url: '{{ asset('') }}admin/audio/'+id,
 			type: 'GET',
@@ -313,6 +326,7 @@
 				$('#edit-name').attr('value',res.name);
 				$('#edit-text').attr('value',res.text);
 				$('#edit-id').attr('value',res.id);
+				$('#edit-video').attr('value',res.id_video);
 			},
 			error: function(xhr, ajaxOptions, thrownError){
 				toastr['error']('Can\'t display category to edit');

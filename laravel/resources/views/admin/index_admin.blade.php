@@ -193,25 +193,29 @@
 		event.preventDefault();
 		$('#modalAdd').modal('show');
 	})
-		$('#tblAdmin').on('submit',function(event) {
+	$('#formAdd').on('submit',function(event) {
 		event.preventDefault();
-		// alert($('#link')[0].files[0]);
+		var thumbnail=$('#thumbnail').get(0).files[0];
+		var fd= new FormData();
+
+		fd.append('name',$('#name').val());
+		fd.append('email',$('#email').val());
+		fd.append('password',$('#password').val());
+		fd.append('thumbnail',thumbnail);
+		
 		$.ajax({
 			type:'POST',
-			url: '',
-			data:{
-				name: $('#name').val(),
-				email: $('#email').val(),
-				password: $('#password').val(),
-				thumbnail: $('#thumbnail')[0].files[0]
-
-			},
+			url: '{{route('admin_list.store')}}',
+			cache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data: fd,
 			success: function(res){
 				event.preventDefault();
 				$('#modalAdd').modal('hide');
-				toastr['success']('Add new Audio successfully!');
-				$('#tblAdmin').data.reload();
-				// $('#tblAudio').DataTable().ajax.reload(null,false);
+				toastr['success']('Add new Admin successfully!');
+				$('#tblAdmin').DataTable().ajax.reload(null,false);
 			},
 
 			error: function(xhr, ajaxOptions, thrownError){

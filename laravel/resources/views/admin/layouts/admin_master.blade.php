@@ -360,7 +360,7 @@
       </li>
        <li>
         <a href="{{asset('')}}admin/lecture">
-          <i class="fa fa-audio-description" aria-hidden="true"></i><span> Lecture</span>
+         <i class="fa fa-star" aria-hidden="true"></i><span> Lecture</span>
           <span class="pull-right-container">
 
           </span>
@@ -368,7 +368,15 @@
       </li>
       <li>
         <a href="{{asset('')}}admin/listadmin">
-          <i class="fa fa-audio-description" aria-hidden="true"></i><span> List Admin</span>
+          <i class="fa fa-moon-o" aria-hidden="true"></i><span> List Admin</span>
+          <span class="pull-right-container">
+
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="{{asset('')}}admin/level">
+         <i class="fa fa-sun-o" aria-hidden="true"></i><span> Level</span>
           <span class="pull-right-container">
 
           </span>
@@ -434,7 +442,11 @@
     $('.sidebar-menu').tree()
   })
 
-
+$.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 </script>
 
   

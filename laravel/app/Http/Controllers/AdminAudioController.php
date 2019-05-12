@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Audio;
 use App\Video;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Storage;
 
 class AdminAudioController extends Controller
 {   
@@ -61,9 +62,7 @@ class AdminAudioController extends Controller
     {
 
         $data = $request->all();
-            // dd($data);
 
-        
        // kiem tra audio
         if ($request->hasFile('link')) {
             $date = date('YmdHis', time());
@@ -72,35 +71,41 @@ class AdminAudioController extends Controller
 
 //             echo 'Kiểu files: ' . $file->getMimeType();
                 //lấy tên file
-            $name = $link[0]->getClientOriginalName();
+            $name = $link->getClientOriginalName();
 
                 //lấy đuôi file
             // $extension = '.'.$link[0]->getClientOriginalExtension();
 
             $file_name = $name;
 
-            $link[0]->storeAs('public/audios',$date.$file_name);
+            $link->storeAs('public/audios',$date.$file_name);
 
-            $link[0] = 'storage/audios/'.$date.$file_name;
+            $link = 'storage/audios/'.$date.$file_name;
 
-            // dd($link[0]);
-
-            // dd($audio['link']);   
         }
 
         $audio=array(
-            'name' =>$data['name'],
-            'text' =>$data['text'],
+            'name' => $data['name'],
+            'text' => $data['text'],
             'id_video' => $data['video'],
-            'link' =>$link[0]
+            'link' => $link
             
         );
-     // dd($audio);
-        Audio::create($audio);
+        $exist=Audio::where([
+                                ['name','=',$data['name'] ],
+                                ['id_video','=',$data['video'] ]
+                        ])->first();
+        if (!isset($exist)) {
+            return Audio::create($audio);
+        }else{
+            return response($content = 'error', $status = 400);
+        }
+            
         
-        return redirect()->route('admin_audio.index',[
-            'success' => 'Add success!',
-        ]);
+        
+        // return redirect()->route('admin_audio.index',[
+        //     'success' => 'Add success!',
+        // ]);
     }
 
     /**
@@ -115,6 +120,7 @@ class AdminAudioController extends Controller
      if ($audio) {
         $audio['video'] = Video::find($audio['id_video'])['name'];
     }
+    // dd($audio);
     return $audio;     
 }
 
@@ -123,7 +129,7 @@ class AdminAudioController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function edit($id)
     {
         //
@@ -147,10 +153,14 @@ class AdminAudioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $res = Audio::find($id)->delete();
+    public function destroy($id )
+    {   
+
+        $res = Audio::find($id);
+        unlink($link);
+        $res->delete();
         if ($res==true) {
+            
             return response(['success'], 200);
         } else {
             return response([],400);

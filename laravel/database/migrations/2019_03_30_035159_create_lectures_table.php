@@ -17,6 +17,7 @@ class CreateLecturesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('image');
+            $table->string('id_level');
             $table->string('status');
             $table->timestamps();
         });

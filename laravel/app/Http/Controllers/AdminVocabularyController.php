@@ -38,7 +38,7 @@ class AdminVocabularyController extends Controller
      */
     public function anyData()
     {
-        $list=Vocabulary::orderBy('id','desc');
+        $list=Vocabulary::with(['lecture'])->orderBy('id','desc');
 
         return Datatables::of($list)
         ->addColumn('action',function($vocabulary) {
@@ -46,6 +46,10 @@ class AdminVocabularyController extends Controller
             <button title="Update Vocabulary" class="btn btn-warning  btnEdit button1" data-id='.$vocabulary["id"].'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button title="Delete Vocabulary" class="btn btn-danger b btnDelete button1" data-id='.$vocabulary["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
         })
+        ->editColumn('id_lecture',function($vocabulary) {
+             return $vocabulary->Lecture->name;
+        })
+         ->setRowId('id')
         ->make(true);
     }
     public function store(Request $request)
@@ -56,13 +60,19 @@ class AdminVocabularyController extends Controller
             'name' =>$data['name'], 
             'mean' =>$data['mean'], 
             'pronunciation' =>$data['pronunciation'], 
-            'id_lecture' =>'1', 
+            'id_lecture' =>$data['lecture'], 
         );
-
-        Vocabulary::create($vocab);
-         return redirect()->route('admin_vocabulary.index',[
-            'success' => 'Add success!',
-        ]);
+        $excist=Vocabulary::where([ ['name','=',$data['name'] ],
+                                    ['id_lecture','=',$data['lecture'] ] 
+                                ])->first();
+        // $excist2=Vocabulary::where('id_lecture','=',$data['lecture'] )->first();
+        if (!isset($excist)) {
+            return Vocabulary::create($vocab);
+        }else{
+            return response($content='error',$status=400);
+        }
+        
+         
     }
 
     /**
@@ -73,10 +83,12 @@ class AdminVocabularyController extends Controller
      */
     public function show($id)
     {
-        $vocabulary=Vocabulary::findOrFail($id);
+        $vocabulary=Vocabulary::find($id);
+        // dd($vocabulary);
         if ($vocabulary) {
-            $vocabulary['lecture']=Lecture::find($vocabulary['id_lecture'])['name'];
+            $vocabulary['lecture'] = Lecture::find($vocabulary['id_lecture'])['name'];
         }
+        // dd($vocabulary);
         return $vocabulary;
     }
 
@@ -88,7 +100,7 @@ class AdminVocabularyController extends Controller
      */
     public function edit($id)
     {
-        //
+         return Vocabulary::find($id);
     }
 
     /**
@@ -99,8 +111,14 @@ class AdminVocabularyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+
+        $res=Vocabulary::find($id)->update();
+        if ($res==true) {
+            return  Vocabulary::find($id);
+        }else{
+            return response($content = 'error',$status = 400);
+        }
     }
 
     /**

@@ -1,7 +1,7 @@
-@extends('admin.layouts.admin_master');
+@extends('admin.layouts.admin_master')
 
 @section('content-header')
-<
+
 <ol class="breadcrumb">
 	<li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
 	<li class="active">Video</li>
@@ -27,8 +27,9 @@
 							<tr>
 								<th width="5%" class="text-center">ID</th>
 								<th class="text-center" width="20%">Name</th>
-								<th class="text-center" width="20%">Description</th>
-								<th class="text-center" width="20%">Time</th>
+								
+								<th class="text-center" width="20%">Lecture</th>
+								
 								<th class="text-center" width="20%">Created at</th>
 								<th class="text-center" width="15%">Action</th>
 							</tr>
@@ -136,7 +137,7 @@
 						</tr>
 						<tr>
 							<td>Lecture : </td>
-							<td id="show-id_lecture"></td>
+							<td id="show_lecture"></td>
 						</tr>
 						
 					</tbody>
@@ -154,7 +155,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Edit Audio</h4>
+				<h4 class="modal-title">Edit Video</h4>
 			</div>
 			<div class="modal-body">
 				<form action="" role="form" id="formEdit" enctype="multipart/form-data">
@@ -167,22 +168,25 @@
 					</div>
 
 					<div class="form-group">
-						<label for="">Audio</label>
-						<div class="input-group">
-							<input id="edit-link" class="form-control" type="file" name="edit-link[]" multiple>
-						</div>
+						<label for="">Video</label>
+						<input id="edit-link" class="form-control" type="text" name="edit-link" >
+
 
 					</div>
 
 					<div class="form-group">
-						<label for="">Text</label>
-						<input type="text" class="form-control" id="edit-text" placeholder="Text" name="edit-text">
+						<label for="">Description</label>
+						<input type="text" class="form-control" id="edit-description" placeholder="Text" name="edit-text">
+					</div>
+					<div class="form-group">
+						<label for="">Time</label>
+						<input type="time" class="form-control" id="edit-time"  name="time">
 					</div>
 					<div class="form-group">
 						<label for="">Lecture</label>
 						<select name="lecture" id="inputlecture" class="form-control">
 							@foreach ($lectures as $lecture)
-							<option id="video" value="{!!$lecture['id']!!}">{!!$lecture['name']!!}</option>
+							<option id="lecture" value="{!!$lecture['id']!!}">{!!$lecture['name']!!}</option>
 							@endforeach
 
 						</select>
@@ -219,9 +223,9 @@
 			columns: [
 			{data: 'id', name: 'id'},
 			{data: 'name', name: 'name'},
-		
-			{data: 'description', name: 'description'},
-			{data: 'time', name: 'time'},
+
+
+			{data: 'id_lecture', name: 'id_lecture'},
 			
 			{data: 'created_at', name: 'created_at'},
 			{data: 'action', name:'action',orderable:false,searchable:false},
@@ -233,7 +237,7 @@
 		event.preventDefault();
 		$('#modalAdd').modal('show');
 	})
-	$('#tblVideo').on('submit',function(event) {
+	$('#formAdd').on('submit',function(event) {
 		event.preventDefault();
 		$.ajax({
 			type: 'POST',
@@ -243,11 +247,12 @@
 				link: $('#link').val(),
 				description: $('#description').val(),
 				time: $('#time').val(),
+				lecture: $('#inputlecture').val()
 			},
 			success: function(res){
 				$('#modalAdd').modal('hide');
-				toastr['success']('Add new Audio successfully!');
-				$('#tblAudio').DataTable().ajax.reload(null,false);
+				toastr['success']('Add new Video successfully!');
+				$('#tblVideo').DataTable().ajax.reload(null,false);
 			},
 
 			error: function(xhr, ajaxOptions, thrownError){
@@ -261,19 +266,19 @@
 		event.preventDefault();
 		$('#modalShow').modal('show');
 		$.ajax({
-			url: '{{ asset('') }}admin/video/'+ id,
+			url: '{{ asset('') }}admin/video/' +id,
 			type: 'GET',
 			success: function(res) {
 				$('#show-name').text(res.name);
 
 				$('#show-description').text(res.description);
 				$('#show-time').text(res.time);
-				$('#show-id_lecture').text(res.lecture);
+				$('#show_lecture').text(res.lecture);
 				var link=res.link;
 				$('#show-video').attr('src',''+link);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
-				toastr['error']('Load this product failed!');
+				toastr['error']('Load this Video failed!');
 			}
 		})
 	})
@@ -310,6 +315,49 @@
 					icon: "success",
 					button: "OK!",
 				});
+			}
+		})
+	})
+
+	$('#tblVideo').on('click','.btnEdit',function(event) {
+		var id=$(this).data('id');
+		event.preventDefault();
+		$.ajax({
+			type:'get',
+			url:'{{asset('')}}admin/video/' +id,
+			success: function(res){
+				$('#modalEdit').modal('show');
+				$('#edit-id').attr('value',res.id);
+				$('#edit-name').attr('value',res.name);
+				$('#edit-description').attr('value',res.description);
+				$('#edit-time').attr('value',res.time);
+
+				$('#edit-link').attr('input',res.link);
+
+
+			}
+		})
+	})
+	$('#formEdit').on('submit',function(res) {
+		event.preventDefault();
+		var id=$('#edit-id').val();
+		$.ajax({
+			url: '{!! asset('') !!}/admin/video/' +id,
+			type: 'PUT',
+			data: {
+				name: $('#edit-name').val(),
+				link: $('#edit-link').val(),
+				link: $('#edit-text').val(),
+
+			},
+			success: function(res){
+				$('#modalEdit').modal('hide');
+				toastr['success']('Update Vocabulary successfully!');
+				$('#tblVideo').DataTable().ajax.reload(null,false);
+
+			},
+			error: function(xhr, ajaxOptions, thrownError){
+				toastr['error']('Update failed');
 			}
 		})
 	})

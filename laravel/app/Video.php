@@ -12,7 +12,6 @@ class Video extends Model
     protected $fillable=['name','link','description','time','id_lecture'];
 
     public function lecture(){
-    	return $this->belongsTo('App\Lecture','id_lecure');
+    	return $this->belongsTo('App\Lecture','id_lecture');
     }
 }
-
