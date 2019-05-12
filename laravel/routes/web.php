@@ -72,11 +72,11 @@ Route::prefix('admin')->group(function(){
 
 		Route::get('listadmin','AdminListController@index')->name('admin_list.index');
 		Route::get('listadmin/get-data','AdminListController@anyData')->name('admin_list.dataTable');
-		// dang ky admin
-		// Route::get('register', 'AdminAuth\AdminRegisterController@showRegistrationForm')->name('admin.showRegistrationForm');
-		Route::post('listadmin/register', 'AdminAuth\AdminRegisterController@register')->name('admin_list.register');
+		
+		Route::post('listadmin/store', 'AdminListController@store')->name('admin_list.store');
+		Route::get('listadmin/{id}','AdminListController@edit')->name('admin_list.edit');
 		Route::delete('listadmin/{id}','AdminListController@destroy')->name('admin_list.destroy');
-<<<<<<< HEAD
+
 
 
 		Route::get('level','AdminLevelController@index')->name('admin_level.index');
@@ -84,79 +84,19 @@ Route::prefix('admin')->group(function(){
 		Route::post('level/store','AdminLevelController@store')->name('admin_level.store');
 		Route::delete('level/delete/{id}','AdminLevelController@destroy')->name('admin_level.destroy');
 
+		Route::get('listuser','AdminUserController@index')->name('admin_user.index');
+		Route::get('listuser/get-data','AdminUserController@anyData')->name('admin_user.dataTable');
+		Route::post('listuser/store','AdminUserController@store')->name('admin_user.store');
+
+		Route::get('event','AdminEventController@index')->name('admin_event.index');
+		Route::get('event/get-data','AdminEventController@anyData')->name('admin_event.dataTable');
+		Route::post('event/store','AdminEventController@store')->name('admin_event.store');
+		Route::delete('event/delete/{id}','AdminEventController@destroy');
+
 	});
 });
 
 
-// =======
-
-// Route::get('logout','LoginController@logout');
-// Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
-// 	Route::get('home','HomeController@home');
-// 	Route::get('profile','UserController@getProfile');
-// 	Route::post('profile','UserController@postProfile');
-// 	Route::group(['prefix'=>'user'],function(){
-// 		Route::get('list','UserController@listUser');
-// 		Route::get('add','UserController@getAddUser');
-// 		Route::post('add','UserController@postAddUser');
-// 		Route::get('edit/{id}','UserController@getEditUser');
-// 		Route::post('edit/{id}','UserController@postEditUser');
-// 		Route::get('delete/{id}','UserController@deleteUser');
-// 	});
-
-// });
-
-// Auth::routes();
-
-// Route::get('',function(){
-// 	return view('admin.login');
-// });
-
-// Route::group(['prefix'=>'admin/login'],function(){
-// 	Route::get('','LoginController@getLogin')->name('login');
-// 	Route::post('','LoginController@postLogin');		
-// });
-
-// Route::group(['prefix'=>'admin/register'],function(){
-// 	Route::get('','LoginController@getRegister');
-// 	Route::post('','LoginController@postRegister');
-// });
-
-// // Route::get('logout','LoginController@logout');
-// // Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
-// // 	Route::get('home','HomeController@home');
-// // 	Route::get('profile','UserController@getProfile');
-// // 	Route::post('profile','UserController@postProfile');
-// // 	Route::group(['prefix'=>'user'],function(){
-// // 		Route::get('list','UserController@listUser');
-// // 		Route::get('add','UserController@getAddUser');
-// // 		Route::post('add','UserController@postAddUser');
-// // 		Route::get('edit/{id}','UserController@getEditUser');
-// // 		Route::post('edit/{id}','UserController@postEditUser');
-// // 		Route::get('delete/{id}','UserController@deleteUser');
-// // 	});
-// Route::get('logout','LoginController@logout');
-// Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
-// 	Route::get('home','HomeController@home');
-// 	Route::get('profile','UserController@getProfile');
-// 	Route::post('profile','UserController@postProfile');
-// 	Route::group(['prefix'=>'user'],function(){
-// 		Route::get('list','UserController@listUser');
-// 		Route::get('add','UserController@getAddUser');
-// 		Route::post('add','UserController@postAddUser');
-// 		Route::get('edit/{id}','UserController@getEditUser');
-// 		Route::post('edit/{id}','UserController@postEditUser');
-// 		Route::post('delete','UserController@deleteUser')->name('admin.user.delete');
-// 	});
-
-	
-// });
-
-=======
-	});
-});
-
->>>>>>> 33f5da64d917065a311731aaf23dc9aeeb396955
 Route::get('logout','UserHomeController@logout');
 Route::get('register','UserHomeController@getRegister');
 Route::post('register','UserHomeController@postRegister');

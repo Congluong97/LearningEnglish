@@ -9,5 +9,6 @@ class Event extends Model
 
 	protected $table='event';
 
+	protected $fillable=['name','image','detail'];
 
 }

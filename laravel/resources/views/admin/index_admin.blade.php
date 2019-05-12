@@ -25,6 +25,7 @@
 							<tr>
 								<th width="5%" class="text-center">ID</th>
 								<th class="text-center" width="20%">Name</th>
+								<th class="text-center" width="20%">Thumbnail</th>
 								<th class="text-center" width="20%">Email</th>
 								<th class="text-center" width="20%">Created at</th>
 								<th class="text-center" width="15%">Action</th>
@@ -160,7 +161,51 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="modalEdit">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Edit Admin</h4>
+			</div>
+			<div class="modal-body">
+				<form action="" role="form" id="formEdit" enctype="multipart/form-data">
+					<input type="hidden" name="_method" value="PUT">
+					@csrf
+					<input type="hidden" name="edit-id" id="edit-id">
+					<div class="form-group">
+						<label for="">Name</label>
+						<input type="text" class="form-control" id="edit-name" placeholder="Name Audio..." name="edit-name">
+					</div>
 
+					<div class="form-group">
+						<label for="">Thumbnail</label>
+						<div class="input-group">
+							<input id="edit-thumbnail" class="form-control" type="file" name="edit-thumbnail[]" multiple>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label for="">Email</label>
+						<input type="text" class="form-control" id="edit-email" placeholder="Text" name="edit-email">
+					</div>
+					<div class="form-group">
+						<label for="">Password</label>
+						<input type="password" class="form-control" id="edit-password" placeholder="Text" name="edit-password">
+					</div>
+				
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Update</button>
+					</div>
+					
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
 @endsection
 
 
@@ -181,6 +226,7 @@
 			columns: [
 			{ data: 'id', name: 'id'},
 			{ data: 'name', name: 'name'},
+			{ data: 'thumbnail', name: 'thumbnail'},
 			{ data: 'email', name: 'email'},
 			{ data: 'created_at', name: 'created_at'},
 			{ data: 'action', name: 'action'},
@@ -262,10 +308,47 @@
 			}
 		})
 	})
-	$('#tblAdmin').on('click','.btnShow',function(event) {
-		var id = $(this).data('id');
+	$('#tblAdmin').on('click','.btnEdit',function(event) {
+		var id=$(this).data('id');
 		event.preventDefault();
-		$('#modalShow').modal('show');
+		$.ajax({
+			type:'get',
+			url:'{{asset('')}}admin/listadmin/' +id,
+			success: function(res){
+				$('#modalEdit').modal('show');
+				$('#edit-id').attr('value',res.id);
+				$('#edit-name').attr('value',res.name);
+				$('#edit-email').attr('value',res.email);
+				$('#edit-password').attr('value',res.password);
+
+				$('#edit-thumbnail').attr('input',res.thumbnail);
+
+
+			}
+		})
+	})
+	$('#formEdit').on('submit',function(res) {
+		event.preventDefault();
+		var id=$('#edit-id').val();
+		$.ajax({
+			url: '{!! asset('') !!}/admin/listadmin/' +id,
+			type: 'PUT',
+			data: {
+				name: $('#edit-name').val(),
+				link: $('#edit-link').val(),
+				link: $('#edit-text').val(),
+
+			},
+			success: function(){
+				$('#modalEdit').modal('hide');
+				toastr['success']('Update Vocabulary successfully!');
+				$('#tblVideo').DataTable().ajax.reload(null,false);
+
+			},
+			error: function(xhr, ajaxOptions, thrownError){
+				toastr['error']('Update failed');
+			}
+		})
 	})
 </script>
 @endsection

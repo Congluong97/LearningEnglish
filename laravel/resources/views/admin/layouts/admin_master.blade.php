@@ -82,7 +82,7 @@
                     <li><!-- start message -->
                       <a href="#">
                         <div class="pull-left">
-                          <img src="http://localhost/LearningEnglish/laravel/public/{{Auth::guard('admin')->user()->thumbnail}}" class="img-circle" alt="User Image">
+                          <img src="http://localhost/LearningEnglish/laravel/{{Auth::guard('admin')->user()->thumbnail}}" class="img-circle" alt="User Image">
                         </div>
                         <h4>
                           Support Team
@@ -269,13 +269,13 @@
     <!-- User Account: style can be found in dropdown.less -->
     <li class="dropdown user user-menu">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <img src="http://localhost/LearningEnglish/laravel/public/{{Auth::guard('admin')->user()->thumbnail}}" class="user-image" alt="User Image">
+        <img src="http://localhost/LearningEnglish/laravel/{{Auth::guard('admin')->user()->thumbnail}}" class="user-image" alt="User Image">
         <span class="hidden-xs">{{Auth::guard('admin')->user()->name}}</span>
       </a>
       <ul class="dropdown-menu">
         <!-- User image -->
         <li class="user-header">
-          <img src="http://localhost/LearningEnglish/laravel/public/{{Auth::guard('admin')->user()->thumbnail}}" class="img-circle" alt="User Image">
+          <img src="http://localhost/LearningEnglish/laravel/{{Auth::guard('admin')->user()->thumbnail}}" class="img-circle" alt="User Image">
 
           <p>
             {{Auth::guard('admin')->user()->name}} - Web Developer
@@ -312,10 +312,10 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="http://localhost/LearningEnglish/laravel/public/{{Auth::guard('admin')->user()->thumbnail}}" class="img-circle" alt="User Image">
+        <img src="http://localhost/LearningEnglish/laravel/{{Auth::guard('admin')->user()->thumbnail}}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>{{Auth::guard('admin')->user()->name}}</p>
+        {{-- <p>{{Auth::guard('admin')->user()->name}}</p> --}}
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
@@ -377,6 +377,22 @@
       <li>
         <a href="{{asset('')}}admin/level">
          <i class="fa fa-sun-o" aria-hidden="true"></i><span> Level</span>
+          <span class="pull-right-container">
+
+          </span>
+        </a>
+      </li> 
+      <li>
+        <a href="{{asset('')}}admin/user">
+         <i class="fa fa-sun-o" aria-hidden="true"></i><span> User</span>
+          <span class="pull-right-container">
+
+          </span>
+        </a>
+      </li> 
+      <li>
+        <a href="{{asset('')}}admin/event">
+         <i class="fa fa-sun-o" aria-hidden="true"></i><span>Event</span>
           <span class="pull-right-container">
 
           </span>
