@@ -154,7 +154,6 @@ Route::prefix('admin')->group(function(){
 
 
 
-
 Route::get('logout','UserHomeController@logout');
 Route::get('register','UserHomeController@getRegister');
 Route::post('register','UserHomeController@postRegister');
@@ -210,8 +209,11 @@ Route::get('testajax1','UserHomeController@test1')->name('testajax1');
 Route::post('testajax','UserHomeController@test')->name('testajax');
 Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');
 
-Route::get('instructors',[
-	'as'=>'instructors',
-	'uses'=>'instructors'
-]);
+
+Route::get('instructors',function(){
+	return view('instructors')
+});
 Route::get('vocabulary','VocabulariesController@getVocabularies');
+
+
+Route::POST('check','Single_lecturesController@check');
