@@ -129,3 +129,4 @@ Route::post('testajax','UserHomeController@test')->name('testajax');
 Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');
 
 
+Route::POST('check','Single_lecturesController@check');
