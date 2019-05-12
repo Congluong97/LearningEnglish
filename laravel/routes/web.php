@@ -93,8 +93,41 @@ Route::prefix('admin')->group(function(){
 		Route::post('event/store','AdminEventController@store')->name('admin_event.store');
 		Route::delete('event/delete/{id}','AdminEventController@destroy');
 
+<<<<<<< HEAD
 	});
 });
+=======
+// // Route::get('logout','LoginController@logout');
+// // Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
+// // 	Route::get('home','HomeController@home');
+// // 	Route::get('profile','UserController@getProfile');
+// // 	Route::post('profile','UserController@postProfile');
+// // 	Route::group(['prefix'=>'user'],function(){
+// // 		Route::get('list','UserController@listUser');
+// // 		Route::get('add','UserController@getAddUser');
+// // 		Route::post('add','UserController@postAddUser');
+// // 		Route::get('edit/{id}','UserController@getEditUser');
+// // 		Route::post('edit/{id}','UserController@postEditUser');
+// // 		Route::get('delete/{id}','UserController@deleteUser');
+// // 	});
+// Route::get('logout','LoginController@logout');
+// Route::group(['prefix'=>'admin','middleware'=>'checkLogin'],function(){
+// 	Route::get('home','HomeController@home');
+// 	Route::get('profile','UserController@getProfile');
+// 	Route::post('profile','UserController@postProfile');
+// 	Route::group(['prefix'=>'user'],function(){
+// 		Route::get('list','UserController@listUser');
+// 		Route::get('add','UserController@getAddUser');
+// 		Route::post('add','UserController@postAddUser');
+// 		Route::get('edit/{id}','UserController@getEditUser');
+// 		Route::post('edit/{id}','UserController@postEditUser');
+// 		Route::post('delete','UserController@deleteUser')->name('admin.user.delete');
+// 	});
+
+	
+// });
+
+>>>>>>> 6ad9cb63d3b7aec4bb81002d9bca78d33abc9a8f
 
 
 Route::get('logout','UserHomeController@logout');
@@ -117,6 +150,7 @@ Route::get('test', function(){
 	return view('user.index');
 
 });
+
 Route::get('lectures', [
 	'as'=>'lectures',
 	'uses'=>'LectureController@getLecture'
@@ -152,3 +186,10 @@ Route::post('testajax','UserHomeController@test')->name('testajax');
 Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');
 
 
+Route::get('instructors',function(){
+	return view('instructors')
+});
+Route::get('vocabulary','VocabulariesController@getVocabularies');
+
+
+Route::POST('check','Single_lecturesController@check');

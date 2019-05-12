@@ -90,7 +90,7 @@ class UserHomeController extends Controller
 		$user->level = 2;
 		
 		if($user->save()){
-			return redirect('home');
+			return redirect('login');
 		}
 	}
 
