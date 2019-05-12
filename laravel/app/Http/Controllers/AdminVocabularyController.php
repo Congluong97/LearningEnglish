@@ -56,10 +56,33 @@ class AdminVocabularyController extends Controller
     {
         $data=$request->all();
         // dd($data);
+         if ($request->hasFile('pronunciation')) {
+            $date = date('YmdHis', time());
+
+            $pronunciation = $request->file('pronunciation');
+
+//             echo 'Kiểu files: ' . $file->getMimeType();
+                //lấy tên file
+            $name = $pronunciation->getClientOriginalName();
+
+                //lấy đuôi file
+            // $extension = '.'.$link->getClientOriginalExtension();
+
+             $file_name = $name;
+
+            $pronunciation->storeAs('public/pronunciation',$date.$file_name);
+
+            $pronunciation = 'storage/pronunciation/'.$date.$file_name;
+
+            // dd($link[0]);
+
+            // dd($audio['link']);   
+        }
+
         $vocab = array(
             'name' =>$data['name'], 
             'mean' =>$data['mean'], 
-            'pronunciation' =>$data['pronunciation'], 
+            'pronunciation' =>$pronunciation, 
             'id_lecture' =>$data['lecture'], 
         );
         $excist=Vocabulary::where([ ['name','=',$data['name'] ],

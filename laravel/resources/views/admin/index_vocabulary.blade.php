@@ -68,7 +68,7 @@
 										</div>
 										<div class="form-group">
 											<label for="">pronunciation</label>
-											<input type="text"  id="pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="pronunciation" >
+											<input type="file"  id="pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="pronunciation" >
 										</div>
 										<div class="form-group">
 											<label for="">Lecture</label>
@@ -116,10 +116,7 @@
 							<td width="30%">Mean : </td>
 							<td id="show-mean" width="50%"></td>
 						</tr>
-						<tr>
-							<td>Pronunciation : </td>
-							<td id="show-pronunciation"></td>
-						</tr>
+						
 						<tr>
 							<td>lecture : </td>
 							<td id="show-id_lecture"></td>
@@ -128,7 +125,10 @@
 							<td>Create At : </td>
 							<td id="show-create_at"></td>
 						</tr>
-
+						<tr>
+							<td>Pronunciation : </td>
+							<td ><audio src="" id="show-pronunciation" id="show-audio"  width="100%" height="90%" controls "></audio></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -166,7 +166,7 @@
 						</div>
 						<div class="form-group">
 							<label for="">pronunciation</label>
-							<input type="text"  id="edit-pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="edit-pronunciation" >
+							<input type="file"  id="edit-pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="edit-pronunciation" >
 						</div>
 						<div class="form-group">
 							<label for="">Lecture</label>
@@ -221,15 +221,21 @@
 	})
 	$('#formAdd').on('submit',function(event) {
 		event.preventDefault();
+		var pronunciation=$('#pronunciation').get(0).files[0];
+		var fd = new FormData();
+
+		fd.append('name',$('#name').val());
+		fd.append('mean',$('#mean').val());
+		fd.append('pronunciation',pronunciation);
+		fd.append('lecture',$('#inputlecture').val());
 		$.ajax({
 			type: 'POST',
 			url: '{{route('admin_vocabulary.store')}}',
-			data: {
-				name: $('#name').val(),
-				mean: $('#mean').val(),
-				pronunciation: $('#pronunciation').val(),
-				lecture: $('#inputlecture').val()
-			},
+			cache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data: fd,
 			success: function(res){
 				$('#modalAdd').modal('hide');
 				toastr['success']('Add new Vocabulary successfully!');
@@ -252,7 +258,9 @@
 			success: function(res) {
 				$('#show-name').text(res.name);
 				$('#show-mean').text(res.mean);
-				$('#show-pronunciation').text(res.pronunciation);
+				var link = '{{asset('')}}public/'+res.pronunciation;
+				$('#show-pronunciation').attr('src',''+link);
+				
 				$('#show-id_lecture').text(res.lecture);
 				$('#show-create_at').text(res.created_at);
 

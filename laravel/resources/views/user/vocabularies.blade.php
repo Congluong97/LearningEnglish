@@ -1,4 +1,4 @@
-@extend('master')
+@extends('user.master')
 @section('content')
 
 <!-- ##### Breadcumb Area Start ##### -->
@@ -22,18 +22,16 @@
 							<div class="notes_box">
 								<div id="notespromo">
 								  All vocabulary from the lesson!</div>
-								  @foreach($vocabulary as $v)
+								  @foreach($vocabularies as $vocabulary)
 								<div class="text_box">
 								  <div class="notes">
 								    <div class="player"></div>
 								    <div class="explanation">
-								      <p class="items">{{$v->name}}</p>
+								      <p class="items">{{$vocabulary->name}}</p>
 								      <div class="audio">
-								        <audio controls preload="none">
-								          <source src="{{$v->pronunciation}}" />
-								          Your browser does not support the audio element.</audio>
+								        <audio src="{{asset('')}}public/{{$vocabulary->pronunciation}}"   width="100%" height="90%" controls style="width: 480px;height: 75px;"></audio>
 							          </div>
-								      <p>{{$v->mean}}</p>
+								      <p>{{$vocabulary->mean}}</p>
 							          
 							        </div>
 							      </div>
@@ -43,4 +41,4 @@
 
 </section>							    
 
-@endsectinon()
+@endsection

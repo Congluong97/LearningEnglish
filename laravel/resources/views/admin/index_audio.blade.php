@@ -267,7 +267,7 @@
 				$('#show-name').text(res.name);
 				$('#show-text').text(res.text);
 				$('#show-video').text(res.video);
-				
+				6
 				var link = '{{asset('')}}public/'+res.link;
 				$('#show-audio').attr('src',''+link);
 			},
