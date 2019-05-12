@@ -72,9 +72,9 @@ Route::prefix('admin')->group(function(){
 
 		Route::get('listadmin','AdminListController@index')->name('admin_list.index');
 		Route::get('listadmin/get-data','AdminListController@anyData')->name('admin_list.dataTable');
-		// dang ky admin
-		// Route::get('register', 'AdminAuth\AdminRegisterController@showRegistrationForm')->name('admin.showRegistrationForm');
-		Route::post('listadmin/register', 'AdminAuth\AdminRegisterController@register')->name('admin_list.register');
+		
+		Route::post('listadmin/store', 'AdminListController@store')->name('admin_list.store');
+		Route::get('listadmin/{id}','AdminListController@edit')->name('admin_list.edit');
 		Route::delete('listadmin/{id}','AdminListController@destroy')->name('admin_list.destroy');
 
 
@@ -83,9 +83,6 @@ Route::prefix('admin')->group(function(){
 		Route::get('level/get-data','AdminLevelController@anyData')->name('admin_level.dataTable');
 		Route::post('level/store','AdminLevelController@store')->name('admin_level.store');
 		Route::delete('level/delete/{id}','AdminLevelController@destroy')->name('admin_level.destroy');
-
-	});
-});
 
 
 

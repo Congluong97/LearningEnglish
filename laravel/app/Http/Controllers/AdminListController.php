@@ -28,10 +28,15 @@ class AdminListController extends Controller
 
         return DataTables::of($list)
         ->addColumn('action', function($admin) {
-            return '<button title="Detail Admin" class="btn btn-info btnShow button1" data-id='.$admin["id"].'><i class="fa fa-address-book" aria-hidden="true"></i></button>
+            return '
             <button title="Update Admin" class="btn btn-warning  btnEdit button1" data-id='.$admin["id"].'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button title="Delete Admin" class="btn btn-danger b btnDelete button1" data-id='.$admin["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
         })
+        ->editColumn('thumbnail', function($admin) {
+            return '<img src="'. asset(\url($admin->thumbnail)) .'"style="width:50px; height=50px;">';
+        })
+        ->setRowId('id')
+        ->rawColumns(['thumbnail','action'])
         ->make(true);
     }
     /**
@@ -84,11 +89,11 @@ class AdminListController extends Controller
                 //lấy đuôi file
             $extension = '.'.$link->getClientOriginalExtension();
 
-            $file_name = md5($request->name.$name).'_'. $date . $extension;;
+            $file_name = md5($request->name.$name).'_'. $date . $extension;
 
             $link->storeAs('public/img_admin',$file_name);
 
-            $link = 'storage/img_admin/'.$file_name;
+            $link = 'public/storage/img_admin/'.$file_name;
 
             // dd($link[0]);
 

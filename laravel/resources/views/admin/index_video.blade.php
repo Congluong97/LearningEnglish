@@ -69,7 +69,7 @@
 										
 										<div class="form-group">
 											<label for="">video</label>
-											<input id="link" class="form-control" type="text" name="link" multiple>
+											<input id="link" class="form-control" type="file" name="link[]" multiple>
 										</div>
 										
 										<div class="form-group">
@@ -169,7 +169,7 @@
 
 					<div class="form-group">
 						<label for="">Video</label>
-						<input id="edit-link" class="form-control" type="text" name="edit-link" >
+						<input id="edit-link" class="form-control" type="file" name="edit-link[]" >
 
 
 					</div>
@@ -239,16 +239,22 @@
 	})
 	$('#formAdd').on('submit',function(event) {
 		event.preventDefault();
+		var link=$('#link').get(0).files[0];
+		var fd = new FormData();
+		fd.append('name',$('#name').val());
+		fd.append('link',link);
+		fd.append('description',$('#description').val());
+		fd.append('time',$('#time').val());
+		fd.append('lecture',$('#inputlecture').val());
+	
 		$.ajax({
 			type: 'POST',
 			url: '{!! route('admin_video.store') !!}',
-			data:{
-				name: $('#name').val(),
-				link: $('#link').val(),
-				description: $('#description').val(),
-				time: $('#time').val(),
-				lecture: $('#inputlecture').val()
-			},
+			ache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data: fd,
 			success: function(res){
 				$('#modalAdd').modal('hide');
 				toastr['success']('Add new Video successfully!');
@@ -350,7 +356,7 @@
 				link: $('#edit-text').val(),
 
 			},
-			success: function(res){
+			success: function(){
 				$('#modalEdit').modal('hide');
 				toastr['success']('Update Vocabulary successfully!');
 				$('#tblVideo').DataTable().ajax.reload(null,false);
