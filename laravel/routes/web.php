@@ -76,7 +76,7 @@ Route::prefix('admin')->group(function(){
 		// Route::get('register', 'AdminAuth\AdminRegisterController@showRegistrationForm')->name('admin.showRegistrationForm');
 		Route::post('listadmin/register', 'AdminAuth\AdminRegisterController@register')->name('admin_list.register');
 		Route::delete('listadmin/{id}','AdminListController@destroy')->name('admin_list.destroy');
-<<<<<<< HEAD
+
 
 
 		Route::get('level','AdminLevelController@index')->name('admin_level.index');
@@ -152,11 +152,7 @@ Route::prefix('admin')->group(function(){
 	
 // });
 
-=======
-	});
-});
 
->>>>>>> 33f5da64d917065a311731aaf23dc9aeeb396955
 Route::get('logout','UserHomeController@logout');
 Route::get('register','UserHomeController@getRegister');
 Route::post('register','UserHomeController@postRegister');
