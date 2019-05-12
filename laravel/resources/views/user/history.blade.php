@@ -17,14 +17,14 @@
 
 <!-- ##### Catagory Area Start ##### -->
 
-<div>
-	<div class="post-a-comments" >
+<div style="text-align: center;border: 3px solid #eeddff; margin: 0 auto">
+	<div class="post-a-comments">
 
 		<form action="" method="post">
 			<div class="row">
 				<div class="">
 					<div class="box-body center">
-						<table id="example2" class="table table-bordered table-hover" style="width: 700px">
+						<table id="example2" class="table table-bordered table-hover" style="width: 900px ;margin-left: 180px; margin-right: 180px">
 							<thead>
 								<tr>
 									<th>Time</th>
@@ -36,7 +36,7 @@
 							<tbody>
 								@foreach($history as $hi)
 								<tr>
-									<td>{{$hi->create_at}}</td>
+									<td>{{$hi->created_at}}</td>
 									<td><a href="{{asset('')}}" title="">{{$hi->name_lecture}}</a></td>
 									<td><button type="" class="btn btn-danger">Xóa</button></td>
 								</tr>

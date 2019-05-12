@@ -101,7 +101,7 @@
                                     <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Megan Fox</a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
                                         <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
-                                        <a class="dropdown-item" href="">History</a>
+                                        <a class="dropdown-item" href="{{asset('history')}}">History</a>
                                         <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
                                     </div>
                                 </div>
