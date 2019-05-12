@@ -102,8 +102,7 @@
                                 <a href="{{asset('register')}}" class="btn">Register</a>
                                 <a href="{{asset('login')}}" class="btn active">Login</a>
                             </div>
-
-
+                            <!-- Login -->
                         </div>
                         <!-- Nav End -->
                     </div>

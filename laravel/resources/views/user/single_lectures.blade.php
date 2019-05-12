@@ -47,9 +47,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="tab--2" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="true">New words</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab--2" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="true">Games</a>
-                            </li>
                             
                         </ul>
 

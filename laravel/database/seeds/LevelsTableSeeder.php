@@ -16,23 +16,23 @@ class LevelsTableSeeder extends Seeder
     			[
     				'id'=>1,
     				'name'=>'Beginner',
-    				'id_lecture'=>1
+    				//'id_lecture'=>1
     				
     			],
     			[
     				'id'=>2,
                     'name'=>'Elementary',
-                    'id_lecture'=>2
+                    //'id_lecture'=>2
     			],
     			[
     				'id'=>3,
     				'name'=>'Pre-Intermediate',
-                    'id_lecture'=>3
+                    //'id_lecture'=>3
     			],
     			[
     				'id'=>4,
     				'name'=>'Intermediate',
-                    'id_lecture'=>4
+                    //'id_lecture'=>4
     			]
                 
     		]

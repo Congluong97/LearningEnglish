@@ -30,15 +30,15 @@
                         <img src="../../public/user/img/bg-img/{{$new->image}}" alt="" height="250px"></a>
                         <!-- Course Content -->
                         <div class="course-content">
-                            <h4>{{$new->name}}</h4>
-                            <div class="meta d-flex align-items-center">
+                           <a href="{{asset('single_lectures/'.$new->id)}}" title=""> <h4 style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">{{$new->name}}</h4></a>
+                            <div class="meta d-flex align-items-center" >
                                 @foreach($new_level as $new2)
                                 @if($new2->id_lecture == $new->id)
-                                    <a href="">Level {{$new2->id}} - {{$new2->name}}</a>
+                                    <a   href="">Level {{$new2->id}} - {{$new2->name}}</a>
                                 @endif
                                 @endforeach()
                             </div>
-                            <p>Practice listening, learning vocabulary according to the most popular topics with slow reading...</p>
+                            <p style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">Practice listening, learning vocabulary according to the most popular topics with slow reading...</p>
                         </div>
                         <!-- Seat Rating Fee -->
                         <div class="seat-rating-fee d-flex justify-content-between">

@@ -121,12 +121,12 @@
 							<div class="curriculum-level mb-30">
 
 								<!-- Single Popular Course -->
-								@foreach($new_lession as $new1)
-								<h5>{{$new1->name}} Level</h5>
+								
+								<h5>{{$new_lession[0]->name}} Level</h5>
 								<div class="row">
 
 									@foreach($new_lecture as $new2)
-									@if($new2->id ==$new1->id_lecture )
+									<!-- @if($new2->id ==$new1->id_lecture ) -->
 									<div class="col-12 col-md-6 col-lg-4">
 										<div class="single-popular-course mb-100 wow fadeInUp" >
 											<a href="">
@@ -155,10 +155,10 @@
 												</div>
 											</div>
 										</div>
-										@endif
-										@endforeach()
-										@endforeach()
 									</div>
+									<!-- @endif -->
+									
+									@endforeach()
 								</div>
 							</div>
 						</div>
@@ -167,7 +167,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- ##### Courses Content End ##### -->
+</div>
+<!-- ##### Courses Content End ##### -->
 
-	<!-- ##### Footer Area Start ##### -->
-	@endsection()
+<!-- ##### Footer Area Start ##### -->
+@endsection()
