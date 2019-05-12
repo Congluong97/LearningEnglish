@@ -85,6 +85,9 @@ Route::prefix('admin')->group(function(){
 		Route::delete('level/delete/{id}','AdminLevelController@destroy')->name('admin_level.destroy');
 
 
+	});
+});
+
 
 
 Route::get('logout','UserHomeController@logout');
