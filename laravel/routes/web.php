@@ -84,14 +84,14 @@ Route::prefix('admin')->group(function(){
 		Route::post('level/store','AdminLevelController@store')->name('admin_level.store');
 		Route::delete('level/delete/{id}','AdminLevelController@destroy')->name('admin_level.destroy');
 
-		Route::get('listuser','AdminUserController@index')->name('admin_user.index');
-		Route::get('listuser/get-data','AdminUserController@anyData')->name('admin_user.dataTable');
-		Route::post('listuser/store','AdminUserController@store')->name('admin_user.store');
 
+<<<<<<< HEAD
 		Route::get('event','AdminEventController@index')->name('admin_event.index');
 		Route::get('event/get-data','AdminEventController@anyData')->name('admin_event.dataTable');
 		Route::post('event/store','AdminEventController@store')->name('admin_event.store');
 		Route::delete('event/delete/{id}','AdminEventController@destroy');
+=======
+>>>>>>> b543d5c6f5422c8f8b9728aada00cfffbc430a4e
 	});
 });
 
@@ -148,8 +148,6 @@ Route::get('level5', [
 	'uses'=>'LevelController@getLevel5'
 ]);
 
-Route::get('testajax1','UserHomeController@test1')->name('testajax1');
-Route::post('testajax','UserHomeController@test')->name('testajax');
 Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');
 
 

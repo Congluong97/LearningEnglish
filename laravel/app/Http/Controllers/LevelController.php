@@ -14,7 +14,7 @@ class LevelController extends Controller
      */
     public function getLevel1()
     {
-    	$new_lecture=Lecture::where('status',1)->get();
+    	$new_lecture=Lecture::where('id_level',1)->get();
     	$new_lession=Level::where('id',1)->get();
     	return view('user.level',compact('new_lession','new_lecture'));
     }

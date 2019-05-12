@@ -85,7 +85,7 @@
                                 </li>
                                 <li><a href="{{asset('lectures')}}">Lectures</a></li>
                                 <li><a href="instructors.html">Instructors</a></li>
-                                <li><a href="blog.html">Vocabulary</a></li>
+                                <li><a href="{{asset('vocabulary')}}">Vocabulary</a></li>
 
                             </ul>
 
@@ -102,8 +102,7 @@
                                 <a href="{{asset('register')}}" class="btn">Register</a>
                                 <a href="{{asset('login')}}" class="btn active">Login</a>
                             </div>
-
-
+                            <!-- Login -->
                         </div>
                         <!-- Nav End -->
                     </div>

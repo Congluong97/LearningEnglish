@@ -70,22 +70,22 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                          <ul>
-                            <li><a href="{{asset('homelogin')}}">Home</a></li>
-                            <li><a href="#">Level</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.html">Level 1</a></li>
-                                    <li><a href="courses.html">Level 2</a></li>
-                                    <li><a href="single-course.html">Level 3</a></li>
-                                    <li><a href="instructors.html">Level 4</a></li>
-                                    <li><a href="blog.html">Level 5</a></li>
+                                <li><a href="{{asset('home')}}">Home</a></li>
+                                <li><a href="#">Level</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{{asset('level1')}}">Level 1</a></li>
+                                        <li><a href="{{asset('level2')}}">Level 2</a></li>
+                                        <li><a href="{{asset('level3')}}">Level 3</a></li>
+                                        <li><a href="{{asset('level4')}}">Level 4</a></li>
+                                        <li><a href="{{asset('level5')}}">Level 5</a></li>
 
-                                </ul>
-                            </li>
-                            <li><a href="courses.html">Lectures</a></li>
-                            <li><a href="instructors.html">Instructors</a></li>
-                            <li><a href="blog.html">Vocabulary</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{{asset('lectures')}}">Lectures</a></li>
+                                <li><a href="instructors.html">Instructors</a></li>
+                                <li><a href="blog.html">Vocabulary</a></li>
 
-                        </ul>
+                            </ul>
                         <!-- Search Button -->
                         <div class="search-area">
                             <form action="#" method="post">
@@ -101,7 +101,7 @@
                                     <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Megan Fox</a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
                                         <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
-                                        <a class="dropdown-item" href="">History</a>
+                                        <a class="dropdown-item" href="{{asset('history')}}">History</a>
                                         <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
                                     </div>
                                 </div>
