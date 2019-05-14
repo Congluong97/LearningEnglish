@@ -58,7 +58,9 @@ class AdminVideoController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();    
+        $data = $request->all();
+
+        // dd($data); 
        // kiem tra audio
         if ($request->hasFile('link')) {
             echo "";
@@ -114,7 +116,7 @@ class AdminVideoController extends Controller
     public function show($id)
     {
         $video = Video::findOrFail($id);
-        dd($video);
+        // dd($video);
       if ($video) {
         $video['lecture'] = Video::find($video['id_video'])['name'];
     }
@@ -144,9 +146,45 @@ class AdminVideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-     $res=Video::find($id)->update();
+         $data = $request->all();
+         // dd($data);
+       // kiem tra audio
+        if ($request->hasFile('link')) {
+            
+            $date = date('YmdHis', time());
+
+            $link = $request->file('link');
+
+//             echo 'Kiểu files: ' . $file->getMimeType();
+                //lấy tên file
+            $name = $link->getClientOriginalName();
+
+                //lấy đuôi file
+            // $extension = '.'.$link[0]->getClientOriginalExtension();
+
+            $file_name = $name;
+
+            $link->storeAs('public/video',$date.$file_name);
+
+            $link = 'storage/video/'.$date.$file_name;
+
+            // dd($link[0]);
+
+              
+        }
+
+        $video=array(
+            'name' =>$data['name'],
+            'description' =>$data['description'],
+            'time' =>$data['time'],
+            'id_lecture' => $data['lecture'],
+            'link' =>$link
+            
+        );
+     $res=Video::find($id);
+     
      if ($res==true) {
-        return  Video::find($id);
+        return  Video::update($video);
     }else{
         return response($content = 'error',$status = 400);
     }

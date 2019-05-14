@@ -72,7 +72,7 @@ class AdminVocabularyController extends Controller
 
             $pronunciation->storeAs('public/pronunciation',$date.$file_name);
 
-            $pronunciation = 'storage/pronunciation/'.$date.$file_name;
+            $pronunciation = 'public/storage/pronunciation/'.$date.$file_name;
 
             // dd($link[0]);
 

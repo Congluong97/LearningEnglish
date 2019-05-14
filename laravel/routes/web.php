@@ -84,14 +84,16 @@ Route::prefix('admin')->group(function(){
 		Route::post('level/store','AdminLevelController@store')->name('admin_level.store');
 		Route::delete('level/delete/{id}','AdminLevelController@destroy')->name('admin_level.destroy');
 
+		Route::get('user','AdminUserController@index')->name('admin_user.index');
+		Route::get('user/get-data','AdminUserController@anyData')->name('amdin_user.dataTable');
+		Route::get('user/store','AdminUserController@store')->name('amdin_user.store');
 
-<<<<<<< HEAD
+
 		Route::get('event','AdminEventController@index')->name('admin_event.index');
 		Route::get('event/get-data','AdminEventController@anyData')->name('admin_event.dataTable');
 		Route::post('event/store','AdminEventController@store')->name('admin_event.store');
 		Route::delete('event/delete/{id}','AdminEventController@destroy');
-=======
->>>>>>> b543d5c6f5422c8f8b9728aada00cfffbc430a4e
+
 	});
 });
 
@@ -155,6 +157,7 @@ Route::get('instructors',function(){
 	return view('instructors');
 });
 Route::get('vocabulary','VocabulariesController@getVocabularies');
+Route::get('vocabulary/get-data','VocabulariesController@anyData')->name('vocabulary.dataTable');
 
 
 Route::POST('check','Single_lecturesController@check');

@@ -175,7 +175,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Video</label>
-						<select name="video" id="inputvideo" class="form-control" id="edit-video">
+						<select name="video"  class="form-control" id="edit-video">
 							@foreach ($videos as $video)
 							<option id="video" value="{!!$video['id']!!}">{!!$video['name']!!}</option>
 							@endforeach
@@ -327,9 +327,34 @@
 				$('#edit-text').attr('value',res.text);
 				$('#edit-id').attr('value',res.id);
 				$('#edit-video').attr('value',res.id_video);
+				$('#edit_link').attr('src',"{{asset('')}}public/"+res.link);
 			},
 			error: function(xhr, ajaxOptions, thrownError){
 				toastr['error']('Can\'t display category to edit');
+			}
+		})
+	})
+	$('#formEdit').on('submit',function(res) {
+		event.preventDefault();
+		var id=$('#edit-id').val();
+		$.ajax({
+			url: '{!! asset('') !!}/admin/video/' +id,
+			type: 'PUT',
+			data: {
+				name: $('#edit-name').val(),
+				text: $('#edit-text').val(),
+				video: $('#edit-video').val(),
+				link: $('#edit-link').val(),
+
+			},
+			success: function(){
+				$('#modalEdit').modal('hide');
+				toastr['success']('Update Vocabulary successfully!');
+				$('#tblVideo').DataTable().ajax.reload(null,false);
+
+			},
+			error: function(xhr, ajaxOptions, thrownError){
+				toastr['error']('Update failed');
 			}
 		})
 	})

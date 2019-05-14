@@ -7,7 +7,7 @@
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Home</a></li>
-			<li class="breadcrumb-item"><a href="#">Lectures</a></li>
+			<li class="breadcrumb-item"><a href="#">Vocabulary</a></li>
 		</ol>
 	</nav>
 </div>
@@ -18,55 +18,65 @@
 	<h3>Vocabularies</h3>
 </div>
 
-<section>
-<<<<<<< HEAD
-							<div class="notes_box">
-								<div id="notespromo">
-								  All vocabulary from the lesson!</div>
-								  @foreach($vocabularies as $vocabulary)
-								<div class="text_box">
-								  <div class="notes">
-								    <div class="player"></div>
-								    <div class="explanation">
-								      <p class="items">{{$vocabulary->name}}</p>
-								      <div class="audio">
-								        <audio src="{{asset('')}}public/{{$vocabulary->pronunciation}}"   width="100%" height="90%" controls style="width: 480px;height: 75px;"></audio>
-							          </div>
-								      <p>{{$vocabulary->mean}}</p>
-							          
-							        </div>
-							      </div>
-							 	</div>     
-							 </div>
-							 @endforeach
-=======
-	<div class="notes_box">
-		<div id="notespromo">
-		All vocabulary from the lesson!</div>
-		@foreach($vocabulary as $v)
-		<div class="text_box">
-			<div class="notes">
-				<div class="player"></div>
-				<div class="explanation">
-					<p class="items">{{$v->name}}</p>
-					<div class="audio">
-						<audio controls preload="none">
-							<source src="{{$v->pronunciation}}" />
-							Your browser does not support the audio element.</audio>
-						</div>
-						<p>{{$v->mean}}</p>
-						
-					</div>
-				</div>
-			</div>     
+
+
+<div class="container" style="margin-top: 50px; margin-bottom: 50px">
+	
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+				
+			</div>
+			<!-- /.box-header -->
+			<div class="box-body">
+				<table class="table table-hover table-bordered" id="tblVocabulary" ">
+					<thead>
+						<tr>
+							
+							<th class="text-center" width="20%">Name</th>
+							<th class="text-center" width="20%">Pronunciation</th>
+							<th class="text-center" width="20%">Mean</th>
+
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+			<!-- /.box-body -->
 		</div>
-		@endforeach
->>>>>>> b543d5c6f5422c8f8b9728aada00cfffbc430a4e
+		<!-- /.box -->
+	
+	<!-- /.col -->
+</div>
+</div>
 
-	</section>							    
 
-<<<<<<< HEAD
 @endsection
-=======
-	@endsectinon()
->>>>>>> b543d5c6f5422c8f8b9728aada00cfffbc430a4e
+
+@section('script')
+<script type="text/javascript">
+
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+	$(function() {
+		$('#tblVocabulary').DataTable({
+			processing:true,
+			serverSide:true,
+			ajax:'{!! route('vocabulary.dataTable') !!}',
+			columns: [
+			
+			{data: 'name', name: 'name'},
+			{data: 'pronunciation', name: 'pronunciation'},
+			{data: 'mean', name: 'mean'},
+
+			]
+		});
+	})
+
+</script>
+@endsection
+

@@ -22,7 +22,7 @@
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<table class="table table-hover table-bordered" id="tblVideo">
+					<table class="table table-hover table-bordered" id="tblUser">
 						<thead>
 							<tr>
 								<th width="5%" class="text-center">ID</th>
@@ -55,7 +55,7 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="{{ route('admin_user.store') }}" method="POST" role="form" enctype="multipart/form-data" id="formAdd" name="formAdd">
+					<form action="{{ route('amdin_user.store') }}" method="POST" role="form" enctype="multipart/form-data" id="formAdd" name="formAdd">
 						@csrf
 						<div>
 							<table class="table table-hover">
@@ -131,10 +131,10 @@
 
 
 	$(function() {
-		$('#tblVideo').DataTable({
+		$('#tblUser').DataTable({
 			processing:true,
 			serverSide:true,
-			ajax: '{{route('admin_user.dataTable')}}',
+			ajax: '{{route('amdin_user.dataTable')}}',
 			columns:[
 				{data: 'id', name: 'id'},
 				{data: 'name', name: 'name'},
@@ -161,7 +161,7 @@
 		fd.append('level',$('#level').val());
 		$.ajax({
 			type: 'post',
-			url: '{{route('admin_user.store')}}',
+			url: '{{route('amdin_user.store')}}',
 			cache: false,
 			processData: false,
 			contentType: false,

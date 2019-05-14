@@ -120,7 +120,7 @@
 						
 						<tr>
 							<td rowspan="8" >
-								<iframe src="" alt="" id="show-video" width="100%" height="300px" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen control></iframe>
+								<video src="" id="show-video"  width="100%" height="90%" controls style="width: 480px;height: 200px;"></video>
 							</td>
 						</tr>
 						<tr>
@@ -170,8 +170,8 @@
 					<div class="form-group">
 						<label for="">Video</label>
 						<input id="edit-link" class="form-control" type="file" name="edit-link[]" >
-
-
+		
+						<span id="store-link"></span>
 					</div>
 
 					<div class="form-group">
@@ -184,7 +184,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Lecture</label>
-						<select name="lecture" id="inputlecture" class="form-control">
+						<select name="lecture" id="edit-lecture" class="form-control">
 							@foreach ($lectures as $lecture)
 							<option id="lecture" value="{!!$lecture['id']!!}">{!!$lecture['name']!!}</option>
 							@endforeach
@@ -280,7 +280,7 @@
 				$('#show-description').text(res.description);
 				$('#show-time').text(res.time);
 				$('#show_lecture').text(res.lecture);
-				var link=res.link;
+				var link = '{{asset('')}}public/'+res.link;
 				$('#show-video').attr('src',''+link);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -327,6 +327,7 @@
 
 	$('#tblVideo').on('click','.btnEdit',function(event) {
 		var id=$(this).data('id');
+		
 		event.preventDefault();
 		$.ajax({
 			type:'get',
@@ -337,8 +338,9 @@
 				$('#edit-name').attr('value',res.name);
 				$('#edit-description').attr('value',res.description);
 				$('#edit-time').attr('value',res.time);
+				$('#edit-lecture').attr('value',res.id_lecture);
 
-				$('#edit-link').attr('input',res.link);
+				$('#edit_link').attr('src',"{{asset('')}}public/"+res.link);
 
 
 			}
@@ -352,8 +354,10 @@
 			type: 'PUT',
 			data: {
 				name: $('#edit-name').val(),
+				description: $('#edit-description').val(),
+				time: $('#edit-time').val(),
 				link: $('#edit-link').val(),
-				link: $('#edit-text').val(),
+				lecture: $('#edit-lecture').val(),
 
 			},
 			success: function(){
