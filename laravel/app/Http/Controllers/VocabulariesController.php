@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vocabulary;
 use Yajra\Datatables\Datatables;
-
+use App\Admin;
 class VocabulariesController extends Controller
 {
 
@@ -31,7 +31,8 @@ class VocabulariesController extends Controller
 		->make(true);
 	}
 	public function getInstructor(){
-		return view('user.instructors');
+		$admins=Admin::all();
+		return view('user.instructors',['admins' => $admins]);
 	}
 
 }
