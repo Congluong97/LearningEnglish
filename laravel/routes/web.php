@@ -39,7 +39,7 @@ Route::prefix('admin')->group(function(){
 	Route::get('register', 'AdminAuth\AdminRegisterController@showRegistrationForm')->name('admin.showRegistrationForm');
 	Route::post('register', 'AdminAuth\AdminRegisterController@register')->name('admin.register');
 
-	Route::middleware('admin.auth')->group(function(){
+	// Route::middleware('admin.auth')->group(function(){
 
 		Route::get('audio','AdminAudioController@index')->name('admin_audio.index');
 		Route::get('audio/get-data','AdminAudioController@anyData')->name('admin_audio.dataTable');
@@ -96,7 +96,7 @@ Route::prefix('admin')->group(function(){
 		Route::delete('event/delete/{id}','AdminEventController@destroy');
 
 	});
-});
+// });
 
 
 
@@ -125,31 +125,14 @@ Route::get('lectures', [
 	'as'=>'lectures',
 	'uses'=>'LectureController@getLecture'
 ]);
-Route::get('level1', [
-	'as'=>'level1',
-	'uses'=>'LevelController@getLevel1'
-]);
+
 Route::get('single_lectures', [
 	'as'=>'single_lectures',
 	'uses'=>'single_lecturesController@getSingle_lectures'
 ]);
 
-Route::get('level2', [
-	'as'=>'level2',
-	'uses'=>'LevelController@getLevel2'
-]);
-Route::get('level3', [
-	'as'=>'level3',
-	'uses'=>'LevelController@getLevel3'
-]);
-Route::get('level4', [
-	'as'=>'level4',
-	'uses'=>'LevelController@getLevel4'
-]);
-Route::get('level5', [
-	'as'=>'level5',
-	'uses'=>'LevelController@getLevel5'
-]);
+Route::get('level/{id}','LevelController@getLevel');
+
 
 Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');
 

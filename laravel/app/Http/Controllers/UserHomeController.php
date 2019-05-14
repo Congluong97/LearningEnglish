@@ -10,12 +10,14 @@ use App\History;
 use App\Event;
 use App\Video;
 use App\Lecture;
+use App\Level;
 use App\Http\Controllers\DB;
 use  App\Http\Requests\UserRequest;
 
 class UserHomeController extends Controller
 {
     public function getHome(){
+    	$data['level'] = Level::all();
     	$data['video'] = Video::take(1)->get();
     	$data['lectures'] = Lecture::take(3)->get();
     	$data['event'] = Event::take(3)->get();
@@ -40,6 +42,7 @@ class UserHomeController extends Controller
     }
 
     public function getHomeLogin(){
+    	$data['level'] = Level::all();
     	$data['video'] = Video::take(1)->get();
     	$data['lectures'] = Lecture::take(3)->get();
     	$data['event'] = Event::take(3)->get();
@@ -101,7 +104,7 @@ class UserHomeController extends Controller
 	public function getHistory (){
 		$user = Auth::user();
 		if($user){
-			$data['history'] = History::where('id_user',$user->id)->get();
+			$data['history'] = History::where('id_user',$user->id)->orderBy('id','desc')->get();
 		}
 		return view('user.history',$data);
 	}

@@ -75,12 +75,9 @@
                                 <li><a href="{{asset('home')}}">Home</a></li>
                                 <li><a href="#">Level</a>
                                     <ul class="dropdown">
-                                        <li><a href="{{asset('level1')}}">Level 1</a></li>
-                                        <li><a href="{{asset('level2')}}">Level 2</a></li>
-                                        <li><a href="{{asset('level3')}}">Level 3</a></li>
-                                        <li><a href="{{asset('level4')}}">Level 4</a></li>
-                                        <li><a href="{{asset('level5')}}">Level 5</a></li>
-
+                                        @foreach($level as $le)
+                                            <li><a href="{{asset('level/'.$le->id)}}" title="">{{$le->name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li><a href="{{asset('lectures')}}">Lectures</a></li>

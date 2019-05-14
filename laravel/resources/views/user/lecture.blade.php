@@ -23,16 +23,16 @@
     <div class="container">
         <div class="row">
             <!-- Single Popular Course -->
-            @foreach($new_lession as $new)
+            @foreach($lecture as $new)
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-popular-course mb-100 wow fadeInUp" >
                     <a href="{{asset('single_lectures/'.$new->id)}}">
-                        <img src="../../public/user/img/bg-img/{{$new->image}}" alt="" height="250px"></a>
+                        <img src="{{asset('')}}{{$new->image}}" alt="" height="250px"></a>
                         <!-- Course Content -->
                         <div class="course-content">
                            <a href="{{asset('single_lectures/'.$new->id)}}" title=""> <h4 style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">{{$new->name}}</h4></a>
                             <div class="meta d-flex align-items-center" >
-                                @foreach($new_level as $new2)
+                                @foreach($level as $new2)
                                  @if($new2->id == $new->id_lecture)
                                     <a   href="">Level {{$new2->id}} - {{$new2->name}}</a>
                                 @endif
@@ -58,7 +58,7 @@
                 </div>
                 @endforeach
             </div>
-            <div class="row" style="float: right">{{$new_lession->links()}}</div>
+        
         </section>
         <!-- ##### Popular Course Area End ##### -->
 

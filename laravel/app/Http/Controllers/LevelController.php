@@ -18,28 +18,8 @@ class LevelController extends Controller
     	$new_lession=Level::where('id',1)->get();
     	return view('user.level',compact('new_lession','new_lecture'));
     }
-    public function getLevel2()
-    {
-    	$new_lecture=Lecture::where('status',1)->get();
-    	$new_lession=Level::where('id',2)->get();
-    	return view('user.level',compact('new_lession','new_lecture'));
-    }
-    public function getLevel3()
-    {
-    	$new_lecture=Lecture::where('status',1)->get();
-    	$new_lession=Level::where('id',3)->get();
-    	return view('user.level',compact('new_lession','new_lecture'));
-    }
-    public function getLevel4()
-    {
-    	$new_lecture=Lecture::where('status',1)->get();
-    	$new_lession=Level::where('id',4)->get();
-    	return view('user.level',compact('new_lession','new_lecture'));
-    }
-    public function getLevel5()
-    {
-    	$new_lecture=Lecture::where('status',1)->get();
-    	$new_lession=Level::where('id',5)->get();
-    	return view('user.level',compact('new_lession','new_lecture'));
+    public function getLevel($id){
+        $data['lecture'] = Lecture::where('id_level',$id)->get();
+        return view('user.lecture',$data);
     }
 }

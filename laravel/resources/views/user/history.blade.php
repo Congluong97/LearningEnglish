@@ -36,7 +36,7 @@
 							<tbody>
 								@foreach($history as $hi)
 								<tr>
-									<td>{{$hi->created_at}}</td>
+									<td>{{date("m : H - d M", strtotime($hi->created_at))}}</td>
 									<td><a href="{{asset('')}}" title="">{{$hi->name_lecture}}</a></td>
 									<td><button type="" class="btn btn-danger">Xóa</button></td>
 								</tr>
