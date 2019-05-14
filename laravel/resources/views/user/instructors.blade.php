@@ -39,16 +39,17 @@
                 <div class="tutors-slide owl-carousel">
 
                     <!-- Single Tutors Slide -->
+                    @foreach($admins as $admin)
                     <div class="single-tutors-slides">
                         <!-- Tutor Thumbnail -->
                         <div class="tutor-thumbnail">
-                            <img src="img/congluong.jpg" alt="">
+                            <img src="{{asset('')}}{{$admin->thumbnail}}" alt="">
                         </div>
                         <!-- Tutor Information -->
                         <div class="tutor-information text-center">
-                            <h5>Công Lương</h5>
+                            <h5>{{ $admin->name }}</h5>
                             <span>Teacher</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
+                            <p>{{$admin->email}}</p>
                             <div class="social-info">
                                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -57,81 +58,10 @@
                         </div>
                     </div>
 
-                    <!-- Single Tutors Slide -->
-                    <div class="single-tutors-slides">
-                        <!-- Tutor Thumbnail -->
-                        <div class="tutor-thumbnail">
-                            <img src="img/nguyenquangminh.jpg" alt="">
-                        </div>
-                        <!-- Tutor Information -->
-                        <div class="tutor-information text-center">
-                            <h5>Nguyễn Quang Minh</h5>
-                            <span>Teacher</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
-                            <div class="social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                   
+                   @endforeach
 
-                    <!-- Single Tutors Slide -->
-                    <div class="single-tutors-slides">
-                        <!-- Tutor Thumbnail -->
-                        <div class="tutor-thumbnail">
-                            <img src="img/trieuxuan.jpg" alt="">
-                        </div>
-                        <!-- Tutor Information -->
-                        <div class="tutor-information text-center">
-                            <h5>Triệu Thị Xuân</h5>
-                            <span>Teacher</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
-                            <div class="social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Single Tutors Slide -->
-                    <div class="single-tutors-slides">
-                        <!-- Tutor Thumbnail -->
-                        <div class="tutor-thumbnail">
-                            <img src="img/tranbich.jpg" alt="">
-                        </div>
-                        <!-- Tutor Information -->
-                        <div class="tutor-information text-center">
-                            <h5>Trần Thị Bích</h5>
-                            <span>Teacher</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
-                            <div class="social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Tutors Slide -->
-                    <div class="single-tutors-slides">
-                        <!-- Tutor Thumbnail -->
-                        <div class="tutor-thumbnail">
-                            <img src="img/dangngoc.jpg" alt="">
-                        </div>
-                        <!-- Tutor Information -->
-                        <div class="tutor-information text-center">
-                            <h5>Đặng Thị Ngọc</h5>
-                            <span>Teacher</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
-                            <div class="social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>

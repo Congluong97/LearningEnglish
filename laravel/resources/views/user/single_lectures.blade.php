@@ -60,7 +60,7 @@
                                     <div class="about-course mb-30">
                                         <h4>{{$video[0]->name}}</h4>
                                         <video width="650" height="300" controls>  
-                                          <source src="../../public/user/video/{{$video[0]->link}}" type="video/mp4"> 
+                                          <source src="{{asset('')}}public/{{$video[0]->link}}" type="video/mp4"> 
                                           </video>
                                       </div>
                                       <div class="about-course mb-30">
@@ -73,7 +73,7 @@
                                          <div class="about-course mb-30">
                                             <div>{{$au->name}}</div>
                                             <audio width="300" height="300" controls >  
-                                              <source src="../../public/user/audio/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                              <source src="{{asset('')}}public/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
                                               </audio>
 
 
@@ -115,7 +115,7 @@
                                                     <td style="width: 100px;padding: 3px">{{$new2->mean}}</td>
                                                     <td>
                                                         <audio controls >  
-                                                            <source src="../../public/user/Vocabulary/{{$new2->pronunciation}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                                            <source src="{{asset('')}}{{$new2->pronunciation}}" loop="true" autoplay="true" type="audio/mp3"> 
                                                             </audio>
 
                                                         </td>
