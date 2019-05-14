@@ -89,6 +89,7 @@ Route::prefix('admin')->group(function(){
 		Route::get('user/store','AdminUserController@store')->name('amdin_user.store');
 
 
+
 		Route::get('event','AdminEventController@index')->name('admin_event.index');
 		Route::get('event/get-data','AdminEventController@anyData')->name('admin_event.dataTable');
 		Route::post('event/store','AdminEventController@store')->name('admin_event.store');
@@ -153,11 +154,10 @@ Route::get('level5', [
 Route::get('single_lectures/{id}','Single_lecturesController@getSingle_lectures');
 
 
-Route::get('instructors',function(){
-	return view('instructors');
-});
+Route::get('instructors','VocabulariesController@getInstructor');
 Route::get('vocabulary','VocabulariesController@getVocabularies');
 Route::get('vocabulary/get-data','VocabulariesController@anyData')->name('vocabulary.dataTable');
 
 
 Route::POST('check','Single_lecturesController@check');
+Route::POST('searchvo','Vocabularies@searchVocabulary');

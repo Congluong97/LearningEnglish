@@ -84,13 +84,13 @@
                                     </ul>
                                 </li>
                                 <li><a href="{{asset('lectures')}}">Lectures</a></li>
-                                <li><a href="instructors.html">Instructors</a></li>
+                                <li><a href="{{asset('instructors')}}">Instructors</a></li>
                                 <li><a href="{{asset('vocabulary')}}">Vocabulary</a></li>
 
                             </ul>
 
                             <!-- Search Button -->
-                            <div class="search-area">
+                            <div class="search-area" style="visibility: ">
                                 <form action="#" method="post">
                                     <input type="search" name="search" id="search" placeholder="Search">
                                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -98,60 +98,74 @@
                             </div>
 
                             <!-- Register / Login -->
-                            <div class="register-login-area">
+                            @if(Auth::guest())
+                            <div class="register-login-area loginandregister">
                                 <a href="{{asset('register')}}" class="btn">Register</a>
                                 <a href="{{asset('login')}}" class="btn active">Login</a>
                             </div>
+                            @endif
                             <!-- Login -->
+                            @if(Auth::check())
+                            <div class="login-state d-flex align-items-center">
+                               <div class="user-name mr-30">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
+                                        <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
+                                        <a class="dropdown-item" href="{{asset('history')}}">History</a>
+                                        <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="userthumb">
+                                <img src="img/bg-img/t1.png" alt="">
+                            </div>
                         </div>
-                        <!-- Nav End -->
+                        @endif
                     </div>
-                </nav>
-            </div>
+                    <!-- Nav End -->
+                </div>
+            </nav>
         </div>
+
     </header>
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Hero Area Start ##### -->
-    
-    @yield('content')
+ 
 
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area">
-        <!-- Top Footer Area -->
-        <div class="top-footer-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <!-- Footer Logo -->
-                        <div class="footer-logo">
-                            <a href="index.html"><span style="color: white">Learning Enghlish</span></a>
-                        </div>
-                        <!-- Copywrite -->
-                        <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+@yield('content')
 
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                        </div>
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer-area">
+    <!-- Top Footer Area -->
+    <div class="top-footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Footer Logo -->
+                    <div class="footer-logo">
+                        <a href="index.html"><span style="color: white">Learning Enghlish</span></a>
+                    </div>
+                    <!-- Copywrite -->
+                    <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Bottom Footer Area -->
-            <div class="bottom-footer-area d-flex justify-content-between align-items-center">
-                <!-- Contact Info -->
-                <div class="contact-info">
-                    <a href="#"><span>Phone:</span> +84 369 435 608</a>
-                    <a href="#"><span>Email:</span> xuanttbk@gmail.com</a>
-                </div>
-                <!-- Follow Us -->
-                <div class="follow-us">
-                    <span>Follow us</span>
-                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                </div>
+        <!-- Bottom Footer Area -->
+        <div class="bottom-footer-area d-flex justify-content-between align-items-center">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <a href="#"><span>Phone:</span> +84 369 435 608</a>
+                <a href="#"><span>Email:</span> xuanttbk@gmail.com</a>
             </div>
+
         </footer>
         <!-- ##### Footer Area End ##### -->
 
@@ -178,3 +192,4 @@
     </body>
 
     </html>
+

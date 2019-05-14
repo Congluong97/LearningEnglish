@@ -8,6 +8,7 @@ use Yajra\Datatables\Datatables;
 class VocabulariesController extends Controller
 {
 
+
 	public function getVocabularies()
 	{
 		$vocabularies=Vocabulary::all();

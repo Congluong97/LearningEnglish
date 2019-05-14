@@ -7,7 +7,7 @@
                 <!-- Hero Content -->
                 <div class="hero-content text-center">
                     <h2>Let's Study Together</h2>
-                    <a href="#" class="btn clever-btn">Get Started</a>
+                    <a href="{{asset('level1')}}" class="btn clever-btn">Get Started</a>
                 </div>
             </div>
         </div>
@@ -15,57 +15,6 @@
 </section>
 <!-- ##### Hero Area End ##### -->
 
-<!-- ##### Cool Facts Area Start ##### -->
-<section class="cool-facts-area section-padding-100-0">
-    <div class="container">
-        <div class="row">
-            <!-- Single Cool Facts Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="250ms">
-                    <div class="icon">
-                        <img src="img/core-img/docs.png" alt="">
-                    </div>
-                    <h2><span class="counter">1912</span></h2>
-                    <h5>Success Stories</h5>
-                </div>
-            </div>
-
-            <!-- Single Cool Facts Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
-                    <div class="icon">
-                        <img src="img/core-img/star.png" alt="">
-                    </div>
-                    <h2><span class="counter">123</span></h2>
-                    <h5>Dedicated Tutors</h5>
-                </div>
-            </div>
-
-            <!-- Single Cool Facts Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="750ms">
-                    <div class="icon">
-                        <img src="img/core-img/events.png" alt="">
-                    </div>
-                    <h2><span class="counter">89</span></h2>
-                    <h5>Scheduled Events</h5>
-                </div>
-            </div>
-
-            <!-- Single Cool Facts Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="1000ms">
-                    <div class="icon">
-                        <img src="img/core-img/earth.png" alt="">
-                    </div>
-                    <h2><span class="counter">56</span></h2>
-                    <h5>Available Courses</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ##### Cool Facts Area End ##### -->
 
 <!-- ##### Popular Courses Start ##### -->
 <section class="popular-courses-area section-padding-100-0" style="background-image: url(img/core-img/texture.png);">
@@ -73,25 +22,21 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-heading">
-                    <h3>Popular Online Courses</h3>
+                    <h3>New Courses</h3>
                 </div>
             </div>
         </div>
 
         <div class="row">
+            @foreach($lectures as $lecture)
             <!-- Single Popular Course -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
-                    <img src="img/bg-img/c1.jpg" alt="">
+                    <img src="{{asset('public/storage/image/').$lecture->link}}" alt="">
                     <!-- Course Content -->
                     <div class="course-content">
-                        <h4>English Grammar</h4>
-                        <div class="meta d-flex align-items-center">
-                            <a href="#">Sarah Parker</a>
-                            <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                            <a href="#">Art &amp; Design</a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
+                        <a href="{{asset('single_lectures/'.$lecture->id)}}" title=""> <h4 style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">{{$lecture->name}}</h4></a>
+                        <p  style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
                     </div>
                     <!-- Seat Rating Fee -->
                     <div class="seat-rating-fee d-flex justify-content-between">
@@ -109,68 +54,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Single Popular Course -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="500ms">
-                    <img src="img/bg-img/c2.jpg" alt="">
-                    <!-- Course Content -->
-                    <div class="course-content">
-                        <h4>Vocabulary</h4>
-                        <div class="meta d-flex align-items-center">
-                            <a href="#">Sarah Parker</a>
-                            <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                            <a href="#">Art &amp; Design</a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
-                    </div>
-                    <!-- Seat Rating Fee -->
-                    <div class="seat-rating-fee d-flex justify-content-between">
-                        <div class="seat-rating h-100 d-flex align-items-center">
-                            <div class="seat">
-                                <i class="fa fa-user" aria-hidden="true"></i> 10
-                            </div>
-                            <div class="rating">
-                                <i class="fa fa-star" aria-hidden="true"></i> 4.5
-                            </div>
-                        </div>
-                        <div class="course-fee h-100">
-                            <a href="#">$20</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Popular Course -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="750ms">
-                    <img src="img/bg-img/c3.jpg" alt="">
-                    <!-- Course Content -->
-                    <div class="course-content">
-                        <h4>Expository writing</h4>
-                        <div class="meta d-flex align-items-center">
-                            <a href="#">Sarah Parker</a>
-                            <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                            <a href="#">Art &amp; Design</a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
-                    </div>
-                    <!-- Seat Rating Fee -->
-                    <div class="seat-rating-fee d-flex justify-content-between">
-                        <div class="seat-rating h-100 d-flex align-items-center">
-                            <div class="seat">
-                                <i class="fa fa-user" aria-hidden="true"></i> 10
-                            </div>
-                            <div class="rating">
-                                <i class="fa fa-star" aria-hidden="true"></i> 4.5
-                            </div>
-                        </div>
-                        <div class="course-fee h-100">
-                            <a href="#">$45</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -292,59 +176,44 @@
 </section>
 <!-- ##### Best Tutors End ##### -->
 
-<!-- ##### Register Now Start ##### -->
-<section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center" style="background-image: url(img/core-img/texture.png);">
-    <!-- Register Contact Form -->
-    <div class="register-contact-form mb-100 wow fadeInUp" data-wow-delay="250ms">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="forms">
-                        <h4>Courses For Free</h4>
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-12 col-lg-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="text" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="phone" placeholder="Phone">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="site" placeholder="Site">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn clever-btn w-100">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- video -->
+<section>
+    <div class="tab-content col-8" id="myTabContent" style="text-align: center; margin-left: 200px">
+        <!-- Tab Text -->
+        <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab--1">
+            <!-- Single Popular Course -->
+            <div class="clever-description">
 
-    <!-- Register Now Countdown -->
-    <div class="register-now-countdown mb-100 wow fadeInUp" data-wow-delay="500ms">
-        <h3>Register Now</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae. Donec bibendum tortor sed mi faucibus vehicula. Sed erat lorem</p>
-        <!-- Register Countdown -->
-        <div class="register-countdown">
-            <div class="events-cd d-flex flex-wrap" data-countdown="2019/03/01"></div>
-        </div>
-    </div>
+                <!-- About Course -->
+                <div class="about-course mb-30 ">
+                    <h4>{{$video[0]->name}}</h4>
+                    <div class="col-8 ">
+                       <video width="780" height="380" controls  >  
+                          <source src="{{asset('public/storage/video'.$video[0]->link)}}" type="video/mp4"> 
+                          </video>
+                      </div>
+
+                      <div style="margin-top: 20px">
+                          <span >{{$video[0]->description}}</span>
+
+                      </div>
+
+                  </div>
+
+
+
+              </div>
+
+              <!-- Tab Text -->
+          </div>
+      </div>
+
+  </div>
+
 </section>
-<!-- ##### Register Now End ##### -->
+<!-- end video -->
+
+
 
 <!-- ##### Upcoming Events Start ##### -->
 <section class="upcoming-events section-padding-100-0">
@@ -358,124 +227,27 @@
         </div>
 
         <div class="row">
-            <!-- Single Upcoming Events -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="250ms">
-                    <!-- Events Thumb -->
-                    <div class="events-thumb">
-                        <img src="img/bg-img/e1.jpg" alt="">
-                        <h6 class="event-date">August 26</h6>
-                        <h4 class="event-title">Networking Day</h4>
-                    </div>
-                    <!-- Date & Fee -->
-                    <div class="date-fee d-flex justify-content-between">
-                        <div class="date">
-                            <p><i class="fa fa-clock"></i> August 26 @ 9:00 am</p>
-                        </div>
-                        <div class="events-fee">
-                            <a href="#">$45</a>
-                        </div>
-                    </div>
+         @foreach($event as $e)
+         <div class="col-12 col-md-6 col-lg-4">
+            <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="250ms">
+                <!-- Events Thumb -->
+                <div class="events-thumb">
+                    <img style="width: 350px; height: 175px" src="{{asset('public/storage/images/'.$e->image)}}" alt="">
+                    <h6 class="event-date">{{date("d M", strtotime($e->created_at))}}</h6>
+                    <h4 class="event-title">{{$e->name}}</h4>
                 </div>
-            </div>
+                <!-- Date & Fee -->
+                <div class="tutor-information text-center">
 
-            <!-- Single Upcoming Events -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="500ms">
-                    <!-- Events Thumb -->
-                    <div class="events-thumb">
-                        <img src="img/bg-img/e2.jpg" alt="">
-                        <h6 class="event-date">August 7</h6>
-                        <h4 class="event-title">Open Doors Day</h4>
-                    </div>
-                    <!-- Date & Fee -->
-                    <div class="date-fee d-flex justify-content-between">
-                        <div class="date">
-                            <p><i class="fa fa-clock"></i> August 7 @ 9:00 am</p>
-                        </div>
-                        <div class="events-fee">
-                            <a href="#" class="free">Free</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <p style="width: 350px; height: 70px ;margin-top: 5px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{$e->detail}}.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae</p>
 
-            <!-- Single Upcoming Events -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-upcoming-events mb-50 wow fadeInUp" data-wow-delay="750ms">
-                    <!-- Events Thumb -->
-                    <div class="events-thumb">
-                        <img src="img/bg-img/e3.jpg" alt="">
-                        <h6 class="event-date">August 3</h6>
-                        <h4 class="event-title">Creative Leadership</h4>
-                    </div>
-                    <!-- Date & Fee -->
-                    <div class="date-fee d-flex justify-content-between">
-                        <div class="date">
-                            <p><i class="fa fa-clock"></i> August 3 @ 9:00 am</p>
-                        </div>
-                        <div class="events-fee">
-                            <a href="#">$45</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
+        @endforeach()
+
     </div>
 </section>
 <!-- ##### Upcoming Events End ##### -->
 
-<!-- ##### Blog Area Start ##### -->
-<section class="blog-area section-padding-100-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-heading">
-                    <h3>From Our Blog</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <!-- Single Blog Area -->
-            <div class="col-12 col-md-6">
-                <div class="single-blog-area mb-100 wow fadeInUp" data-wow-delay="250ms">
-                    <img src="img/blog-img/1.jpg" alt="">
-                    <!-- Blog Content -->
-                    <div class="blog-content">
-                        <a href="#" class="blog-headline">
-                            <h4>English Grammer</h4>
-                        </a>
-                        <div class="meta d-flex align-items-center">
-                            <a href="#">Sarah Parker</a>
-                            <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                            <a href="#">Art &amp; Design</a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Blog Area -->
-            <div class="col-12 col-md-6">
-                <div class="single-blog-area mb-100 wow fadeInUp" data-wow-delay="500ms">
-                    <img src="img/blog-img/2.jpg" alt="">
-                    <!-- Blog Content -->
-                    <div class="blog-content">
-                        <a href="#" class="blog-headline">
-                            <h4>English Grammer</h4>
-                        </a>
-                        <div class="meta d-flex align-items-center">
-                            <a href="#">Sarah Parker</a>
-                            <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                            <a href="#">Art &amp; Design</a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ##### Blog Area End ##### -->
 @endsection()
