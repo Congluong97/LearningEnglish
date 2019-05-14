@@ -7,6 +7,7 @@ use App\Video;
 use App\Audio;
 use App\Vocabulary;
 use App\Lecture;
+use App\Level;
 use Auth;
 use App\History;
 
@@ -15,7 +16,7 @@ class Single_lecturesController extends Controller
 
 	public function getSingle_lectures($id)
 	{
-
+		$data['level'] = Level::all();
 		$data['new_lecture']=Lecture::where('id',$id)->get();
 		$data['new_word']=Vocabulary::where('id_lecture',$id)->get();
 		$data['video'] = Video::where('id_lecture',$id)->get();
@@ -29,7 +30,8 @@ class Single_lecturesController extends Controller
 			$history->created_at = date('Y-m-d H:i:s');
 			$history->save();
 		}
-		return view('user.single_lectures',$data);
+		//return view('user.single_lectures',$data);
+		dd($data);
 	}
 
 	public function check(Request $request){

@@ -75,9 +75,9 @@
                                 <li><a href="{{asset('home')}}">Home</a></li>
                                 <li><a href="#">Level</a>
                                     <ul class="dropdown">
-                                        @foreach($level as $le)
-                                            <li><a href="{{asset('level/'.$le->id)}}" title="">{{$le->name}}</a></li>
-                                        @endforeach
+                                      @foreach($level as $l)
+                                        <li><a href="{{asset('level/'.$l->id)}}" title="">{{$l->name}}</a></li>
+                                      @endforeach
                                     </ul>
                                 </li>
                                 <li><a href="{{asset('lectures')}}">Lectures</a></li>
@@ -87,7 +87,7 @@
                             </ul>
 
                             <!-- Search Button -->
-                            <div class="search-area" style="visibility: ">
+                            <div class="search-area">
                                 <form action="#" method="post">
                                     <input type="search" name="search" id="search" placeholder="Search">
                                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>

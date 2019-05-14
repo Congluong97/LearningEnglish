@@ -24,7 +24,8 @@ class UserHomeController extends Controller
     	return view('user.index',$data);
     }
     public function getLogin(){
-    	return view('user.login');
+    	$data['level'] = Level::all();
+    	return view('user.login',$data);
     }
 
     public function postLogin(Request $request){
@@ -56,6 +57,7 @@ class UserHomeController extends Controller
 	}
 
 	public function getProfile(){
+		$data['level'] = Level::all();
 		$user = Auth::user();
 		$data['user'] = User::find($user->id);
 		return view('user.profile',$data);
@@ -87,6 +89,7 @@ class UserHomeController extends Controller
 	
 	}
 	public function getRegister(){
+		$data['level'] = Level::all();
 		return view('user.register');
 	}
 	public function postRegister(UserRequest $request){
@@ -102,6 +105,7 @@ class UserHomeController extends Controller
 	}
 
 	public function getHistory (){
+		$data['level'] = Level::all();
 		$user = Auth::user();
 		if($user){
 			$data['history'] = History::where('id_user',$user->id)->orderBy('id','desc')->get();

@@ -12,14 +12,10 @@ class LevelController extends Controller
      *
      * @return void
      */
-    public function getLevel1()
-    {
-    	$new_lecture=Lecture::where('id_level',1)->get();
-    	$new_lession=Level::where('id',1)->get();
-    	return view('user.level',compact('new_lession','new_lecture'));
-    }
+  
     public function getLevel($id){
         $data['lecture'] = Lecture::where('id_level',$id)->get();
+        $data['level'] = Level::all();
         return view('user.lecture',$data);
     }
 }
