@@ -90,7 +90,7 @@ class UserHomeController extends Controller
 	}
 	public function getRegister(){
 		$data['level'] = Level::all();
-		return view('user.register');
+		return view('user.register',$data);
 	}
 	public function postRegister(UserRequest $request){
 		$user = new User;

@@ -54,7 +54,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><strong>Learning English</strong></a>
+                    <a class="nav-brand" href="{{asset('home')}}"><strong>Learning English</strong></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">

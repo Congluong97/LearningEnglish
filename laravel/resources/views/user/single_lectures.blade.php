@@ -57,12 +57,14 @@
                                 <div class="clever-description">
 
                                     <!-- About Course -->
+                                    @if(!empty($video[0]))
                                     <div class="about-course mb-30">
                                         <h4>{{$video[0]->name}}</h4>
                                         <video width="650" height="300" controls>  
                                           <source src="{{asset('')}}public/{{$video[0]->link}}" type="video/mp4"> 
                                           </video>
                                       </div>
+                                      @endif
                                       <div class="about-course mb-30">
 
                                         <h4>Click the track want to listen</h4>
@@ -140,30 +142,17 @@
                 <!-- Widget -->
                 <div class="sidebar-widget">
                     <h4>You may like</h4>
-
+                    @foreach($top_lecture as $lec)
                     <!-- Single Courses -->
                     <div class="single--courses d-flex align-items-center">
                         <div class="thumb">
-                            <img src="img/bg-img/yml.jpg" alt="">
+                            <img src="{{asset('').$lec->image}}" alt="">
                         </div>
                         <div class="content">
-                            <h5>Vocabulary</h5>
-                            <h6>$20</h6>
+                            <h5><a href="{{asset('single_lectures/'.$lec->id)}}" title="">{{$lec->name}}</a></h5>
                         </div>
                     </div>
-
-                    <!-- Single Courses -->
-                    <div class="single--courses d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/bg-img/yml2.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <h5>Expository writing</h5>
-                            <h6>$45</h6>
-                        </div>
-                    </div>
-
-                    <!-- Single Courses -->
+                    @endforeach
                 </div>
             </div>
         </div>
