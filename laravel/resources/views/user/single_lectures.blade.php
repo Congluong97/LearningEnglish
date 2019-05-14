@@ -81,7 +81,7 @@
 
                                               <button type="submit" style="display: inline; margin-bottom: 45px;margin-left: 5px" class="btn btn-success" id="submit" data_id='$au->id' >submit</button>  
 
-                                              <input style="border: 1px solid" disabled=""  type="text" name="" value="result">
+                                              <input style="border: 1px solid; font-weight:bold; padding-left: 3px" id="result" disabled=""  type="text"  value="result">
                                               <input type="hidden" class="id_audio" name="id_audio" id="id_audio" value="{{$au->id}}" placeholder="">
 
                                           </div>
@@ -198,15 +198,14 @@
             type:'POST',
             url: '{{asset('check')}}',
             data:{
-                answer: $('#answer').text(),
+                answer: $('#answer').val(),
                 id_audio: $('#id_audio').val(),
             },
             success: function(res){
                 event.preventDefault();
-               
-                toastr['success']('Add new Audio successfully!');
-               // $('#tblform').data.reload();
-                // $('#tblAudio').DataTable().ajax.reload(null,false);
+               // alert(res);  
+               // toastr['success'](res);
+                $('#result').attr('value',res);
             },
 
             error: function(xhr, ajaxOptions, thrownError){

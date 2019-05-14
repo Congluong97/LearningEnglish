@@ -33,7 +33,7 @@
                            <a href="{{asset('single_lectures/'.$new->id)}}" title=""> <h4 style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">{{$new->name}}</h4></a>
                             <div class="meta d-flex align-items-center" >
                                 @foreach($new_level as $new2)
-                                @if($new2->id_lecture == $new->id)
+                                 @if($new2->id == $new->id_lecture)
                                     <a   href="">Level {{$new2->id}} - {{$new2->name}}</a>
                                 @endif
                                 @endforeach()

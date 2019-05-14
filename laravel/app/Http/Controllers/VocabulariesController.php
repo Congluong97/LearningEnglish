@@ -9,8 +9,12 @@ class VocabulariesController extends Controller
 
     public function getVocabularies()
     {
-    	$vocabularies=Vocabulary::all();
-        return view('user.vocabularies',['vocabularies'=>$vocabularies] );
+    	$data['vocabularies']=Vocabulary::all();
+        return view('user.vocabularies',$data);
+    }
+
+    public function getInstructor(){
+    	return view('user.instructors');
     }
 
 }

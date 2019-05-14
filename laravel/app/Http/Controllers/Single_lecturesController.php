@@ -42,9 +42,9 @@ class Single_lecturesController extends Controller
          
          if(strcmp($str,$text) == 0){
          	// return  strcmp($str,$text);
-         	return  response($content='success',$status=200);
+         	return  response($content='true');
          }else{
-         	return  response($content='error',$status=400);
+         	return  response($content='false');
          }
          
 	}

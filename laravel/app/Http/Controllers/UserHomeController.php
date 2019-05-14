@@ -8,12 +8,16 @@ use App\User;
 use App\Level_User;
 use App\History;
 use App\Event;
+use App\Video;
+use App\Lecture;
 use App\Http\Controllers\DB;
 use  App\Http\Requests\UserRequest;
 
 class UserHomeController extends Controller
 {
     public function getHome(){
+    	$data['video'] = Video::take(1)->get();
+    	$data['lectures'] = Lecture::take(3)->get();
     	$data['event'] = Event::take(3)->get();
     	return view('user.index',$data);
     }
@@ -29,14 +33,18 @@ class UserHomeController extends Controller
 		
 		if(Auth::attempt($isLogin)){
 			
-			return redirect('homelogin');
+			return redirect('home');
 		}else{
 			return redirect('login')->with('error','Tài khoản hoặc mật khẩu chưa đúng');
 		}
     }
 
     public function getHomeLogin(){
-    	return view('user.index-login');
+    	$data['video'] = Video::take(1)->get();
+    	$data['lectures'] = Lecture::take(3)->get();
+    	$data['event'] = Event::take(3)->get();
+    	return view('user.index',$data);
+    	
     }
 
     public function logout(){
