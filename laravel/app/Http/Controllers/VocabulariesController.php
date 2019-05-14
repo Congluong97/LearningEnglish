@@ -22,13 +22,16 @@ class VocabulariesController extends Controller
 		return Datatables::of($list)
 
 
-   ->editColumn('pronunciation', function($voc) {
-            return '<audio src="'. asset(\url($voc->pronunciation)) .'" controls style="width:250px; height=50px;"></audio>';
-        })
-   ->rawColumns(['pronunciation'])
+		->editColumn('pronunciation', function($voc) {
+			return '<audio src="'. asset(\url($voc->pronunciation)) .'" controls style="width:250px; height=50px;"></audio>';
+		})
+		->rawColumns(['pronunciation'])
 		->setRowId('id')
 
 		->make(true);
+	}
+	public function getInstructor(){
+		return view('user.instructors');
 	}
 
 }
