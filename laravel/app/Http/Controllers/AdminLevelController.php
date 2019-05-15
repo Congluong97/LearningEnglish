@@ -27,7 +27,7 @@ class AdminLevelController extends Controller
         return Datatables::of($list)
         ->addColumn('action',function($level) {
             return '
-            <button title="Update Level" class="btn btn-warning  btnEdit button1" data-id='.$level["id"].'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+           
             <button title="Delete Level" class="btn btn-danger b btnDelete button1" data-id='.$level["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
         })
        

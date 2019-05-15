@@ -1,4 +1,4 @@
-@extends('admin.layouts.admin_master');
+@extends('admin.layouts.admin_master')
 
 @section('content')
 <section class="content">
@@ -6,7 +6,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Table of Lecture</h3>
+					<h2 class="box-title"><b>TABLE OF LECTURE</b></h2>
 					<a class="btn btn-primary " data-toggle="modal" id='btnAdd' style="float: right">&nbsp;
 						<i class="fa fa-plus-square" aria-hidden="true"></i>
 						<i class="fa fa-list" aria-hidden="true"></i>
@@ -56,7 +56,7 @@
 										
 										<div class="form-group">
 											<label for="">Name</label>
-											<input type="text" class="form-control" id="name" placeholder="Name Audio..." name="name">
+											<input type="text" class="form-control" id="name" placeholder="Name ..." name="name">
 										</div>
 										
 										<div class="form-group">
@@ -150,7 +150,7 @@
 						<input type="hidden" name="edit-id" id="edit-id">
 						<div class="form-group">
 							<label for="">Name</label>
-							<input type="text" class="form-control" id="edit-name" placeholder="Name Audio..." name="edit-name">
+							<input type="text" class="form-control" id="edit-name" placeholder="Name ..." name="edit-name">
 						</div>
 
 						<div class="form-group">
@@ -160,7 +160,15 @@
 							</div>
 
 						</div>
+						<div class="form-group">
+							<label for="">Level</label>
+							<select name="level" id="edit-level" class="form-control">
+								@foreach ($levels as $level)
+								<option id="level" value="{!!$level['id']!!}">{!!$level['name']!!}</option>
+								@endforeach
 
+							</select>
+						</div>
 						<div class="form-group">
 							<label for="">status</label>
 							<input type="text" class="form-control" id="edit-status" placeholder="Text" name="edit-text">
@@ -229,7 +237,7 @@
 			data:fd,
 			success: function(res){
 				$('#modalAdd').modal('hide');
-				toastr['success']('Add new Audio successfully!');
+				toastr['success']('Add new Lecture successfully!');
 				$('#tblLecture').DataTable().ajax.reload(null,false);
 			},
 
@@ -290,9 +298,39 @@
 				
 			},
 			error: function(xhr, ajaxOptions, thrownError){
-				toastr['error']('Can\'t display category to edit');
+				toastr['error']('Can\'t display Lecture to edit');
 			}
 		})
 	})
+	$('#formEdit').on('submit',function(event) {
+		event.preventDefault();
+		var id = $('#edit-id').val();
+		var image=$('#edit-image').get(0).files[0];
+		var fd = new FormData();
+
+		fd.append('name',$('#edit-name').val());
+		fd.append('status',$('#edit-status').val());
+		fd.append('image',image);
+		fd.append('level',$('#edit-level').val());
+		$.ajax({
+			url: '{{asset('')}}admin/lecture/' +id,
+			type: 'POST',
+			cache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data:fd,
+			success: function(res){
+				$('#modalEdit').modal('hide');
+				toastr['success']('Update Lecture successfully!');
+				$('#tblLecture').DataTable().ajax.reload(null,false);
+			},
+
+			error: function(xhr, ajaxOptions, thrownError){
+				toastr['error']('Update failed');
+			}	
+		})
+	})
+	
 </script>
 @endsection

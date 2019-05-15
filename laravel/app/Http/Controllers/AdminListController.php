@@ -146,7 +146,35 @@ class AdminListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=$request->all();
+        // dd($data);
+        if ($request->hasFile('thumbnail')) {
+            $date=date('YmdHis',time());
+
+            $thumbnail=$request->file('thumbnail');
+
+            $name=$thumbnail->getClientOriginalName();
+
+            $extension='.'.$thumbnail->getClientOriginalExtension();
+
+            $file_name =  $date . $extension;
+
+            $thumbnail->storeAs('public/img_admin',$file_name);
+
+            $thumbnail='public/storage/img_admin/'.$file_name;
+        }
+
+        $admin = array('name' =>$data['name'] ,
+            'thumbnail' =>$thumbnail ,
+            'email' =>$data['email'],
+            'password' =>Hash::make($data['password']) 
+        );
+        $res=Admin::find($id)->update($admin);
+        if ($res==true) {
+            return  Admin::find($id);
+        }else{
+            return response($content = 'error',$status = 400);
+        }
     }
 
     /**

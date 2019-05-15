@@ -25,7 +25,7 @@ class AdminUserController extends Controller
         $list=User::orderBy('id','desc');
         return Datatables::of($list)
         ->addColumn('action',function($user) {
-            return '<button title="Detail Audio" class="btn btn-info btnShow button1" data-id='.$user["id"].'><i class="fa fa-address-book" aria-hidden="true"></i></button>
+            return '
             <button title="Update Audio" class="btn btn-warning  btnEdit button1" data-id='.$user["id"].'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button title="Delete Audio" class="btn btn-danger b btnDelete button1" data-id='.$user["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
 
@@ -51,7 +51,7 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
-          $user= array(
+        $user= array(
             'name' => $data['name'],
             'email' => $data['email'],
             'level' => $data['level'],
@@ -103,6 +103,13 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res=User::find($id)->delete();
+        if ($res==true) {
+
+            return response(['success'], 200);
+        } else {
+            return response([],400);
+        }  
+        
     }
 }

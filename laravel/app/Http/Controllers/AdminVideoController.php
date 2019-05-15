@@ -181,10 +181,11 @@ class AdminVideoController extends Controller
             'link' =>$link
             
         );
-     $res=Video::find($id);
+        // $dd($video);
+     $res=Video::find($id)->update($video);
      
      if ($res==true) {
-        return  Video::update($video);
+        return  Video::find($id);
     }else{
         return response($content = 'error',$status = 400);
     }

@@ -39,12 +39,14 @@ Route::prefix('admin')->group(function(){
 	Route::get('register', 'AdminAuth\AdminRegisterController@showRegistrationForm')->name('admin.showRegistrationForm');
 	Route::post('register', 'AdminAuth\AdminRegisterController@register')->name('admin.register');
 
-	// Route::middleware('admin.auth')->group(function(){
+	Route::middleware('admin.auth')->group(function(){
 
 		Route::get('audio','AdminAudioController@index')->name('admin_audio.index');
 		Route::get('audio/get-data','AdminAudioController@anyData')->name('admin_audio.dataTable');
 		Route::get('audio/{id}','AdminAudioController@show')->name('admin_audio.show');
 		Route::post('audio/store','AdminAudioController@store')->name('admin_audio.store');
+		// Route::get('audio/{id}','AdminAudioController@edit');
+		Route::post('audio/{id}','AdminAudioController@update');
 		Route::delete('audio/delete/{id}','AdminAudioController@destroy')->name('admin_audio.destroy');
 
 		Route::get('video','AdminVideoController@index')->name('admin_video.index');
@@ -52,7 +54,7 @@ Route::prefix('admin')->group(function(){
 		Route::get('video/{id}','AdminVideoController@show')->name('admin_video.show');
 		Route::post('video/store','AdminVideoController@store')->name('admin_video.store');
 		Route::get('video/{id}','AdminVideoController@edit');
-		Route::put('video/{id}','AdminVideoController@update');
+		Route::post('video/{id}','AdminVideoController@update');
 		Route::delete('video/delete/{id}','AdminVideoController@destroy')->name('admin_video.destroy');
 
 		Route::get('vocabulary','AdminVocabularyController@index')->name('admin_vocabulary.index');
@@ -60,21 +62,22 @@ Route::prefix('admin')->group(function(){
 		Route::post('vocabulary/store','AdminVocabularyController@Store')->name('admin_vocabulary.store');
 		Route::get('vocabulary/{id}','AdminVocabularyController@show')->name('admin_vocabulary.show');
 		// Route::get('vocabulary/{id}','AdminVocabularyController@edit')->name('admin_vocabulary.edit');
-		Route::put('vocabulary/{id}','AdminVocabularyController@update')->name('admin_vocabulary.update');
+		Route::post('vocabulary/{id}','AdminVocabularyController@update')->name('admin_vocabulary.update');
 		Route::delete('vocabulary/delete/{id}','AdminVocabularyController@destroy')->name('admin_vocabulary.destroy');
 
 		Route::get('lecture','AdminLectureController@index')->name('admin_lecture.index');
 		Route::get('lecture/get-data','AdminLectureController@anyData')->name('admin_lecture.dataTable');
 		Route::post('lecture/store','AdminLectureController@store')->name('admin_lecture.store');
 		Route::get('lecture/{id}','AdminLectureController@edit')->name('admin_lecture.edit');
+		Route::post('lecture/{id}','AdminLectureController@update')->name('admin_lecture.update');
 		Route::delete('lecture/delete/{id}','AdminLectureController@destroy')->name('admin_lecture.destroy');
 
 
 		Route::get('listadmin','AdminListController@index')->name('admin_list.index');
 		Route::get('listadmin/get-data','AdminListController@anyData')->name('admin_list.dataTable');
-		
 		Route::post('listadmin/store', 'AdminListController@store')->name('admin_list.store');
 		Route::get('listadmin/{id}','AdminListController@edit')->name('admin_list.edit');
+		Route::post('listadmin/{id}','AdminListController@update')->name('admin_list.update');
 		Route::delete('listadmin/{id}','AdminListController@destroy')->name('admin_list.destroy');
 
 
@@ -82,11 +85,14 @@ Route::prefix('admin')->group(function(){
 		Route::get('level','AdminLevelController@index')->name('admin_level.index');
 		Route::get('level/get-data','AdminLevelController@anyData')->name('admin_level.dataTable');
 		Route::post('level/store','AdminLevelController@store')->name('admin_level.store');
+		Route::get('level/{id}','AdminLevelController@edit')->name('admin_level.edit');
+		Route::post('level/{id}','AdminLevelController@update')->name('admin_level.update');
 		Route::delete('level/delete/{id}','AdminLevelController@destroy')->name('admin_level.destroy');
 
 		Route::get('user','AdminUserController@index')->name('admin_user.index');
 		Route::get('user/get-data','AdminUserController@anyData')->name('amdin_user.dataTable');
-		Route::get('user/store','AdminUserController@store')->name('amdin_user.store');
+		Route::post('user/store','AdminUserController@store')->name('amdin_user.store');
+		Route::delete('user/delete/{id}','AdminUserController@destroy')->name('admin_user.destroy');
 
 
 
@@ -96,7 +102,7 @@ Route::prefix('admin')->group(function(){
 		Route::delete('event/delete/{id}','AdminEventController@destroy');
 
 	});
-// });
+});
 
 
 

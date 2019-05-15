@@ -74,11 +74,11 @@
                             <ul>
                                 <li><a href="{{asset('home')}}">Home</a></li>
                                 <li><a href="#">Level</a>
-                                    <ul class="dropdown">
+                                   {{--  <ul class="dropdown">
                                         @foreach($level as $le)
                                             <li><a href="{{asset('level/'.$le->id)}}" title="">{{$le->name}}</a></li>
                                         @endforeach
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                                 <li><a href="{{asset('lectures')}}">Lectures</a></li>
                                 <li><a href="{{asset('instructors')}}">Instructors</a></li>

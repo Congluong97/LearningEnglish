@@ -15,7 +15,7 @@ class Single_lecturesController extends Controller
 
 	public function getSingle_lectures($id)
 	{
-
+		
 		$data['new_lecture']=Lecture::where('id',$id)->get();
 		$data['new_word']=Vocabulary::where('id_lecture',$id)->get();
 		$data['video'] = Video::where('id_lecture',$id)->get();

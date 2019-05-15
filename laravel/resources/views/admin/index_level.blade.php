@@ -3,7 +3,7 @@
 @section('content-header')
 <ol class="breadcrumb">
 	<li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-	<li class="active">Audio</li>
+	<li class="active">Level</li>
 </ol>
 @endsection
 
@@ -13,7 +13,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Table of Level</h3>
+					<h2 class="box-title"><b>TABLE OF LEVEL</b></h2>
 					<a class="btn btn-primary " data-toggle="modal" id='btnAdd' style="float: right">&nbsp;
 						<i class="fa fa-plus-square" aria-hidden="true"></i>
 						<i class="fa fa-list" aria-hidden="true"></i>

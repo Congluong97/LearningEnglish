@@ -47,16 +47,16 @@ class AdminVocabularyController extends Controller
             <button title="Delete Vocabulary" class="btn btn-danger b btnDelete button1" data-id='.$vocabulary["id"].'><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
         })
         ->editColumn('id_lecture',function($vocabulary) {
-             return $vocabulary->Lecture->name;
-        })
-         ->setRowId('id')
+         return $vocabulary->Lecture->name;
+     })
+        ->setRowId('id')
         ->make(true);
     }
     public function store(Request $request)
     {
         $data=$request->all();
         // dd($data);
-         if ($request->hasFile('pronunciation')) {
+        if ($request->hasFile('pronunciation')) {
             $date = date('YmdHis', time());
 
             $pronunciation = $request->file('pronunciation');
@@ -68,7 +68,7 @@ class AdminVocabularyController extends Controller
                 //lấy đuôi file
             // $extension = '.'.$link->getClientOriginalExtension();
 
-             $file_name = $name;
+            $file_name = $name;
 
             $pronunciation->storeAs('public/pronunciation',$date.$file_name);
 
@@ -86,8 +86,8 @@ class AdminVocabularyController extends Controller
             'id_lecture' =>$data['lecture'], 
         );
         $excist=Vocabulary::where([ ['name','=',$data['name'] ],
-                                    ['id_lecture','=',$data['lecture'] ] 
-                                ])->first();
+            ['id_lecture','=',$data['lecture'] ] 
+        ])->first();
         // $excist2=Vocabulary::where('id_lecture','=',$data['lecture'] )->first();
         if (!isset($excist)) {
             return Vocabulary::create($vocab);
@@ -95,7 +95,7 @@ class AdminVocabularyController extends Controller
             return response($content='error',$status=400);
         }
         
-         
+
     }
 
     /**
@@ -123,8 +123,8 @@ class AdminVocabularyController extends Controller
      */
     public function edit($id)
     {
-         return Vocabulary::find($id);
-    }
+     return Vocabulary::find($id);
+ }
 
     /**
      * Update the specified resource in storage.
@@ -135,14 +135,45 @@ class AdminVocabularyController extends Controller
      */
     public function update(Request $request, $id)
     {   
+      $data=$request->all();
+        // dd($data);
+      if ($request->hasFile('pronunciation')) {
+        $date = date('YmdHis', time());
 
-        $res=Vocabulary::find($id)->update();
-        if ($res==true) {
-            return  Vocabulary::find($id);
-        }else{
-            return response($content = 'error',$status = 400);
-        }
+        $pronunciation = $request->file('pronunciation');
+
+//             echo 'Kiểu files: ' . $file->getMimeType();
+                //lấy tên file
+        $name = $pronunciation->getClientOriginalName();
+
+                //lấy đuôi file
+            // $extension = '.'.$link->getClientOriginalExtension();
+
+        $file_name = $name;
+
+        $pronunciation->storeAs('public/pronunciation',$date.$file_name);
+
+        $pronunciation = 'public/storage/pronunciation/'.$date.$file_name;
+
+            // dd($link[0]);
+
+            // dd($audio['link']);   
     }
+
+    $vocab = array(
+        'name' =>$data['name'], 
+        'mean' =>$data['mean'], 
+        'pronunciation' =>$pronunciation, 
+        'id_lecture' =>$data['lecture'], 
+    );
+
+    $res=Vocabulary::find($id)->update($vocab);
+    if ($res==true) {
+        return  Vocabulary::find($id);
+    }else{
+        return response($content = 'error',$status = 400);
+    }
+}
 
     /**
      * Remove the specified resource from storage.

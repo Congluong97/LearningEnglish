@@ -14,7 +14,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Table of Video</h3>
+					<h2 class="box-title"><b>TABLE OF VIDEO</b></h2>
 					<a class="btn btn-primary " data-toggle="modal" id='btnAdd' style="float: right">&nbsp;
 						<i class="fa fa-plus-square" aria-hidden="true"></i>
 						<i class="fa fa-list" aria-hidden="true"></i>
@@ -74,7 +74,7 @@
 										
 										<div class="form-group">
 											<label for="">Description</label>
-											<input type="text" class="form-control" id="description" placeholder="Text" name="description">
+											<input type="text" class="form-control" id="description" placeholder="Description..." name="description">
 										</div>
 										<div class="form-group">
 											<label for="">Time</label>
@@ -135,10 +135,7 @@
 							<td>Time : </td>
 							<td id="show-time"></td>
 						</tr>
-						<tr>
-							<td>Lecture : </td>
-							<td id="show_lecture"></td>
-						</tr>
+						
 						
 					</tbody>
 				</table>
@@ -169,14 +166,14 @@
 
 					<div class="form-group">
 						<label for="">Video</label>
-						<input id="edit-link" class="form-control" type="file" name="edit-link[]" >
+						<input id="edit-link" class="form-control" type="file" name="link[]" >
 		
-						<span id="store-link"></span>
+						<video  src="" controls style="width: 100px; height: 50px"></video>
 					</div>
 
 					<div class="form-group">
 						<label for="">Description</label>
-						<input type="text" class="form-control" id="edit-description" placeholder="Text" name="edit-text">
+						<input type="text" class="form-control" id="edit-description" placeholder="Description..." name="edit-text">
 					</div>
 					<div class="form-group">
 						<label for="">Time</label>
@@ -279,7 +276,7 @@
 
 				$('#show-description').text(res.description);
 				$('#show-time').text(res.time);
-				$('#show_lecture').text(res.lecture);
+				// $('#show_lecture').text(res.lecture);
 				var link = '{{asset('')}}public/'+res.link;
 				$('#show-video').attr('src',''+link);
 			},
@@ -339,8 +336,8 @@
 				$('#edit-description').attr('value',res.description);
 				$('#edit-time').attr('value',res.time);
 				$('#edit-lecture').attr('value',res.id_lecture);
-
-				$('#edit_link').attr('src',"{{asset('')}}public/"+res.link);
+				
+				// $('#edit_link').attr('src',""+ link);
 
 
 			}
@@ -349,17 +346,23 @@
 	$('#formEdit').on('submit',function(res) {
 		event.preventDefault();
 		var id=$('#edit-id').val();
+		var link=$('#edit-link')[0].files[0];
+		var fd = new FormData();
+
+		fd.append('name',$('#edit-name').val());
+		fd.append('link',link);
+		fd.append('description',$('#edit-description').val());
+		fd.append('time',$('#edit-time').val());
+		fd.append('lecture',$('#edit-lecture').val());
+
 		$.ajax({
 			url: '{!! asset('') !!}/admin/video/' +id,
-			type: 'PUT',
-			data: {
-				name: $('#edit-name').val(),
-				description: $('#edit-description').val(),
-				time: $('#edit-time').val(),
-				link: $('#edit-link').val(),
-				lecture: $('#edit-lecture').val(),
-
-			},
+			type: 'POST',
+			ache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data: fd ,
 			success: function(){
 				$('#modalEdit').modal('hide');
 				toastr['success']('Update Vocabulary successfully!');

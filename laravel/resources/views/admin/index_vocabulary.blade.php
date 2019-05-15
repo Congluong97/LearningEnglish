@@ -13,7 +13,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Table of Vocabulary</h3>
+					<h2 class="box-title"><b>TABLE OF VOCABULARY</b></h2>
 					<a class="btn btn-primary " data-toggle="modal" id='btnAdd' style="float: right">&nbsp;
 						<i class="fa fa-plus-square" aria-hidden="true"></i>
 						<i class="fa fa-list" aria-hidden="true"></i>
@@ -59,16 +59,16 @@
 
 										<div class="form-group">
 											<label for="">Name</label>
-											<input type="text" class="form-control" id="name" placeholder="Name of Vocabulary..." name="name">
+											<input type="text" class="form-control" id="name" placeholder="Name ..." name="name">
 										</div>
 
 										<div class="form-group">
 											<label for="">Mean</label>
-											<input type="text" class="form-control" id="mean" placeholder="mean of Vocabulary..." name="mean">
+											<input type="text" class="form-control" id="mean" placeholder="mean ..." name="mean">
 										</div>
 										<div class="form-group">
 											<label for="">pronunciation</label>
-											<input type="file"  id="pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="pronunciation" >
+											<input type="file"  id="pronunciation" class="form-control" name="pronunciation" >
 										</div>
 										<div class="form-group">
 											<label for="">Lecture</label>
@@ -157,16 +157,16 @@
 					<div class="form-group">
 						<div class="form-group">
 							<label for="">Name</label>
-							<input type="text" class="form-control" id="edit-name" placeholder="Name of Vocabulary..." name="edit-name">
+							<input type="text" class="form-control" id="edit-name" placeholder="Name ..." name="edit-name">
 						</div>
 
 						<div class="form-group">
 							<label for="">Mean</label>
-							<input type="text" class="form-control" id="edit-mean" placeholder="mean of Vocabulary..." name="edit-mean">
+							<input type="text" class="form-control" id="edit-mean" placeholder="mean ..." name="edit-mean">
 						</div>
 						<div class="form-group">
 							<label for="">pronunciation</label>
-							<input type="file"  id="edit-pronunciation" class="form-control" placeholder="Pronunciation of vocabulary..." name="edit-pronunciation" >
+							<input type="file"  id="edit-pronunciation" class="form-control"  name="edit-pronunciation" >
 						</div>
 						<div class="form-group">
 							<label for="">Lecture</label>
@@ -258,7 +258,7 @@
 			success: function(res) {
 				$('#show-name').text(res.name);
 				$('#show-mean').text(res.mean);
-				var link = '{{asset('')}}public/'+res.pronunciation;
+				var link = '{{asset('')}}'+res.pronunciation;
 				$('#show-pronunciation').attr('src',''+link);
 				
 				$('#show-id_lecture').text(res.lecture);
@@ -266,7 +266,7 @@
 
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
-				toastr['error']('Load this product failed!');
+				toastr['error']('Load this Vocabulary failed!');
 			}
 		})
 	})
@@ -281,27 +281,34 @@
 				$('#modalEdit').modal('show');
 				$('#edit-name').attr('value',res.name);
 				$('#edit-mean').attr('value',res.mean);
-				$('#edit-pronunciation').attr('value',res.pronunciation);
+			
 				$('#edit-lecture').attr('value',res.id_lecture);
 				$('#edit-id').attr('value',res.id);
 			},
 			error: function(xhr, ajaxOptions, thrownError){
-				toastr['error']('Can\'t display vocabulary to edit');
+				toastr['error']('Can\'t display Vocabulary to edit');
 			}
 		})
 	})
 	$('#formEdit').on('submit',function(event) {
 		event.preventDefault();
 		var id=$('#edit-id').val();
+		var pronunciation=$('#edit-pronunciation').get(0).files[0];
+		var fd = new FormData();
+
+		fd.append('name',$('#edit-name').val());
+		fd.append('mean',$('#edit-mean').val());
+		fd.append('pronunciation',pronunciation);
+		fd.append('lecture',$('#edit-lecture').val());
+
 		$.ajax({
 			url: '{!! asset('') !!}/admin/vocabulary/' +id,
-			type: 'PUT',
-			data: {
-				name: $('#edit-name').val(),
-				mean: $('#edit-mean').val(),
-				pronunciation: $('#edit-pronunciation').val(),
-				lecture: $('#edit-lecture').val(),
-			},
+			type: 'POST',
+			cache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data: fd,
 			success: function(res){
 				$('#modalEdit').modal('hide');
 				toastr['success']('Update Vocabulary successfully!');

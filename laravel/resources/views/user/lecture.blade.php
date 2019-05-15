@@ -27,7 +27,7 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-popular-course mb-100 wow fadeInUp" >
                     <a href="{{asset('single_lectures/'.$new->id)}}">
-                        <img src="{{asset('')}}{{$new->image}}" alt="" height="250px"></a>
+                        <img src="{{asset('')}}{{$new->image}}" alt=""  style="width: 300px;height: 300px"></a>
                         <!-- Course Content -->
                         <div class="course-content">
                            <a href="{{asset('single_lectures/'.$new->id)}}" title=""> <h4 style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">{{$new->name}}</h4></a>
