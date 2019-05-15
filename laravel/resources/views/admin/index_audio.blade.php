@@ -13,7 +13,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Table of Audio</h3>
+					<h2 class="box-title"><b>TABLE OF AUDIO</b></h2>
 					<a class="btn btn-primary " data-toggle="modal" id='btnAdd' style="float: right">&nbsp;
 						<i class="fa fa-plus-square" aria-hidden="true"></i>
 						<i class="fa fa-list" aria-hidden="true"></i>
@@ -327,7 +327,7 @@
 				$('#edit-text').attr('value',res.text);
 				$('#edit-id').attr('value',res.id);
 				$('#edit-video').attr('value',res.id_video);
-				$('#edit_link').attr('src',"{{asset('')}}public/"+res.link);
+				// $('#edit_link').attr('src',"{{asset('')}}public/"+res.link);
 			},
 			error: function(xhr, ajaxOptions, thrownError){
 				toastr['error']('Can\'t display category to edit');
@@ -337,19 +337,26 @@
 	$('#formEdit').on('submit',function(res) {
 		event.preventDefault();
 		var id=$('#edit-id').val();
-		$.ajax({
-			url: '{!! asset('') !!}/admin/video/' +id,
-			type: 'PUT',
-			data: {
-				name: $('#edit-name').val(),
-				text: $('#edit-text').val(),
-				video: $('#edit-video').val(),
-				link: $('#edit-link').val(),
+		var link=$('#edit-link')[0].files[0];
+		var fd = new FormData();
 
-			},
+		fd.append('name',$('#edit-name').val());
+		fd.append('link',link);
+		fd.append('text',$('#edit-text').val());
+		fd.append('video',$('#edit-video').val());
+		fd.append('link',link);
+
+		$.ajax({
+			url: '{!! asset('') !!}/admin/audio/' +id,
+			type: 'POST',
+			cache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data: fd,
 			success: function(){
 				$('#modalEdit').modal('hide');
-				toastr['success']('Update Vocabulary successfully!');
+				toastr['success']('Update Audio successfully!');
 				$('#tblVideo').DataTable().ajax.reload(null,false);
 
 			},

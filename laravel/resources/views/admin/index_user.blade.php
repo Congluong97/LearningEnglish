@@ -14,7 +14,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Table of User</h3>
+					<h2 class="box-title"><b>TABLE OF USER</b></h2>
 					<a class="btn btn-primary " data-toggle="modal" id='btnAdd' style="float: right">&nbsp;
 						<i class="fa fa-plus-square" aria-hidden="true"></i>
 						<i class="fa fa-list" aria-hidden="true"></i>
@@ -177,6 +177,42 @@
 			error: function(xhr, ajaxOptions, thrownError){
 				event.preventDefault();
 				toastr['error']('Add failed');
+			}
+		})
+	})
+	$('#tblUser').on('click','.btnDelete',function(event) {
+		event.preventDefault();
+		var id = $(this).data('id');
+		swal({
+			title: "Are you sure?",
+			text: "Once deleted, you will not be able to recover this imaginary file!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.ajax({
+				//phương thức delete
+				type: 'delete',
+				url: '{{asset('')}}admin/user/delete/' +id,
+				success: function (response) {
+					swal({
+						title: "The User has been deleted!",
+						icon: "success",
+					});
+					$('#tblUser').DataTable().ajax.reload(null,false);
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+					toastr.error(thrownError);
+				}
+			})
+			} else {
+				swal({
+					title: "The User is safety!",
+					icon: "success",
+					button: "OK!",
+				});
 			}
 		})
 	})

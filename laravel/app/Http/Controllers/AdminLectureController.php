@@ -124,8 +124,31 @@ class AdminLectureController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-         $res=Lecture::find($id)->update();
+    {   
+         $data=$request->all();
+        // dd($data);
+        if ($request->hasFile('image')) {
+            $date=date('YmdHis',time());
+
+            $image=$request->file('image');
+
+            $name=$image->getClientOriginalName();
+
+            $extension='.'.$image->getClientOriginalExtension();
+
+            $file_name =  $date . $extension;
+
+            $image->storeAs('public/images',$file_name);
+
+            $image='public/storage/images/'.$file_name;
+        }
+
+        $lecture = array('name' =>$data['name'] ,
+                        'image' =>$image ,
+                        'status' =>$data['status'],
+                        'id_level' =>$data['level'] 
+                            );
+         $res=Lecture::find($id)->update($lecture);
         if ($res==true) {
             return  Lecture::find($id);
         }else{

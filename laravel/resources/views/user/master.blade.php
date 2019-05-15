@@ -74,6 +74,27 @@
                             <ul>
                                 <li><a href="{{asset('home')}}">Home</a></li>
                                 <li><a href="#">Level</a>
+<<<<<<< HEAD
+                                   {{--  <ul class="dropdown">
+                                        @foreach($level as $le)
+                                            <li><a href="{{asset('level/'.$le->id)}}" title="">{{$le->name}}</a></li>
+                                        @endforeach
+                                    </ul> --}}
+                                </li>
+                                <li><a href="{{asset('lectures')}}">Lectures</a></li>
+                                <li><a href="{{asset('instructors')}}">Instructors</a></li>
+                                <li><a href="{{asset('vocabulary')}}">Vocabulary</a></li>
+
+                            </ul>
+
+                            <!-- Search Button -->
+                            <div class="search-area" style="visibility: ">
+                                <form action="#" method="post">
+                                    <input type="search" name="search" id="search" placeholder="Search">
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+=======
                                     <ul class="dropdown">
                                       @foreach($level as $l)
                                       <li><a href="{{asset('level/'.$l->id)}}" title="">{{$l->name}}</a></li>
@@ -89,6 +110,7 @@
                           <!-- Search Button -->
                           <div class="search-area">
                             <form action="#" method="post">
+<<<<<<< HEAD
                                {{ csrf_field() }}
                                <input type="search" name="search" id="search" placeholder="Search">
                                <div id="lecturelist"></div>
@@ -113,6 +135,32 @@
                                 <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
                                 <a class="dropdown-item" href="{{asset('history')}}">History</a>
                                 <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
+=======
+                                <input type="search" name="search" id="search" placeholder="Search">
+                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+>>>>>>> 5ad702921d6e1f21b9e63ab72d265ffcc4da1d32
+
+                        <!-- Register / Login -->
+                        @if(Auth::guest())
+                        <div class="register-login-area loginandregister">
+                            <a href="{{asset('register')}}" class="btn">Register</a>
+                            <a href="{{asset('login')}}" class="btn active">Login</a>
+                        </div>
+                        @endif
+                        <!-- Login -->
+                        @if(Auth::check())
+                        <div class="login-state d-flex align-items-center">
+                         <div class="user-name mr-30">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
+                                    <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
+                                    <a class="dropdown-item" href="{{asset('history')}}">History</a>
+                                    <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
+                                </div>
+>>>>>>> 249233fd0e615b0a1fc8430effa6b1e288d20bc9
                             </div>
                         </div>
                     </div>

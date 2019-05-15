@@ -12,7 +12,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Table of Admin</h3>
+					<h2 class="box-title"><b>TABLE OF ADMIN</b></h2>
 					<a class="btn btn-primary " data-toggle="modal" id='btnAdd' style="float: right">&nbsp;
 						<i class="fa fa-plus-square" aria-hidden="true"></i>
 						<i class="fa fa-list" aria-hidden="true"></i>
@@ -175,7 +175,7 @@
 					<input type="hidden" name="edit-id" id="edit-id">
 					<div class="form-group">
 						<label for="">Name</label>
-						<input type="text" class="form-control" id="edit-name" placeholder="Name Audio..." name="edit-name">
+						<input type="text" class="form-control" id="edit-name" placeholder="Name..." name="edit-name">
 					</div>
 
 					<div class="form-group">
@@ -321,7 +321,7 @@
 				$('#edit-email').attr('value',res.email);
 				$('#edit-password').attr('value',res.password);
 
-				$('#edit-thumbnail').attr('input',res.thumbnail);
+				
 
 
 			}
@@ -330,19 +330,24 @@
 	$('#formEdit').on('submit',function(res) {
 		event.preventDefault();
 		var id=$('#edit-id').val();
+		var thumbnail=$('#edit-thumbnail').get(0).files[0];
+		var fd = new FormData();
+		fd.append('name',$('#edit-name').val());
+		fd.append('email',$('#edit-email').val());
+		fd.append('password',$('#edit-password').val());
+		fd.append('thumbnail',thumbnail);
 		$.ajax({
 			url: '{!! asset('') !!}/admin/listadmin/' +id,
-			type: 'PUT',
-			data: {
-				name: $('#edit-name').val(),
-				link: $('#edit-link').val(),
-				link: $('#edit-text').val(),
-
-			},
+			type: 'POST',
+			cache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data: fd,
 			success: function(){
 				$('#modalEdit').modal('hide');
-				toastr['success']('Update Vocabulary successfully!');
-				$('#tblVideo').DataTable().ajax.reload(null,false);
+				toastr['success']('Update Admin successfully!');
+				$('#tblAdmin').DataTable().ajax.reload(null,false);
 
 			},
 			error: function(xhr, ajaxOptions, thrownError){

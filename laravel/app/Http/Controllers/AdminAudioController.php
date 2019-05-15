@@ -145,26 +145,26 @@ class AdminAudioController extends Controller
     public function update(Request $request, $id)
     {
        $data = $request->all();
-         dd($data);
+         // dd($data);
        // kiem tra audio
         if ($request->hasFile('link')) {
             
             $date = date('YmdHis', time());
 
-            $link[0] = $request->file('link');
+            $link = $request->file('link');
 
 //             echo 'Kiểu files: ' . $file->getMimeType();
                 //lấy tên file
-            $name = $link[0]->getClientOriginalName();
+            $name = $link->getClientOriginalName();
 
                 //lấy đuôi file
             // $extension = '.'.$link[0]->getClientOriginalExtension();
 
             $file_name = $name;
 
-            $link[0]->storeAs('public/audio',$date.$file_name);
+            $link->storeAs('public/audios',$date.$file_name);
 
-            $link[0] = 'storage/audio/'.$date.$file_name;
+            $link = 'storage/audios/'.$date.$file_name;
 
             // dd($link[0]);
 
@@ -176,12 +176,12 @@ class AdminAudioController extends Controller
             'text' =>$data['text'],
           
             'id_video' => $data['video'],
-            'link' =>$link[0]
+            'link' =>$link
             
         );
-     $res=Audio::find($id);
+     $res=Audio::find($id)->update($audio);
      if ($res==true) {
-        return  Audio::update($audio);
+        return  Audio::find($id);
     }else{
         return response($content = 'error',$status = 400);
     }
