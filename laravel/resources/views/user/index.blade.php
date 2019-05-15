@@ -7,7 +7,7 @@
                 <!-- Hero Content -->
                 <div class="hero-content text-center">
                     <h2>Let's Study Together</h2>
-                    <a href="{{asset('level1')}}" class="btn clever-btn">Get Started</a>
+                    <a href="{{asset('level/1')}}" class="btn clever-btn">Get Started</a>
                 </div>
             </div>
         </div>
@@ -28,15 +28,18 @@
         </div>
 
         <div class="row">
+       
             @foreach($lectures as $lecture)
             <!-- Single Popular Course -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
-                    <img src="{{asset('public/storage/image/').$lecture->link}}" alt="">
+                    <a href="{{asset('single_lectures/'.$lecture->id)}}" title="">
+                    <img src="{{asset('public/storage/images/20190501_135818.jpg')}}"  style="height: 200px;">
+                    </a>
                     <!-- Course Content -->
                     <div class="course-content">
                         <a href="{{asset('single_lectures/'.$lecture->id)}}" title=""> <h4 style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">{{$lecture->name}}</h4></a>
-                        <p  style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis</p>
+                        <p  style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">{{$lecture->description}}</p>
                     </div>
                     <!-- Seat Rating Fee -->
                     <div class="seat-rating-fee d-flex justify-content-between">
@@ -185,6 +188,7 @@
             <div class="clever-description">
 
                 <!-- About Course -->
+                @if(!empty($video[0]))
                 <div class="about-course mb-30 ">
                     <h4>{{$video[0]->name}}</h4>
                     <div class="col-8 ">
@@ -200,7 +204,7 @@
 
                   </div>
 
-
+                @endif
 
               </div>
 
@@ -234,10 +238,10 @@
                 <div class="events-thumb">
                     <img style="width: 350px; height: 175px" src="{{asset('public/storage/images/'.$e->image)}}" alt="">
                     <h6 class="event-date">{{date("d M", strtotime($e->created_at))}}</h6>
-                    <h4 class="event-title">{{$e->name}}</h4>
                 </div>
                 <!-- Date & Fee -->
                 <div class="tutor-information text-center">
+                     <h4 style="text-overflow: ellipsis;overflow: hidden;  white-space: nowrap;">{{$e->name}}</h4>
 
                     <p style="width: 350px; height: 70px ;margin-top: 5px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{$e->detail}}.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae</p>
 

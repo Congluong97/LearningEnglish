@@ -11,7 +11,7 @@ use App\Event;
 use App\Video;
 use App\Lecture;
 use App\Level;
-use App\Http\Controllers\DB;
+use DB;
 use  App\Http\Requests\UserRequest;
 
 class UserHomeController extends Controller
@@ -19,12 +19,14 @@ class UserHomeController extends Controller
     public function getHome(){
     	$data['level'] = Level::all();
     	$data['video'] = Video::take(1)->get();
-    	$data['lectures'] = Lecture::take(3)->get();
+    	// $data['lectures'] = Lecture::take(3)->get();
+    	$data['lectures'] = DB::table('videos')->join('lectures','lectures.id','=','videos.id_lecture')->take(3)->get();
     	$data['event'] = Event::take(3)->get();
     	return view('user.index',$data);
     }
     public function getLogin(){
-    	return view('user.login');
+    	$data['level'] = Level::all();
+    	return view('user.login',$data);
     }
 
     public function postLogin(Request $request){
@@ -44,7 +46,8 @@ class UserHomeController extends Controller
     public function getHomeLogin(){
     	$data['level'] = Level::all();
     	$data['video'] = Video::take(1)->get();
-    	$data['lectures'] = Lecture::take(3)->get();
+    	// $data['lectures'] = Lecture::take(3)->get();
+    	$data['lectures'] = DB::table('videos')->join('lectures','lectures.id','=','videos.id_lecture')->take(3)->get();
     	$data['event'] = Event::take(3)->get();
     	return view('user.index',$data);
     	
@@ -56,6 +59,7 @@ class UserHomeController extends Controller
 	}
 
 	public function getProfile(){
+		$data['level'] = Level::all();
 		$user = Auth::user();
 		$data['user'] = User::find($user->id);
 		return view('user.profile',$data);
@@ -87,7 +91,8 @@ class UserHomeController extends Controller
 	
 	}
 	public function getRegister(){
-		return view('user.register');
+		$data['level'] = Level::all();
+		return view('user.register',$data);
 	}
 	public function postRegister(UserRequest $request){
 		$user = new User;
@@ -102,6 +107,7 @@ class UserHomeController extends Controller
 	}
 
 	public function getHistory (){
+		$data['level'] = Level::all();
 		$user = Auth::user();
 		if($user){
 			$data['history'] = History::where('id_user',$user->id)->orderBy('id','desc')->get();

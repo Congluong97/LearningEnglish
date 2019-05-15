@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vocabulary;
+use App\Level;
 use Yajra\Datatables\Datatables;
 use App\Admin;
 class VocabulariesController extends Controller
@@ -11,8 +12,9 @@ class VocabulariesController extends Controller
 
 	public function getVocabularies()
 	{
-		$vocabularies=Vocabulary::all();
-		return view('user.vocabularies',['vocabularies'=>$vocabularies] );
+		$data['level'] = Level::all();
+		$data['vocabularies']=Vocabulary::all();
+		return view('user.vocabularies',$data );
 	}
 
 	public function anyData()
@@ -31,8 +33,9 @@ class VocabulariesController extends Controller
 		->make(true);
 	}
 	public function getInstructor(){
-		$admins=Admin::all();
-		return view('user.instructors',['admins' => $admins]);
+		$data['level'] = Level::all();
+		$data['admins']=Admin::all();
+		return view('user.instructors',$data);
 	}
 
 }

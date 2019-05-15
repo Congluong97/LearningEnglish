@@ -67,6 +67,7 @@ class AdminLectureController extends Controller
             $extension='.'.$image->getClientOriginalExtension();
 
             $file_name =  $date . $extension;
+            
 
             $image->storeAs('public/images',$file_name);
 

@@ -1,18 +1,12 @@
 @extends('user.master')
+@section('path')
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{asset('home')}}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{asset('lectures')}}">lectures</a></li>
+    <li class="breadcrumb-item"><a href="#">Lesson</a></li>
+</ol>
+@endsection
 @section('content')
-
-<!-- ##### Breadcumb Area Start ##### -->
-<div class="breadcumb-area">
-    <!-- Breadcumb -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Level</a></li>
-            <li class="breadcrumb-item"><a href="#">Level 1</a></li>
-        </ol>
-    </nav>
-</div>
-<!-- ##### Breadcumb Area End ##### -->
 
 <!-- ##### Single Course Intro Start ##### -->
 <div class="single-course-intro d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/bg3.jpg);">
@@ -23,9 +17,9 @@
             <i class="fa fa-star" aria-hidden="true"></i>
             
         </div>
-        <h3>Beginer</h3>
+        <h3>{{$new_lecture[0]->name}}</h3>
         <div class="meta d-flex align-items-center justify-content-center">
-            <a href="https://www.ucan.vn/">Ucan.vn</a>
+            
             <span><i class="fa fa-circle" aria-hidden="true"></i></span>
         </div>
     </div>
@@ -57,20 +51,22 @@
                                 <div class="clever-description">
 
                                     <!-- About Course -->
+                                    @if(!empty($video[0]))
                                     <div class="about-course mb-30">
                                         <h4>{{$video[0]->name}}</h4>
                                         <video width="650" height="300" controls>  
                                           <source src="{{asset('')}}public/{{$video[0]->link}}" type="video/mp4"> 
                                           </video>
                                       </div>
+                                      @endif
                                       <div class="about-course mb-30">
 
                                         <h4>Click the track want to listen</h4>
 
                                         @foreach($audio as $au)
                                         <form action="{{asset('check')}}" method="POST" id="tblform">
-                                         @csrf
-                                         <div class="about-course mb-30">
+                                           @csrf
+                                           <div class="about-course mb-30">
                                             <div>{{$au->name}}</div>
                                             <audio width="300" height="300" controls >  
                                               <source src="{{asset('')}}public/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
@@ -99,30 +95,30 @@
                             <div class="clever-curriculum">
 
 
-                            
-                                    <!-- Curriculum Level -->
-                                    <div class="curriculum-level mb-30">
-                                        <!-- Single Popular Course -->
-                                        @foreach($new_lecture as $new1)
+                                
+                                <!-- Curriculum Level -->
+                                <div class="curriculum-level mb-30">
+                                    <!-- Single Popular Course -->
+                                    @foreach($new_lecture as $new1)
 
-                                        <table border="1">
-                                            @foreach($new_word as $new2)
-                                            @if($new2->id_lecture ==$new1->id )
-                                          
-                                                <tr>
-                                                    <td style="width: 100px;padding: 3px" >{{$new2->name}}:</td>
-                                                    
-                                                    <td style="width: 100px;padding: 3px">{{$new2->mean}}</td>
-                                                    <td>
-                                                        <audio controls >  
-                                                            <source src="{{asset('')}}{{$new2->pronunciation}}" loop="true" autoplay="true" type="audio/mp3"> 
-                                                            </audio>
+                                    <table border="1">
+                                        @foreach($new_word as $new2)
+                                        @if($new2->id_lecture ==$new1->id )
+                                        
+                                        <tr>
+                                            <td style="width: 100px;padding: 3px" >{{$new2->name}}:</td>
+                                            
+                                            <td style="width: 100px;padding: 3px">{{$new2->mean}}</td>
+                                            <td>
+                                                <audio controls >  
+                                                    <source src="{{asset('')}}{{$new2->pronunciation}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                                    </audio>
 
-                                                        </td>
-                                                    </tr>           
-                                                @endif
-                                                @endforeach()
-                                            </table>
+                                                </td>
+                                            </tr>           
+                                            @endif
+                                            @endforeach()
+                                        </table>
 
                                         @endforeach()
                                     </div>
@@ -140,30 +136,17 @@
                 <!-- Widget -->
                 <div class="sidebar-widget">
                     <h4>You may like</h4>
-
+                    @foreach($top_lecture as $lec)
                     <!-- Single Courses -->
                     <div class="single--courses d-flex align-items-center">
                         <div class="thumb">
-                            <img src="img/bg-img/yml.jpg" alt="">
+                            <img src="{{asset('').$lec->image}}" alt="">
                         </div>
                         <div class="content">
-                            <h5>Vocabulary</h5>
-                            <h6>$20</h6>
+                            <h5><a href="{{asset('single_lectures/'.$lec->id)}}" title="">{{$lec->name}}</a></h5>
                         </div>
                     </div>
-
-                    <!-- Single Courses -->
-                    <div class="single--courses d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/bg-img/yml2.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <h5>Expository writing</h5>
-                            <h6>$45</h6>
-                        </div>
-                    </div>
-
-                    <!-- Single Courses -->
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -184,14 +167,14 @@
 
 <script type="text/javascript">
 
-   $.ajaxSetup({
+ $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
 
 
-   $('#tblform').on('submit',function(event) {
+ $('#tblform').on('submit',function(event) {
     event.preventDefault();
         // alert($('#link')[0].files[0]);
         $.ajax({
@@ -205,14 +188,14 @@
                 event.preventDefault();
                // alert(res);  
                // toastr['success'](res);
-                $('#result').attr('value',res);
-            },
+               $('#result').attr('value',res);
+           },
 
-            error: function(xhr, ajaxOptions, thrownError){
-                event.preventDefault();
-                toastr['error']('Add failed');
-            }
-        })
+           error: function(xhr, ajaxOptions, thrownError){
+            event.preventDefault();
+            toastr['error']('Add failed');
+        }
+    })
     });
 
 

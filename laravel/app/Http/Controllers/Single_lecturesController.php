@@ -7,6 +7,7 @@ use App\Video;
 use App\Audio;
 use App\Vocabulary;
 use App\Lecture;
+use App\Level;
 use Auth;
 use App\History;
 
@@ -15,11 +16,21 @@ class Single_lecturesController extends Controller
 
 	public function getSingle_lectures($id)
 	{
+<<<<<<< HEAD
 		
+=======
+		$data['level'] = Level::all();
+		$data['top_lecture'] = Lecture::take(2)->get(); 
+>>>>>>> 5ad702921d6e1f21b9e63ab72d265ffcc4da1d32
 		$data['new_lecture']=Lecture::where('id',$id)->get();
 		$data['new_word']=Vocabulary::where('id_lecture',$id)->get();
 		$data['video'] = Video::where('id_lecture',$id)->get();
-		$id_video = $data['video'][0]->id;
+		if(empty($data['video'])){
+			$id_video = $data['video'][0]->id;
+		}else{
+			$id_video = -1;
+		}
+		
 		$data['audio'] = Audio::where('id_video',$id_video)->get();
 		if(Auth::check()){
 			$history = new History;
@@ -30,6 +41,7 @@ class Single_lecturesController extends Controller
 			$history->save();
 		}
 		return view('user.single_lectures',$data);
+		// dd($data);
 	}
 
 	public function check(Request $request){
