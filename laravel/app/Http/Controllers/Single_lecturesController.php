@@ -27,6 +27,7 @@ class Single_lecturesController extends Controller
 		$data['video'] = Video::where('id_lecture',$id)->get();
 		
 		$id_video = $data['video'][0]->id;
+
 		
 		$data['audio'] = Audio::where('id_video',$id_video)->get();
 		if(Auth::check()){
@@ -42,6 +43,7 @@ class Single_lecturesController extends Controller
 	}
 
 	public function check(Request $request){
+// dd($request);
 
 		$str = preg_replace('/\s+/', '', $request->answer);
 		$str = strtolower($str);

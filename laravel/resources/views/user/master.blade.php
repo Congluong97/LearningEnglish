@@ -90,11 +90,13 @@
                           <!-- Search Button -->
                           <div class="search-area">
                             <form action="#" method="post">
+                               
+                                {{ csrf_field() }}
                                 <input type="search" name="search" id="search" placeholder="Search">
+                                <div id="lecturelist"></div>
                                 <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </form>
                         </div>
-
 
                         <!-- Register / Login -->
                         @if(Auth::guest())
@@ -113,29 +115,35 @@
                                     <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
                                     <a class="dropdown-item" href="{{asset('history')}}">History</a>
                                     <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
-                                </div>
+
+                                    <input type="search" name="search" id="search" placeholder="Search">
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+
+
+
+
+                            <div class="userthumb">
+                                <img src="img/bg-img/t1.png" alt="">
                             </div>
                         </div>
-                        <div class="userthumb">
-                            <img src="img/bg-img/111.jpg" alt="">
-                        </div>
+                        @endif
                     </div>
-                    @endif
+                    <!-- Nav End -->
                 </div>
-                <!-- Nav End -->
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
 
-</header>
-<!-- ##### Header Area End ##### -->
+    </header>
+    <!-- ##### Header Area End ##### -->
 
-<!-- ##### Hero Area Start ##### -->
-<!-- ##### Breadcumb Area Start ##### -->
-<div class="breadcumb-area">
-    <!-- Breadcumb -->
-    <nav aria-label="breadcrumb">
-        @yield('path')
+    <!-- ##### Hero Area Start ##### -->
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area">
+        <!-- Breadcumb -->
+        <nav aria-label="breadcrumb">
+            @yield('path')
         <!-- <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item"><a href="#">Lectures</a></li>
@@ -197,10 +205,28 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/themes/fa/theme.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        
-        @yield('script')
+        <script type="text/javascript">
+           $('#search').keyup(function(){
+            var query =  $(this).val();
+            if(query != ''){
+                $.ajax({
+                    url: '{{asset('search')}}',
+                    method:'POST',
+                    data:{
+                        query:query,
+                    },
+                    success:function(data){
+                     $('#lecturelist').fadeIn();  
+                     $('#lecturelist').html(data); 
+                 }
+             });
+            }
+        });
+    </script>
 
-    </body>
+    @yield('script')
 
-    </html>
+</body>
+
+</html>
 
