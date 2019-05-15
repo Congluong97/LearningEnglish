@@ -19,7 +19,7 @@
         </div>
         <h3>{{$new_lecture[0]->name}}</h3>
         <div class="meta d-flex align-items-center justify-content-center">
-            
+
             <span><i class="fa fa-circle" aria-hidden="true"></i></span>
         </div>
     </div>
@@ -59,144 +59,142 @@
                                           </video>
                                       </div>
                                       @endif
-                                      <div class="about-course mb-30">
+                                      <div class="about-course mb-30" id="parent">
 
                                         <h4>Click the track want to listen</h4>
-
+                                        <?php $i = 1 ?>
                                         @foreach($audio as $au)
-                                        <form action="{{asset('check')}}" method="POST" id="tblform">
-                                           @csrf
-                                           <div class="about-course mb-30">
-                                            <div>{{$au->name}}</div>
-                                            <audio width="300" height="300" controls >  
-                                              <source src="{{asset('')}}public/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
-                                              </audio>
+                                        <form action="{{asset('check')}}" method="POST" id="{{$i}}" >
+                                            @csrf
+                                            <div class="about-course mb-30">
+                                                <div>{{$au->name}}</div>
+                                                <audio width="300" height="300" controls >  
+                                                  <source src="{{asset('')}}public/{{$au->link}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                                  </audio>
 
+                                                  <textarea  class="answer" placeholder="Enter your answer" style="border: 1px solid; margin-bottom: 5px; margin-left: 5px" name="answer" id="answer{{$i}}" required=""></textarea>
+                                                  <input type="hidden" class="id_audio" name="id_audio" id="id_audio{{$i}}" value="{{$au->id}}" placeholder="">
 
-                                              <textarea  class="answer" placeholder="Enter your answer" style="border: 1px solid; margin-bottom: 5px; margin-left: 5px" name="answer" id="answer" required=""></textarea>
+                                                  <button type="submit" style="display: inline; margin-bottom: 45px;margin-left: 5px" class="btn btn-success" id="submit" data_id='{{$i}}' >submit</button>  
 
-                                              <button type="submit" style="display: inline; margin-bottom: 45px;margin-left: 5px" class="btn btn-success" id="submit" data_id='$au->id' >submit</button>  
+                                                  <input style="border: 1px solid; font-weight:bold; padding-left: 3px" id="result{{$i}}" disabled=""  type="text"  value="result">
 
-                                              <input style="border: 1px solid; font-weight:bold; padding-left: 3px" id="result" disabled=""  type="text"  value="result">
-                                              <input type="hidden" class="id_audio" name="id_audio" id="id_audio" value="{{$au->id}}" placeholder="">
+                                              </div>
+                                          </form>
+                                          <?php $i++ ?>
+                                          @endforeach
 
-                                          </div>
-                                      </form>
-                                      @endforeach
+                                      </div>
+                                      <!-- FAQ -->
 
                                   </div>
-                                  <!-- FAQ -->
-
                               </div>
-                          </div>
 
-                          <!-- Tab Text -->
-                          <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
-                            <div class="clever-curriculum">
+                              <!-- Tab Text -->
+                              <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+                                <div class="clever-curriculum">
 
+                                    <!-- Curriculum Level -->
+                                    <div class="curriculum-level mb-30">
+                                        <!-- Single Popular Course -->
+                                        @foreach($new_lecture as $new1)
 
-                                
-                                <!-- Curriculum Level -->
-                                <div class="curriculum-level mb-30">
-                                    <!-- Single Popular Course -->
-                                    @foreach($new_lecture as $new1)
+                                        <table border="1">
+                                            @foreach($new_word as $new2)
+                                            @if($new2->id_lecture ==$new1->id )
 
-                                    <table border="1">
-                                        @foreach($new_word as $new2)
-                                        @if($new2->id_lecture ==$new1->id )
-                                        
-                                        <tr>
-                                            <td style="width: 100px;padding: 3px" >{{$new2->name}}:</td>
-                                            
-                                            <td style="width: 100px;padding: 3px">{{$new2->mean}}</td>
-                                            <td>
-                                                <audio controls >  
-                                                    <source src="{{asset('')}}{{$new2->pronunciation}}" loop="true" autoplay="true" type="audio/mp3"> 
-                                                    </audio>
+                                            <tr>
+                                                <td style="width: 100px;padding: 3px" >{{$new2->name}}:</td>
 
-                                                </td>
-                                            </tr>           
-                                            @endif
+                                                <td style="width: 100px;padding: 3px">{{$new2->mean}}</td>
+                                                <td>
+                                                    <audio controls >  
+                                                        <source src="{{asset('')}}{{$new2->pronunciation}}" loop="true" autoplay="true" type="audio/mp3"> 
+                                                        </audio>
+
+                                                    </td>
+                                                </tr>           
+                                                @endif
+                                                @endforeach()
+                                            </table>
+
                                             @endforeach()
-                                        </table>
-
-                                        @endforeach()
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
-
                         </div>
                     </div>
+
                 </div>
+                <div class="col-12 col-lg-4" style="display: inline">
 
-            </div>
-            <div class="col-12 col-lg-4" style="display: inline">
-
-
-                <!-- Widget -->
-                <div class="sidebar-widget">
-                    <h4>You may like</h4>
-                    @foreach($top_lecture as $lec)
-                    <!-- Single Courses -->
-                    <div class="single--courses d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="{{asset('').$lec->image}}" alt="">
+                    <!-- Widget -->
+                    <div class="sidebar-widget">
+                        <h4>You may like</h4>
+                        @foreach($top_lecture as $lec)
+                        <!-- Single Courses -->
+                        <div class="single--courses d-flex align-items-center">
+                            <div class="thumb">
+                                <img src="{{asset('').$lec->image}}" alt="">
+                            </div>
+                            <div class="content">
+                                <h5><a href="{{asset('single_lectures/'.$lec->id)}}" title="">{{$lec->name}}</a></h5>
+                            </div>
                         </div>
-                        <div class="content">
-                            <h5><a href="{{asset('single_lectures/'.$lec->id)}}" title="">{{$lec->name}}</a></h5>
-                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
             </div>
+
+
+
+
         </div>
-
-
-
-
     </div>
-</div>
 
 
 
-<!-- ##### Courses Content End ##### -->
+    <!-- ##### Courses Content End ##### -->
 
-<!-- ##### Footer Area Start ##### -->
-@endsection()
-@section('script')
-
-<script type="text/javascript">
-
- $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+    <!-- ##### Footer Area Start ##### -->
+    @endsection()
+    @section('script')
 
 
- $('#tblform').on('submit',function(event) {
-    event.preventDefault();
-        // alert($('#link')[0].files[0]);
+    <script type="text/javascript">
+
+       $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+       $('form').on('submit',function(event) {
+        event.preventDefault();
+        var i = $(this).attr('id');
         $.ajax({
             type:'POST',
             url: '{{asset('check')}}',
             data:{
-                answer: $('#answer').val(),
-                id_audio: $('#id_audio').val(),
+                answer: $('#answer'+i).val(),
+                id_audio: $('#id_audio'+i).val(),
             },
             success: function(res){
                 event.preventDefault();
-               // alert(res);  
-               // toastr['success'](res);
-               $('#result').attr('value',res);
+          
+               $('#result'+i).attr('value',res);
            },
 
            error: function(xhr, ajaxOptions, thrownError){
             event.preventDefault();
-            toastr['error']('Add failed');
+            toastr['error']('Error');
         }
     })
     });
+
+
 
 
 </script>

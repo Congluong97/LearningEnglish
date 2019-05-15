@@ -143,3 +143,5 @@ Route::get('vocabulary/get-data','VocabulariesController@anyData')->name('vocabu
 
 
 Route::POST('check','Single_lecturesController@check');
+
+Route::POST('search','UserHomeController@search');

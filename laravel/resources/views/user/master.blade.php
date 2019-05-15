@@ -89,41 +89,43 @@
                           <!-- Search Button -->
                           <div class="search-area">
                             <form action="#" method="post">
-                                <input type="search" name="search" id="search" placeholder="Search">
-                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                            </form>
-                        </div>
+                               {{ csrf_field() }}
+                               <input type="search" name="search" id="search" placeholder="Search">
+                               <div id="lecturelist"></div>
+                               <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                           </form>
+                       </div>
 
-                        <!-- Register / Login -->
-                        @if(Auth::guest())
-                        <div class="register-login-area loginandregister">
-                            <a href="{{asset('register')}}" class="btn">Register</a>
-                            <a href="{{asset('login')}}" class="btn active">Login</a>
-                        </div>
-                        @endif
-                        <!-- Login -->
-                        @if(Auth::check())
-                        <div class="login-state d-flex align-items-center">
-                         <div class="user-name mr-30">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
-                                    <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
-                                    <a class="dropdown-item" href="{{asset('history')}}">History</a>
-                                    <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="userthumb">
-                            <img src="img/bg-img/t1.png" alt="">
-                        </div>
+                       <!-- Register / Login -->
+                       @if(Auth::guest())
+                       <div class="register-login-area loginandregister">
+                        <a href="{{asset('register')}}" class="btn">Register</a>
+                        <a href="{{asset('login')}}" class="btn active">Login</a>
                     </div>
                     @endif
+                    <!-- Login -->
+                    @if(Auth::check())
+                    <div class="login-state d-flex align-items-center">
+                       <div class="user-name mr-30">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
+                                <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
+                                <a class="dropdown-item" href="{{asset('history')}}">History</a>
+                                <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="userthumb">
+                        <img src="img/bg-img/t1.png" alt="">
+                    </div>
                 </div>
-                <!-- Nav End -->
+                @endif
             </div>
-        </nav>
-    </div>
+            <!-- Nav End -->
+        </div>
+    </nav>
+</div>
 
 </header>
 <!-- ##### Header Area End ##### -->
@@ -195,10 +197,28 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/themes/fa/theme.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        
-        @yield('script')
+        <script type="text/javascript">
+         $('#search').keyup(function(){
+            var query =  $(this).val();
+            if(query != ''){
+                $.ajax({
+                    url: '{{asset('search')}}',
+                    method:'POST',
+                    data:{
+                        query:query,
+                    },
+                    success:function(data){
+                       $('#lecturelist').fadeIn();  
+                       $('#lecturelist').html(data); 
+                   }
+               });
+            }
+        });
+    </script>
 
-    </body>
+    @yield('script')
 
-    </html>
+</body>
+
+</html>
 
