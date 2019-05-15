@@ -11,7 +11,7 @@ use App\Event;
 use App\Video;
 use App\Lecture;
 use App\Level;
-use App\Http\Controllers\DB;
+use DB;
 use  App\Http\Requests\UserRequest;
 
 class UserHomeController extends Controller
@@ -19,7 +19,8 @@ class UserHomeController extends Controller
     public function getHome(){
     	$data['level'] = Level::all();
     	$data['video'] = Video::take(1)->get();
-    	$data['lectures'] = Lecture::take(3)->get();
+    	// $data['lectures'] = Lecture::take(3)->get();
+    	$data['lectures'] = DB::table('videos')->join('lectures','lectures.id','=','videos.id_lecture')->take(3)->get();
     	$data['event'] = Event::take(3)->get();
     	return view('user.index',$data);
     }
@@ -45,7 +46,8 @@ class UserHomeController extends Controller
     public function getHomeLogin(){
     	$data['level'] = Level::all();
     	$data['video'] = Video::take(1)->get();
-    	$data['lectures'] = Lecture::take(3)->get();
+    	// $data['lectures'] = Lecture::take(3)->get();
+    	$data['lectures'] = DB::table('videos')->join('lectures','lectures.id','=','videos.id_lecture')->take(3)->get();
     	$data['event'] = Event::take(3)->get();
     	return view('user.index',$data);
     	

@@ -76,60 +76,72 @@
                                 <li><a href="#">Level</a>
                                     <ul class="dropdown">
                                       @foreach($level as $l)
-                                        <li><a href="{{asset('level/'.$l->id)}}" title="">{{$l->name}}</a></li>
+                                      <li><a href="{{asset('level/'.$l->id)}}" title="">{{$l->name}}</a></li>
                                       @endforeach
-                                    </ul>
-                                </li>
-                                <li><a href="{{asset('lectures')}}">Lectures</a></li>
-                                <li><a href="{{asset('instructors')}}">Instructors</a></li>
-                                <li><a href="{{asset('vocabulary')}}">Vocabulary</a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="{{asset('lectures')}}">Lectures</a></li>
+                              <li><a href="{{asset('instructors')}}">Instructors</a></li>
+                              <li><a href="{{asset('vocabulary')}}">Vocabulary</a></li>
 
-                            </ul>
+                          </ul>
 
-                            <!-- Search Button -->
-                            <div class="search-area">
-                                <form action="#" method="post">
-                                    <input type="search" name="search" id="search" placeholder="Search">
-                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
+                          <!-- Search Button -->
+                          <div class="search-area">
+                            <form action="#" method="post">
+                                <input type="search" name="search" id="search" placeholder="Search">
+                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
 
-                            <!-- Register / Login -->
-                            @if(Auth::guest())
-                            <div class="register-login-area loginandregister">
-                                <a href="{{asset('register')}}" class="btn">Register</a>
-                                <a href="{{asset('login')}}" class="btn active">Login</a>
-                            </div>
-                            @endif
-                            <!-- Login -->
-                            @if(Auth::check())
-                            <div class="login-state d-flex align-items-center">
-                               <div class="user-name mr-30">
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
-                                        <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
-                                        <a class="dropdown-item" href="{{asset('history')}}">History</a>
-                                        <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="userthumb">
-                                <img src="img/bg-img/t1.png" alt="">
-                            </div>
+                        <!-- Register / Login -->
+                        @if(Auth::guest())
+                        <div class="register-login-area loginandregister">
+                            <a href="{{asset('register')}}" class="btn">Register</a>
+                            <a href="{{asset('login')}}" class="btn active">Login</a>
                         </div>
                         @endif
+                        <!-- Login -->
+                        @if(Auth::check())
+                        <div class="login-state d-flex align-items-center">
+                         <div class="user-name mr-30">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
+                                    <a class="dropdown-item" href="{{asset(Auth::user()->name.'/profile')}}">Profile</a>
+                                    <a class="dropdown-item" href="{{asset('history')}}">History</a>
+                                    <a class="dropdown-item" href="{{asset('logout')}}">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="userthumb">
+                            <img src="img/bg-img/t1.png" alt="">
+                        </div>
                     </div>
-                    <!-- Nav End -->
+                    @endif
                 </div>
-            </nav>
-        </div>
+                <!-- Nav End -->
+            </div>
+        </nav>
+    </div>
 
-    </header>
-    <!-- ##### Header Area End ##### -->
+</header>
+<!-- ##### Header Area End ##### -->
 
-    <!-- ##### Hero Area Start ##### -->
- 
+<!-- ##### Hero Area Start ##### -->
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area">
+    <!-- Breadcumb -->
+    <nav aria-label="breadcrumb">
+        @yield('path')
+        <!-- <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Lectures</a></li>
+        </ol> -->
+    </nav>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
 
 @yield('content')
 
@@ -177,7 +189,7 @@
         <script src="js/plugins/plugins.js"></script>
         <!-- Active js -->
         <script src="js/active.js"></script>
-         <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> 
         <!-- <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>

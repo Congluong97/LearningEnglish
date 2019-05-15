@@ -1,18 +1,12 @@
 @extends('user.master')
+@section('path')
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{asset('home')}}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{asset('lectures')}}">lectures</a></li>
+    <li class="breadcrumb-item"><a href="#">Lesson</a></li>
+</ol>
+@endsection
 @section('content')
-
-<!-- ##### Breadcumb Area Start ##### -->
-<div class="breadcumb-area">
-    <!-- Breadcumb -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Level</a></li>
-            <li class="breadcrumb-item"><a href="#">Level 1</a></li>
-        </ol>
-    </nav>
-</div>
-<!-- ##### Breadcumb Area End ##### -->
 
 <!-- ##### Single Course Intro Start ##### -->
 <div class="single-course-intro d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/bg3.jpg);">
@@ -23,9 +17,9 @@
             <i class="fa fa-star" aria-hidden="true"></i>
             
         </div>
-        <h3>Beginer</h3>
+        <h3>{{$new_lecture[0]->name}}</h3>
         <div class="meta d-flex align-items-center justify-content-center">
-            <a href="https://www.ucan.vn/">Ucan.vn</a>
+            
             <span><i class="fa fa-circle" aria-hidden="true"></i></span>
         </div>
     </div>
