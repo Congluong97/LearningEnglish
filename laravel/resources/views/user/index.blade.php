@@ -34,7 +34,7 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
                     <a href="{{asset('single_lectures/'.$lecture->id)}}" title="">
-                    <img src="{{asset('public/storage/images/20190501_135818.jpg')}}"  style="height: 200px;">
+                    <img src="{{asset('')}}{{$lecture->image}}"  style="height: 300px;">
                     </a>
                     <!-- Course Content -->
                     <div class="course-content">
@@ -193,7 +193,7 @@
                     <h4>{{$video[0]->name}}</h4>
                     <div class="col-8 ">
                        <video width="780" height="380" controls  >  
-                          <source src="{{asset('public/storage/video'.$video[0]->link)}}" type="video/mp4"> 
+                          <source src="{{asset('')}}public/{{$video[0]->link}}" type="video/mp4"> 
                           </video>
                       </div>
 

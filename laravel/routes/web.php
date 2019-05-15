@@ -92,6 +92,8 @@ Route::prefix('admin')->group(function(){
 		Route::get('user','AdminUserController@index')->name('admin_user.index');
 		Route::get('user/get-data','AdminUserController@anyData')->name('amdin_user.dataTable');
 		Route::post('user/store','AdminUserController@store')->name('amdin_user.store');
+		Route::get('user/{id}','AdminUsercontroller@edit')->name('admin_user.edit');
+		Route::post('user/{id}','AdminUsercontroller@update')->name('admin_user.update');
 		Route::delete('user/delete/{id}','AdminUserController@destroy')->name('admin_user.destroy');
 
 

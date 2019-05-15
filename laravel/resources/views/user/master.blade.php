@@ -74,27 +74,7 @@
                             <ul>
                                 <li><a href="{{asset('home')}}">Home</a></li>
                                 <li><a href="#">Level</a>
-<<<<<<< HEAD
-                                   {{--  <ul class="dropdown">
-                                        @foreach($level as $le)
-                                            <li><a href="{{asset('level/'.$le->id)}}" title="">{{$le->name}}</a></li>
-                                        @endforeach
-                                    </ul> --}}
-                                </li>
-                                <li><a href="{{asset('lectures')}}">Lectures</a></li>
-                                <li><a href="{{asset('instructors')}}">Instructors</a></li>
-                                <li><a href="{{asset('vocabulary')}}">Vocabulary</a></li>
 
-                            </ul>
-
-                            <!-- Search Button -->
-                            <div class="search-area" style="visibility: ">
-                                <form action="#" method="post">
-                                    <input type="search" name="search" id="search" placeholder="Search">
-                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
-=======
                                     <ul class="dropdown">
                                       @foreach($level as $l)
                                       <li><a href="{{asset('level/'.$l->id)}}" title="">{{$l->name}}</a></li>
@@ -114,7 +94,7 @@
                                 <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </form>
                         </div>
->>>>>>> 5ad702921d6e1f21b9e63ab72d265ffcc4da1d32
+
 
                         <!-- Register / Login -->
                         @if(Auth::guest())
@@ -137,7 +117,7 @@
                             </div>
                         </div>
                         <div class="userthumb">
-                            <img src="img/bg-img/t1.png" alt="">
+                            <img src="img/bg-img/111.jpg" alt="">
                         </div>
                     </div>
                     @endif

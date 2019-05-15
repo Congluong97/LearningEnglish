@@ -122,6 +122,47 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="modalEdit">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Edit User</h4>
+			</div>
+			<div class="modal-body">
+				<form action="" role="form" id="formEdit" enctype="multipart/form-data">
+					<input type="hidden" name="_method" value="PUT">
+					@csrf
+					<input type="hidden" name="edit-id" id="edit-id">
+					<div class="form-group">
+						<label for="">Name</label>
+						<input type="text" class="form-control" id="edit-name" placeholder="Name..." name="edit-name">
+					</div>
+					<div class="form-group">
+						<label for="">Email</label>
+						<input type="text" class="form-control" id="edit-email" placeholder="Text" name="edit-email">
+					</div>
+					<div class="form-group">
+						<label for="">Password</label>
+						<input type="password" class="form-control" id="edit-password" placeholder="Text" name="edit-password">
+					</div>
+					<div class="form-group">
+						<label for="">Level</label>
+						<input type="number" class="form-control" id="edit-level" placeholder="Text" name="edit-level">
+					</div>
+				
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Update</button>
+					</div>
+					
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+</section>
 
 
 @endsection
@@ -213,6 +254,51 @@
 					icon: "success",
 					button: "OK!",
 				});
+			}
+		})
+	})
+	$('#tblUser').on('click','.btnEdit',function(event) {
+		event.preventDefault();
+		var id=$(this).data('id');
+		$.ajax({
+			type:'get',
+			url:'{{asset('')}}admin/user/' +id,
+			success: function(res){
+				$('#modalEdit').modal('show');
+				$('#edit-id').attr('value',res.id);
+				$('#edit-name').attr('value',res.name);
+				$('#edit-email').attr('value',res.email);
+				$('#edit-password').attr('value',res.password);
+				$('#edit-level').attr('value',res.level);
+			}
+		})
+	})
+	$('#formEdit').on('submit',function(res) {
+		event.preventDefault();
+		var id=$('#edit-id').val();
+	
+		var fd = new FormData();
+		fd.append('name',$('#edit-name').val());
+		fd.append('email',$('#edit-email').val());
+		fd.append('password',$('#edit-password').val());
+		fd.append('level',$('#edit-level').val());
+		
+		$.ajax({
+			url: '{!! asset('') !!}/admin/user/' +id,
+			type: 'POST',
+			cache: false,
+			processData: false,
+			contentType: false,
+			dataType: 'JSON',
+			data: fd,
+			success: function(){
+				$('#modalEdit').modal('hide');
+				toastr['success']('Update User successfully!');
+				$('#tblUser').DataTable().ajax.reload(null,false);
+
+			},
+			error: function(xhr, ajaxOptions, thrownError){
+				toastr['error']('Update failed');
 			}
 		})
 	})

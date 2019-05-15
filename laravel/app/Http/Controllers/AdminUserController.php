@@ -80,7 +80,9 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        //
+         $user=User::findOrFail($id);
+
+        return $user;
     }
 
     /**
@@ -92,7 +94,20 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=$request->all();
+        $user= array(
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'level' => $data['level'],
+            'password' => Hash::make($data['password']),
+            
+        );
+        $res=User::find($id)->update($user);
+        if ($res==true) {
+            return User::find($id);
+        }else{
+            return response($content="error",$status=400);
+        }
     }
 
     /**
